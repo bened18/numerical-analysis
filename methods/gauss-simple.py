@@ -1,8 +1,8 @@
 from numpy import array, zeros, fabs, linalg
 
 a = array([[14, 6, -2, 3], [3, 15, 2, -5],
-           [-7, 4, -23, 2], [1, -3, -2, 16]])
-b = array([12, 32, -24, 14])
+           [-7, 4, -23, 2], [1, -3, -2, 16]], float)
+b = array([12, 32, -24, 14], float)
 
 #a[1] = a[1] - (a[0]/14)*3
 print(a)
@@ -14,23 +14,28 @@ n = len(b)
 x = zeros(n, float)
 
 # first loop specifys the fixed row
-for k in range(n-1):
-    if fabs(a[k, k]) < 1.0e-12:
 
-        for i in range(k+1, n):
-            if fabs(a[i, k]) > fabs(a[k, k]):
-                a[[k, i]] = a[[i, k]]
-                b[[k, i]] = b[[i, k]]
-                break
+##Validar si el primer valor es 0 si es asi no entra al ciclo
+
+for k in range(n-1):
+
+    ##Falta validar si el valor de la diagonal es 0
+
+    # if fabs(a[k, k]) == 0:
+    #     for i in range(k+1, n):
+    #         if fabs(a[i, k]) > fabs(a[k, k]):
+    #             a[[k, i]] = a[[i, k]]
+    #             b[[k, i]] = b[[i, k]]
+    #             break
  # applies the elimintion below the fixed row
     for i in range(k+1, n):
         if a[i, k] == 0:
             continue
 
-        factor = a[k, k]/a[i, k]
+        factor = a[i, k]/a[k, k]
         print(factor)
-        a[i] = a[k] - a[i]*factor
-        b[i] = b[k] - b[i]*factor
+        a[i] = a[i] - a[k]*factor
+        b[i] = b[i] - b[k]*factor
         print(a, b)
 print(a)
 print(b)
