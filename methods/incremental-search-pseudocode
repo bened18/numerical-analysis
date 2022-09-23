@@ -1,0 +1,26 @@
+input: function, starting value, interval size, maximum number of iterations
+
+output: iteration, table, change of sign
+
+iteration = 1;
+x1 = x0 + interval size;                               
+mp =  f(x0) * f(x1);        #check if there is a change of sign
+    
+if mp <0 then there is a change of sign
+    the interval entered [x0,x1] has a root
+
+while (iteration<=itermax):      
+        
+    print("iteration" , iteration, "[",x0,",",x1,"]", "f(x) =", mp) 
+        
+    if mp<0:
+        the interval with possible root is [x0,x1] 
+        break
+        
+    x0 = x1                  update the interval                       
+    x1 = x0 + delta          update the delta  
+    mp = f(x0) * f(x1)                  
+        
+    iteration = iteration + 1
+        
+Solution not found, iterations consumed
