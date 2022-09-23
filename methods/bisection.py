@@ -39,4 +39,4 @@ def bisection(function,a,b,tol,n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
             
-bisection(function,a,b,tol,n);                          
+bisection(function,a,b,tol,n);                              

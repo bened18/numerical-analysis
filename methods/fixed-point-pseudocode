@@ -1,0 +1,18 @@
+input: function, starting value, tolerance, maximum number of iterations
+
+output: table with iteration number, point, function, error and result
+
+    iteration = 1;
+
+    while iteration <= maximum number of iterations     
+
+        x1 = g(starting value);               
+        error = abs((x1-starting value)/x1);    
+        
+        if error < tol then           #if each the desired tolerance stopwe r
+            break
+            
+        starting value = x1                
+        iteration = iteration + 1               
+     
+   
