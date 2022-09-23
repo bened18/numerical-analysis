@@ -1,8 +1,13 @@
+import numpy as np
 from numpy import array, zeros, fabs, linalg
 
-a = array([[14, 6, -2, 3], [3, 15, 2, -5],
-           [-7, 4, -23, 2], [1, -3, -2, 16]], float)
-b = array([12, 32, -24, 14], float)
+a = array([[4,2,5],
+            [2,5,8],
+            [5,4,3]], float);
+
+b = array([[60.7],
+            [92.9],
+            [56.30]], float);
 
 #a[1] = a[1] - (a[0]/14)*3
 print(a)
