@@ -1,0 +1,32 @@
+input: function, p_0, p_1, tolerance, iterations
+
+output: table with iteration, point, error
+
+    absolute_error = abs(p_1 - p_0);
+    
+    show iteration: p_0);
+    show iteration: p_1, and absolute_error);
+    
+    iteration = 2;
+    while iteration <= iterations:
+        if f(p_1) == f(p_0): #division by cero
+            show solution not found (error in the initial values)
+            break;
+        
+        p_2 = p_0 - (f(p_0)*(p_1 - p_0))/(f(p_1) - f(p_0)); # secant method formula
+
+        absolute_error = abs(p_2- p_1);
+        show iteration: p_2, and absolute_error);
+        
+        if absolute_error < tolerance: #stop criterion
+          show solution found in x = p_2, iterations: i);
+            break;
+        
+        p_0 = p_1;
+        p_1 = p_2;
+        
+        iteration = iteration + 1;
+
+    if iteration > iterations:
+        show solution not found for tolerance: tol, spend iterations: i-1);
+        
