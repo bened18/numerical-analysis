@@ -9,7 +9,7 @@ output: table with iteration number, point, function, error and result
         x1 = g(starting value);               
         error = abs((x1-starting value)/x1);    
         
-        if error < tol then           #if each the desired tolerance stopwe r
+        if error < tol then           #reach the desired tolerance stop
             break
             
         starting value = x1                

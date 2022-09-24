@@ -1,0 +1,36 @@
+input: function, interval a, interval b, tolerance, maximum number of iterations 
+
+output: table with iteration number, intervals, midpoint and result
+
+if f(a)*f(b) is greater than or equal to zero then 
+    the interval does not change sign 
+
+absolute_error = abs(interval b - interval a)
+iterations = 1
+c = a - (f(a)*(b-a))/(f(b)-f(a));
+
+while (iterations <= maximum number of iterations) and (absolute_error > tolerance)
+    midpoint = c;
+    show row of the tables
+
+    if f(midpoint)==0 then
+        solution found in midpoint
+        break
+
+    if f(interval a)*f(midpoint)<0 then
+        interval b = midpoint
+    else then
+        interval a = midpoint
+    
+    c = a - (f(a)*(b-a))/(f(b)-f(a));
+    
+    absolute_error = abs(previous midpoint - midpoint)
+
+    if absolute_error < tolerance the 
+        solution found in midpoint with iterations
+        break
+
+    iterations = iterations + 1
+
+if iterations > maximum number of iterations then 
+    solution not found for that tolerance 

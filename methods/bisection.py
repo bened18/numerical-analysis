@@ -1,18 +1,10 @@
 import numpy as np
 from math import *
 
-function = input("enter the function ");
-a = float(input("enter interval a "));                              
-b = float(input("enter interval b "));
-tol = float(input("enter tolerance "));
-n = int(input("enter maximum number of iterations "));
-
-                        
+def f(x):
+    return x + np.log(x);
     
-def bisection(function,a,b,tol,n):
-    
-    def f(x):
-        return eval(function);
+def bisection(f,a,b,tol,n):
     
     if f(a)*f(b)>=0:
         print("the interval does not change sign");
@@ -39,4 +31,4 @@ def bisection(function,a,b,tol,n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
             
-bisection(function,a,b,tol,n);                              
+bisection(f,0.2,1.4,10**-4,50);                              
