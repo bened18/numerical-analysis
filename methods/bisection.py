@@ -2,7 +2,7 @@ import numpy as np
 from math import *
 
 def f(x):
-    return x + np.log(x);
+    return x**x - 100;
     
 def bisection(f,a,b,tol,n):
     
@@ -31,4 +31,4 @@ def bisection(f,a,b,tol,n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
             
-bisection(f,0.2,1.4,10**-4,50);                              
+bisection(f,3,4,10**-10,50);                              

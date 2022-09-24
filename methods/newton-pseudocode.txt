@@ -1,0 +1,51 @@
+condition: 
+    1. determinate initial value p_0
+    2. know derivative of function f'(x)
+
+formula:
+    (p_0, f(p_0))      m=f'(p_0)
+    y - y_0 = m(x - x_0)
+    y - f(p_0) = f'(p_0)*(x-p_0)
+    y = f'(p_0)(x-p_0)+f(p_0) equation of the tangent line
+    
+    0 = f'(p_0)(p_1-p_0)+f(p_0)
+    
+    -f(p_0) = f'(p_0)(p_1-p_0)
+    
+    -(f(p_0))/(f'(p_0)) = p_1-p_0
+               
+    p_1 = p_0 - (f(p_0))/(f'(p_0)) this is our next point
+
+    p_i = p_i-1 - (f(p_i-1))/(f'(p_i-1))
+
+stop criterion:
+    |pi-p_i-1| < tolerance
+        i > iterations
+
+PSEUDOCODE:
+
+    input: function, derivative, p_0, tolerance, iterations
+    output: iteration, point, error
+
+    show iteration: i p = p_0
+    absolute_error = 1;
+    iteration = 1;
+
+    while iteration <= iterations:
+        if df(p_0) == 0: #division by zero
+            show solution not found, derivative is zero
+            break;
+            
+        p_1 = p_0 - (f(p_0))/(df(p_0)); #method formula
+        absolute_error = abs(p_1 - p_0);
+        show iteration: i, p = p_1, error = absolute_error
+        
+        if absolute_error < tolerance: #stop criterion
+            show solution found in x = p_1, iterations: i
+            break
+
+        p_0 = p_1
+        iteration = iteration + 1
+
+    if iteration > iterations:
+        show solution not found for tolerance: tolerance, spend iterations: iteration-1
