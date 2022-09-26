@@ -7,7 +7,7 @@ size of matrix A
 
 Show M
 
-for column=1; size-1; i++:
+for column=0; size-1; i++:
     for row=i+1;size,j++:
         if M[row,column]!=0:
             M[row,column:size+1]=M[row,column:size+1]-(M[row,column]/M[row,column])*M[row,column:size+1]
@@ -23,3 +23,5 @@ for i=ultfila;0-1; i--1):
     b = M[i,ultcolumna];
     x[i] = (b - suma) / M[i,i];
 x = transpose(x);
+
+show x
