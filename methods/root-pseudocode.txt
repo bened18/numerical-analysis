@@ -1,0 +1,26 @@
+input: function as f, first-derivative as df, second-derivative as d2f, initial-point as x0, tolerance, iterations
+
+output: iteration, xact, evaluate function, error
+
+xold = x0;
+fold = f(xold);
+e_abs=1000;
+iteration = 1;
+  
+while iteration<=iterations then
+  xact = xold - fold * df(xold) / ((df(xold))**2 - fold * d2f(xold));
+  fact = f(xact);
+  e_abs = abs(xact-xold);
+    
+  show Iteration:", iteration, "  X =", xact, "F(x) =", fact, "Error =", e_abs);
+    
+  iteration += 1;
+  xold = xact;
+  fold = fact;
+    
+  if e_abs < tol then
+    show Solution found in X = xact, iterations: iteration-1, error = e_abs;
+    break;
+  
+if iteration > iterations then
+  show Solution not found for tolerance = tolerance;
