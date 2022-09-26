@@ -3,9 +3,9 @@ import numpy as np
 from math import *
 
 def f(x):
-    return x**x - 100;
+    return (np.log(np.sin(x)**2+1)) - 1/2;
 def df(x):
-    return x**x * (np.log(x) + 1);
+    return (2 * (np.sin(x)**2 + 1)**-1) * (np.sin(x) * np.cos(x));
     
 def newton(f, df, p_0, tol, n):
     print("iteration: ", 0, "p = ", p_0);
@@ -28,4 +28,4 @@ def newton(f, df, p_0, tol, n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
 
-newton(f,df,1,10**-10,500);
+newton(f,df,0.5,10**-7,100);

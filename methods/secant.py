@@ -2,7 +2,7 @@ import numpy as np
 from math import *
 
 def f(x):
-    return x**x - 100;
+    return (np.log(np.sin(x)**2+1)) - 1/2;
 
 def secant(f, p_0, p_1, tol, n):
     e_abs = abs(p_1 - p_0);
@@ -31,4 +31,4 @@ def secant(f, p_0, p_1, tol, n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
         
-secant(f,3,3.2,10**-4,50);
+secant(f,0.5,1,10**-7,100);

@@ -2,7 +2,7 @@ from math import *
 import numpy as np
 
 def f(x):                                       
-    return x + 3;                               #evaluate function
+    return (np.log(np.sin(x)**2+1)) - 1/2;                               #evaluate function
 
 def incrementalsearch(x0, delta, itermax):
     
@@ -26,6 +26,7 @@ def incrementalsearch(x0, delta, itermax):
         mp = f(x0) * f(x1);               
         
         iteration = iteration + 1;
-    print("Solution not found, iterations consumed");
+    if iteration > itermax:
+        print("Solution not found, iterations consumed");
     
-incrementalsearch(1,10,100);
+incrementalsearch(-3,0.5,100);

@@ -2,7 +2,7 @@ import numpy as np
 from math import *
 
 def f(x):
-        return x**x - 100;              
+        return (np.log(np.sin(x)**2+1)) - 1/2;              
     
 def false_position(f,a,b,tol,n):
     
@@ -35,4 +35,4 @@ def false_position(f,a,b,tol,n):
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
             
-false_position(f,3,4,10**-10,50);   
+false_position(f,0,1,10**-7,100);   
