@@ -1,12 +1,9 @@
 from math import *
 
-function = input("enter the function");
-x0 = float(input("enter starting value")); 
-tol = float(input("enter tolerance"));            #request data from the user
-itermax = int(input("enter maximum number of iterations"));
+
 
 def g(x):
-    return eval(function);           #evaluate the function
+    return x + 3;           #evaluate the function
 
 def punto_fijo(x0, tol, itermax):   
     iter = 1;
@@ -26,5 +23,5 @@ def punto_fijo(x0, tol, itermax):
     print("solution not found, iterations used: ", iter);  
     return None;
 
-punto_fijo(x0, tol, itermax);
+punto_fijo(1, 10**-5, 100);
         

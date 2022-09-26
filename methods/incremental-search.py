@@ -1,15 +1,10 @@
 from math import *
-
-function = input("enter function ");
-x0 = float(input("enter starting value ")); 
-delta = float(input("enter interval size "));             #request data from the user
-itermax = int(input("enter maximum number of iterations "));
+import numpy as np
 
 def f(x):                                       
-    return eval(function);                               #evaluate function
+    return x + 3;                               #evaluate function
 
-
-def busquedaincremental(x0, delta, itermax):
+def incrementalsearch(x0, delta, itermax):
     
     iteration = 1;
     x1 = x0 + delta;                               
@@ -31,10 +26,6 @@ def busquedaincremental(x0, delta, itermax):
         mp = f(x0) * f(x1);               
         
         iteration = iteration + 1;
-        
     print("Solution not found, iterations consumed");
-                       
-     
     
-    
-busquedaincremental(x0,delta,itermax);
+incrementalsearch(1,10,100);
