@@ -1,0 +1,25 @@
+input: Matrix A, matrix solution b
+
+output: changes in the matrix while operates and the array with the solution
+
+M is the aumented matrix
+size of matrix A
+
+Show M
+
+for column=1; size-1; i++:
+    for row=i+1;size,j++:
+        if M[row,column]!=0:
+            M[row,column:size+1]=M[row,column:size+1]-(M[row,column]/M[row,column])*M[row,column:size+1]
+    show M 
+
+ultfila = size-1;
+ultcolumna = size;
+x solution matrix;
+for i=ultfila;0-1; i--1):
+    suma = 0;
+    for j=i+1;ultcolumna;j++1:
+        suma = suma + M[i,j]*x[j];
+    b = M[i,ultcolumna];
+    x[i] = (b - suma) / M[i,i];
+x = transpose(x);
