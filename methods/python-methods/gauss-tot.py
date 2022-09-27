@@ -1,32 +1,62 @@
-import numpy as np
+import sys
+import numpy as npy
+ 
+def forma_matriz_aumentada(A,b):
+   for i in range(len(A)):
+       A[i].append(b[i])
+   return A
+ 
+ 
+def pivoteo_total(Ab,k,marcas,n):
+    #inicializar marcas
+    mayor = 0
+    fila_mayor = k
+    columna_mayor = k
+    for r in range(k,n):
+        for s in range(k,n):
+            if abs(Ab[r][s]) > mayor:
+                mayor = abs(Ab[r][s])
+                fila_mayor = r
+                columna_mayor = s
+    if mayor == 0:
+        return "El sistema no tiene solución única"
+    else:
+        if fila_mayor != k:
+            Ab[fila_mayor],Ab[k] = Ab[k],Ab[fila_mayor]
+        if columna_mayor != k:
+            for row in Ab:
+                row[k],row[columna_mayor] = row[columna_mayor],row[k]
+            marcas[k],marcas[columna_mayor] = marcas[columna_mayor],marcas[k]
+    return Ab,marcas
+ 
+def eliminacion_gaussiana_pivoteo(A,b,metodo):
+    n = len(A)
+    marcas = npy.arange(n)
+    Ab = forma_matriz_aumentada(A,b)
+    for k in range(n-1):
+        print ("Etapa ",k)
+        Ab,marcas = pivoteo_total(Ab,k,marcas,n)    
+        for i in range(k+1,n):
+            if Ab[k][k]:
+                multiplicador = Ab[i][k]/float(Ab[k][k])
+            else:
+                # raise Exception("Error, división por 0")
+                sys.exit()
+                print ("Error, división por 0")
+            for j in range(k,n+1):
+                Ab[i][j] = Ab[i][j] - multiplicador * Ab[k][j]
+        print ("Matriz aumentada \n",npy.array(Ab))
+    if metodo ==  1:
+        return Ab
+    elif metodo == 2:
+        return Ab,marcas
+ 
+ 
+ 
+a = ([[2, -1, 0, 3],
+     [1, 0.5, 3, 8],
+     [0, 13, -2, 11],
+     [14, 5, -2, 3]])
 
-def gausstot(A,b):
-
-    n=np.size(A);
-    M=np.concatenate(A, b);
-    cambi=[];
-
-    for i in range(0,n-1):
-        max = 
-        fila;
-        columna
-        #[a,b]=find(abs(M(i:n,i:n))==max(max(abs(M(i:n,i:n)))));
-        if b(1)+i-1!=i:
-            cambi=[cambi, i b(1)+i-1];
-            aux2=M[:,b(1)+i-1];
-            M[:,b(1)+i-1]=M[:,i];
-            M[:,i]=aux2;
-        if a(1)+i-1!=i:
-            aux2=M[i+a(1)-1,i:n+1];
-            M[a(1)+i-1,i:n+1]=M[i,i:n+1];
-            M[i,i:n+1]=aux2;
-        for j in range(i+1,n):
-            if M[j,i]!=0:
-                M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1];
-        print(M)
-
-    x=sustregr(M);
-    for i in range(np.size(cambi),1,-1):
-        aux=x[cambi(i,1)];
-        x[cambi[i,1]]=x[cambi[i,2]];
-        x[cambi[i,2]]=aux;
+b = ([1, 1, 1, 1])
+eliminacion_gaussiana_pivoteo(a,b,2)
