@@ -1,28 +1,30 @@
 import numpy as np
 
 #Ingreso
-a = ([[4,2,5],
-     [2,5,8],
-     [5,4,3]])
+a = ([[2, -1, 0, 3],
+     [1, 0.5, 3, 8],
+     [0, 13, -2, 11],
+     [14, 5, -2, 3]])
 
-b = ([[60.7],
-      [92.9],
-      [56.30]])
+b = ([[1],
+      [1],
+      [1],
+      [1]])
 
 #procedimiento
 #matriz aumentada
 
 M = np.concatenate((a,b), axis=1)
-M = M.astype(np.float)
 #pivoteo parcial por filas
 tamano = np.shape(a)
 n = tamano[0]
-print(n)
 
+print("Matriz aumentada")
 print(M)
 print("")
 
 for i in range(0,n-1,1):
+    print("iteracion" , i)
     #Cambio de filas
     aux0=np.max(np.abs(M[i:n,i]))
     aux = 0
@@ -32,12 +34,11 @@ for i in range(0,n-1,1):
       else:
         aux=aux+1
     if aux0>abs(M[i,i]):
-        aux2=np.copy(M[i+aux,i:n+1])
-        M[aux+i,i:n+1]=M[i,i:n+1]
-        for j in range(i,n+1):
-          M[i,j]=aux2[j]
+        aux2=np.copy(M[i+aux,i:n])
+        M[aux+i,i:n]=M[i,i:n]
+        M[i,i:n]=aux2
 
-    for j in range(i+1,n,1):
+    for j in range(i+1,n):
         if M[j,i]!=0:
           M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1]
     print(M)
