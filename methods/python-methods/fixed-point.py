@@ -24,6 +24,6 @@ def punto_fijo(x0, tol, itermax):
     if iter > itermax:
         print("solution not found, iterations used: ", iter)
 
-    print(tabulate(resultados, headers=["iteration", "Xi", "g(xi)", "f(x)", "error"]))
+    print(tabulate(resultados, headers=["iteration", "Xi", "g(xi)", "f(x)", "error"], tablefmt="github", floatfmt=(".10f",".10f",".10f")))
 
 punto_fijo(-0.5, 10**-7, 100)
