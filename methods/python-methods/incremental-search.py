@@ -13,12 +13,10 @@ def incrementalsearch(x0, delta, itermax):
     if mp <0:
         print("the interval entered [", x0,"," ,x1,"] has a root");
 
-    while (iteration<=itermax):      
-        
-        print("iteration" , iteration, "[",x0,",",x1,"]", "f(x) =", mp);     
+    while (iteration<=itermax):         
         
         if mp<0:
-            print("the interval with possible root is [", x0, ",", x1, "]");  
+            print("There is a root of f in [", x0, ",", x1, "]");  
             break;
         
         x0 = x1;                            
