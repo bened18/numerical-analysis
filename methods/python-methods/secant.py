@@ -7,14 +7,9 @@ def f(x):
 
 def secant(f, p_0, p_1, tol, n):
     e_abs = abs(p_1 - p_0);
-    
-    
-    print('iteration:',0,'p = ', p_0);
-    print('iteration:',1,'p = ', p_1, 'error = ', e_abs);
-    
     i = 2;
-    p_2 = 0;
-    resultados =[[i,p_2,f(p_2),""]]
+    resultados =[[0,p_0,f(p_0),""]]
+    resultados.append([1,p_1,f(p_1),""])
     while i <= n:
         if f(p_1) == f(p_0): #division by cero
             print('solution not found (error in the initial values)');
@@ -26,7 +21,6 @@ def secant(f, p_0, p_1, tol, n):
         resultados.append([i,p_2,f(p_2),e_abs]) 
         
         if e_abs < tol: #stop criterion
-            print('solution found in x = ', p_2, 'iterations: ', i);
             break;
         
         p_0 = p_1;
@@ -35,5 +29,8 @@ def secant(f, p_0, p_1, tol, n):
         i+=1;
     if i > n:
         print("solution not found for tolerance:" , tol,"spend iterations:", i-1);
-    print(tabulate(resultados, headers=["iter", "Xi", "f(xi)", "error"], tablefmt="github"))
+    print(tabulate(resultados, headers=["iter", "Xi", "f(xi)", "error"], tablefmt="github",floatfmt=(".10f",".10f")))
+    if i < n:
+        print('Approximation of root found in x = ', p_2);
+
 secant(f,0.5,1,10**-7,100);
