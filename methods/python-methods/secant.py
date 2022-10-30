@@ -3,7 +3,7 @@ from math import *
 from tabulate import tabulate
 
 def f(x):
-    return (np.log(np.sin(x)**2+1)) - 1/2;
+    return (12*x**4-2.72*x**3+0.2153*x**2-0.0042*x);
 
 def secant(f, p_0, p_1, tol, n):
     e_abs = abs(p_1 - p_0);
@@ -33,4 +33,4 @@ def secant(f, p_0, p_1, tol, n):
     if i < n:
         print('Approximation of root found in x = ', p_2);
 
-secant(f,0.5,1,10**-7,100);
+secant(f,12,18,10**-5,100);
