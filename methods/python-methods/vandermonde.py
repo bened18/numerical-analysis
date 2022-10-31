@@ -4,9 +4,8 @@ import sympy as sym
 import matplotlib.pyplot as plt
 
 # INGRESO
-xi = [0, 6, 12, 18 ,24]
-fi = [12, 2.5,3,8,12]
-
+xi = [0,0.2,0.3,0.4]
+fi = [1,1.6,1.7,2.0]
 # muestras = tramos+1
 muestras = 101
 
