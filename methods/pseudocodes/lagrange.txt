@@ -1,0 +1,11 @@
+#Create an array for the x-values of the data points
+#Create an array for the y-values of the data points
+#Create an empty array for the y-values of the polynomial
+#For each x-value in the x-values array:
+#    Create an empty array for the terms
+#    For each y-value in the y-values array:
+#        Create a term
+#        Set the term equal to the y-value times the product of all the x-values except the current x-value divided by the difference between the x-value and all the other x-values except the current x-value
+#        Add the term to the terms array
+#    Set the y-value of the corresponding x-value in the polynomial array equal to the sum of all the terms in the terms array
+#Plot the data points and the polynomial

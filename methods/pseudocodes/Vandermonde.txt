@@ -1,0 +1,50 @@
+xi
+fi
+muestras = 101
+
+xi = np.array(xi)
+B = np.array(fi)
+n = len(xi)
+
+D = np.zeros(shape=(n,n),dtype =float)
+for i in range(0,n,1):
+    for j in range(0,n,1):
+        potencia = (n-1)-j # Derecha a izquierda
+        D[i,j] = xi[i]**potencia
+
+coeficiente = np.linalg.solve(D,B)
+
+x = sym.Symbol('x')
+polinomio = 0
+for i in range(0,n,1):
+    potencia = (n-1)-i   # Derecha a izquierda
+    termino = coeficiente[i](x*potencia)
+    polinomio = polinomio + termino
+
+px = sym.lambdify(x,polinomio)
+
+a = np.min(xi)
+b = np.max(xi)
+xin = np.linspace(a,b,muestras)
+yin = px(xin)
+
+##yin = np.zeros(muestras,dtype=float)
+##for j in range(0,muestras,1):
+##    yin[j] = polinomio.subs(x,xin[j])
+    
+print('Matriz Vandermonde: ')
+print(D)
+print('los coeficientes del polinomio: ')
+print(coeficiente)
+print('Polinomio de interpolación: ')
+print(polinomio)
+print('\n formato pprint')
+sym.pprint(polinomio)
+
+plt.plot(xi,fi,'o', label='[xi,fi]')
+plt.plot(xin,yin, label='p(x)')
+plt.xlabel('xi')
+plt.ylabel('fi')
+plt.legend()
+plt.title(polinomio)
+plt.show()
