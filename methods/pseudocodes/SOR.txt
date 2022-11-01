@@ -1,0 +1,15 @@
+def sor(A, b, w, x, N):
+    for i in range(N):
+        for j in range(len(A)):
+            s1 = sum(A[j][k] * x[k] for k in range(j))
+            s2 = sum(A[j][k] * x[k] for k in range(j+1, len(A)))
+            x[j] = (1-w)*x[j] + (w/A[j][j]) * (b[j] - s1 - s2)
+    return x
+
+A = np.array([[4,12,-16],[12,37,-43],[-16,-43,98]])
+b = np.array([1,2,3])
+w = 1.25
+x = np.array([0,0,0])
+N = 25
+x = sor(A, b, w, x, N)
+print(x)
