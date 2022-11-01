@@ -1,0 +1,39 @@
+titulo = np.asarray(titulo)
+tabla = np.concatenate((titulo,tabla), axis=0)
+
+x = 0.3
+
+i = 0
+while(i < n):
+    if (xi[i] >= x):
+        xi = x
+        break
+    else:
+        i = i+1
+
+f = tabla[i,3]
+
+paso = n-1
+columna = 4
+while (paso > 0):
+    i = i - 1
+    f = tabla[i,columna] + (x - xi[i])*f
+    paso = paso - 1
+    columna = columna + 1
+
+print('f(x) =',f)
+
+dDividida = tabla[0,3:]
+n = len(dfinita)
+
+x = sym.Symbol('x')
+polinomio = fi[0]
+for j in range (1,n,1):
+    factor = dDividida[j-1]
+    termino = 1
+    for k in range(0,j,1):
+        termino = termino*(x-xi[k])
+    polinomio = polinomio + termino*factor
+
+
+print(polinomio.evalf(subs={x:3}))
