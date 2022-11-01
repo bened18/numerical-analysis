@@ -2,8 +2,8 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
-xi = np.array([3.2, 3.8, 4.2, 4.5])
-fi = np.array([5.12, 6.42, 7.25, 6.85])
+xi = np.array([-1,0,3,4])
+fi = np.array([15.5,3,8,1])
 
 
 titulo = ['i   ','xi  ','fi  ']

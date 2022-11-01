@@ -57,8 +57,8 @@ def traza3natural(xi,yi):
 
 # PROGRAMA de prueba
 # INGRESO , Datos de prueba
-xi = np.array([-1 , 0, 3, 4])
-fi = np.array([15.5, 3, 8, 1])
+xi = np.array([-1,0,3,4])
+fi = np.array([15.5,3,8,1])
 resolucion = 10 # entre cada par de puntos
 
 # PROCEDIMIENTO

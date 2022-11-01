@@ -28,13 +28,10 @@ def jacobim(a,b,x,e,m):
 	return [[],m]
 
 # Matriz a usar
-A = np.array([[10,-1,2,0],
-			[-1,11,-1,3],
-			[2,-1,10,-1],
-			[0,3,-1,8]],float)
+A = np.array([[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]],float)
 
 # Vector Solución
-b = np.array([[6],[25],[-11],[15]],float)
+b = np.array([[1],[1],[1],[1]],float)
 
 # Vector de Inicio
 x=np.array([[0],[0],[0],[0]],float)
@@ -50,7 +47,7 @@ pprint.pprint(b)
 print("")
 
 # X es la solución y k las iteraciones
-[x,k]=jacobim(A,b,x,1.e-14,maxite)
+[x,k]=jacobim(A,b,x,1.e-7,100)
 
 if(k==maxite):
 	print("\nEl método diverge o no converge para la cota de error pedido")

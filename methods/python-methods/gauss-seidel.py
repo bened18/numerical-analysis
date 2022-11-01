@@ -33,24 +33,22 @@ def gaussSeidel(A, b, x, N, tol):
 [0.0, 1.2866580e+00, 5.2480200e-01],
 [0.0, 0.0, 3.3315000e-02]]'''
 A = np.array((
-    (3.0, -0.1, -0.2),
-    (0.1, 7.0, -0.3),
-    (0.3, -0.2, -10.0),
+    (4, -1, 0, 3),
+    (1, 15.5, 3, 8),
+    (0, -1.3, -4, 1.1),
+    (14, 5, -2, 30)
 ))
 
 # Vector b
 '''b = [-10.308984, -1.929987, -0.0]'''
-b = [7.85, -19.30, 71.40]
+b = [1,1,1,1]
 
 # Xo vector de iteraciòn inicial
-v_inicial = [0.0, 0.0, 0.0]
+v_inicial = [0.0, 0.0, 0.0, 0.0]
 
-print('MÉTODO DE GAUSS-SEIDEL',end="\n\n")
-
-print("Este método te halla la solucion al sistema lineal si es que converge, caso contrario te mostrara que no converge, además que te da el numero de iteraciones necesarias para que converga",end="\n\n")
 
 print('Matriz A:\n', A.round(6))
 
 print('\nVector b:\n', b)
 
-gaussSeidel(A, b, v_inicial, 3, 0.001)
+gaussSeidel(A, b, v_inicial, 2, 1e-7)

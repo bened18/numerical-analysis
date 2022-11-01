@@ -2,8 +2,8 @@ import sympy
 import totalPivoting
 x = sympy.Symbol('x')
 
-xn =[1,3,4,5,7]
-fxn =[4.31,1.5,3.2,2.6,1.8]
+xn = [-1,0,3,4]
+fxn =[15.5,3,8,1]
 
 inequality =[]
 functions =[]

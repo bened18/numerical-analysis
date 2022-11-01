@@ -2,8 +2,8 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
-xi = [0,0.2,0.3,0.4]
-fi = [1,1.6,1.7,2.0]
+xi = [-1,0,3,4]
+fi = [15.5,3,8,1]
 muestras = 101
 
 xi = np.array(xi)

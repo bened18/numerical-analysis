@@ -3,8 +3,8 @@ import sympy as sym
 import matplotlib.pyplot as plt
 
 #ingreso
-xi = [0.1, 0.2, 0.3, 0.4]
-fi = [1.45, 1.8, 1.7, 2.0]
+xi = np.array([-1,0,3,4])
+fi = np.array([15.5,3,8,1])
 
 #procedimiento
 n = len(xi)

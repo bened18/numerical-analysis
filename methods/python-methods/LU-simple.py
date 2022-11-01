@@ -1,7 +1,7 @@
 import numpy as np
 
 
-m = int(input("\nintroduce el orden de la matriz: "))
+m = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
 matriz = np.zeros([m,m])
 u = np.zeros([m,m])
 l = np.zeros([m,m])

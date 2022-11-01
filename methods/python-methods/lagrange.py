@@ -2,8 +2,8 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 
-xi = np.array([0, 0.2, 0.3, 0.4])
-fi = np.array([1, 1.6, 1.7, 2.0])
+xi = np.array([-1,0,3,4])
+fi = np.array([15.5,3,8,1])
 
 n = len(xi)
 x = sym.Symbol('x')
