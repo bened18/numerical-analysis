@@ -1,0 +1,11 @@
+# 1. create two empty matrices, L and U, that are the same size as A
+# 2. set the value of the diagonal of U to 1
+# 3. for each row k in A:
+# 4.     for each column j in A:
+# 5.         if j<k:
+# 6.             set L[j,k] equal to the sum of [L[j,s]*U[s,k] for s from 0 to k-1]
+# 7.         if j>k:
+# 8.             set U[k,j] equal to [A[k,j]-sum([L[k,s]*U[s,j] for s from 0 to k-1])]/L[k,k]
+# 9. print L
+# 10. print U
+# 11. return L and U

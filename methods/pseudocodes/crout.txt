@@ -1,0 +1,30 @@
+# set m equal to input
+# set matriz equal to all zeros
+# set u equal to all zeros
+# set l equal to all zeros
+
+# FOR r in range 0 to m
+# FOR c in range 0 to m
+# matriz[r,c] equals input
+# matriz[r,c] equals float
+# u[r,c] equals matriz[r,c]
+
+# FOR k in range 0 to m
+# FOR r in range 0 to m
+# IF k equals r
+# l[k,r] equals 1
+# IF k is less than r
+# factor equals matriz[r,k] divided by matriz[k,k]
+# l[r,k] equals factor
+
+# FOR c in range 0 to m
+# matriz[r,c] equals matriz[r,c] - (factor * matriz[k,c])
+# u[r,c] equals matriz[r,c]
+
+# PRINT "\nEtapa ", k, ":"
+# PRINT "\nMatriz L"
+# PRINT l
+# PRINT "\nMatriz U"
+# PRINT u
+
+# PRINT "\n\n\n Prueba: (analiza con la matriz ingresada)\n", np.dot(l,u)
