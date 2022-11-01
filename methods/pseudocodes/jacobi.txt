@@ -1,0 +1,34 @@
+B = np.array([6,25,-11,15],float)
+
+X = np.array([0,0,0,0],float)
+
+E = 0.00001
+M = 25
+
+print()
+[X,K] = jacobim(A,B,X,E,M)
+
+if K<M:
+	print("La solución es: X = "+str(np.transpose(X.round(7)))+"\tIteraciones: "+str(K+1))
+else:
+	print("El método no convergió después de "+str(M)+" iteraciones")
+
+
+print(pprint.pprint(vector_solucion))
+print(pprint.pprint(num_iteraciones))
+
+pprint.pprint(A)
+pprint.pprint(b)
+
+print("")
+
+[x,k]=jacobim(A,b,x,1.e-14,maxite)
+
+if(k==maxite):
+	print("\nEl método diverge o no converge para la cota de error pedido")
+
+else: 
+	print("\nEl vector 'x' es:")
+	print(x)
+
+	print("\nEl numero de iteraciones es: "+str(k+1))

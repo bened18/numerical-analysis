@@ -1,0 +1,32 @@
+def gaussSeidel(a,b,x,n,tol):
+	for i in range(n):
+		s = np.dot(a[i,:i],x[:i]) + np.dot(a[i,i+1:],x[i+1:])
+		x[i] = (b[i] - s)/a[i,i]
+	return x
+
+
+# Generación de la matriz aleatoria de tamaño nxn
+n = 4
+A = np.random.rand(n,n)
+
+# Generación del vector aleatorio b
+b = np.random.rand(n,1)
+
+# Vector solución
+x = np.zeros((n,1))
+
+# Valor de tolerancia
+tol = 1e-5
+
+# Imprimir la matriz y el vector generados
+print ("Matriz A:")
+pprint.pprint(A)
+print ("\nVector b:")
+pprint.pprint(b)
+
+# Llamar a la función del método de Gauss-Seidel
+x = gaussSeidel(A,b,x,n,tol)
+
+# Imprimir el resultado
+print ("\nSolución:")
+print (x)
