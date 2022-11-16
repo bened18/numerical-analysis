@@ -6,6 +6,13 @@
 {% url 'functions:secant' as secant %}
 {% url 'functions:multipleroots' as multipleroots %}
 
+{% url 'interpolations:cubic-spline' as cubic_spline %}
+{% url 'interpolations:lagrange' as lagrange %}
+{% url 'interpolations:lineal-spline' as lineal_spline %}
+{% url 'interpolations:newton-interpolation' as newton_interpolation %}
+{% url 'interpolations:quadratic-spline' as quadratic_spline %}
+{% url 'interpolations:vandermonde' as vandermonde %}
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
@@ -29,8 +36,7 @@
                     {% elif request.path == fixed_point %}active
                     {% elif request.path == secant %}active
                     {% elif request.path == multipleroots %}active
-                    {% endif %}"
-                    id="functionDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
+                    {% endif %}" id="functionDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Functions</a>
                     <div class="dropdown-menu" aria-labelledby="functionDropdownID">
 
@@ -79,6 +85,39 @@
                             href="#">Multiple Roots</a>
                     </div>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle 
+                    {% if request.path == cubic_spline %}active
+                    {% elif request.path == lagrange %}active
+                    {% elif request.path == lineal_spline %}active
+                    {% elif request.path == newton_interpolation %}active
+                    {% elif request.path == quadratic_spline %}active
+                    {% elif request.path == vandermonde %}active
+                    {% endif %}" id="interpolationsDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Interpolations</a>
+                    <div class="dropdown-menu" aria-labelledby="interpolationsDropdownID">
+
+                        <a class="dropdown-item {% if request.path == cubic_spline %}active{% endif %}"
+                            href="{{cubic_spline}}">Cubic Spline</a>
+
+                        <a class="dropdown-item {% if request.path == lagrange %}active{% endif %}"
+                            href="{{lagrange}}">Lagrange</a>
+
+                        <a class="dropdown-item {% if request.path == lineal_spline %}active{% endif %}"
+                            href="{{lineal_spline}}">Lineal Spline</a>
+
+                        <a class="dropdown-item {% if request.path == newton_interpolation %}active{% endif %}"
+                            href="{{newton_interpolation}}">Newton Interpolation</a>
+
+                        <a class="dropdown-item {% if request.path == quadratic_spline %}active{% endif %}"
+                            href="{{quadratic_spline}}">Quadratic Spline</a>
+
+                        <a class="dropdown-item {% if request.path == vandermonde %}active{% endif %}"
+                            href="{{vandermonde}}">Vandermonde</a>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>
