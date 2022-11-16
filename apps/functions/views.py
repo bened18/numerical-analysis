@@ -1,7 +1,6 @@
-from apps.functions.functions.incrementalsearch import incrementalsearch
-
 from django.views.generic import TemplateView
 
+from apps.functions.functions.incrementalsearch import incrementalsearch
 from apps.functions.functions.falserule import false_position
 from apps.functions.functions.newton import newton
 from apps.functions.functions.fixedpoint import fixed_point
@@ -109,6 +108,7 @@ class FixedPointTemplateView(TemplateView):
             context['result_table'] = f"{result}"
         return context
 
+
 class SecantTemplateView(TemplateView):
     template_name = "functions/secant.html"
 
@@ -133,7 +133,8 @@ class SecantTemplateView(TemplateView):
             context['result'] = f"{result}"
             context['result_table'] = f"{result_table}"
         return context
-    
+
+
 class MultipleRootsTemplateView(TemplateView):
     template_name = "functions/multiple_roots.html"
 
@@ -141,7 +142,6 @@ class MultipleRootsTemplateView(TemplateView):
         context = super(MultipleRootsTemplateView,
                         self).get_context_data(**kwargs)
 
-        
         function = self.request.GET.get('f', '')
         dfunction = self.request.GET.get('df', '')
         d2function = self.request.GET.get('d2f', '')
@@ -154,8 +154,10 @@ class MultipleRootsTemplateView(TemplateView):
             tol = float(tol)
             n = int(n)
 
-            result = multipleroot(function, dfunction, d2function, x0, tol, n)[0]
-            result_table = multipleroot(function, dfunction, d2function, x0, tol, n)[1]
+            result = multipleroot(function, dfunction,
+                                  d2function, x0, tol, n)[0]
+            result_table = multipleroot(
+                function, dfunction, d2function, x0, tol, n)[1]
             context['result'] = f"{result}"
             context['result_table'] = f"{result_table}"
         return context

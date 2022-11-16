@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}False Rule{% endblock title %}
+
+{% block bodyCSS %}
+<style>
+    .full-vh {
+        min-height: 100vh;
+    }
+</style>
+{% endblock bodyCSS %}
+
+{% block container %}
+<div class="container full-vh">
+    <div class="d-flex justify-content-center">
+        <h4>Cubic Spline</h4>
+    </div>
+
+    <form method="GET">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="function" class="form-label">Function:</label>
+            <input class="form-control" type="text" id="function" name="f">
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="a" id="function_falserule_a" name="a">
+            <input type="text" class="form-control" placeholder="b" id="function_falserule_b" name="b">
+            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
+            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+        </div>
+
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </div>
+    </form>
+
+    {% if result %}
+        {{ result | safe }}
+    {% endif %}
+
+</div>
+{% endblock container %}

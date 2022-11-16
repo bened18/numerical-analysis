@@ -23,7 +23,7 @@ urlpatterns = [
         include('apps.functions.urls')
     ),
     path(
-        'interpolation/',
-        include('apps.functions.urls')
+        'interpolations/',
+        include('apps.interpolations.urls')
     )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
