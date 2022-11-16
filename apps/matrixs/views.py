@@ -1,41 +1,41 @@
 from django.views.generic import TemplateView
 
 
-class CubicSplineTemplateView(TemplateView):
+class CholeskyTemplateView(TemplateView):
     template_name = "matrixs/Cholesky.html"
 
 
-class LagrangeTemplateView(TemplateView):
+class CroutTemplateView(TemplateView):
     template_name = "matrixs/Crout.html"
 
 
-class LinealSplineTemplateView(TemplateView):
+class DoolittleTemplateView(TemplateView):
     template_name = "matrixs/Doolittle.html"
 
 
-class NewtonInterpolationTemplateView(TemplateView):
+class GaussianEliminationWithPartialPivotingTemplateView(TemplateView):
     template_name = "matrixs/GaussianEliminationWithPartialPivoting.html"
 
 
-class QuadraticSplineTemplateView(TemplateView):
+class GaussianEliminationWithTotalPivotingTemplateView(TemplateView):
     template_name = "matrixs/GaussianEliminationWithTotalPivoting.html"
 
 
-class VandermondeTemplateView(TemplateView):
+class GaussianSimpleEliminationTemplateView(TemplateView):
     template_name = "matrixs/GaussianSimpleElimination.html"
     
-class VandermondeTemplateView(TemplateView):
+class GaussSeidelTemplateView(TemplateView):
     template_name = "matrixs/GaussSeidel.html"
     
-class VandermondeTemplateView(TemplateView):
+class JacobiTemplateView(TemplateView):
     template_name = "matrixs/Jacobi.html"
     
-class VandermondeTemplateView(TemplateView):
+class LUwithGaussianSimpleEliminationTemplateView(TemplateView):
     template_name = "matrixs/LUwithGaussianSimpleElimination.html"
     
-class VandermondeTemplateView(TemplateView):
+class LUWithPartialPivotingTemplateView(TemplateView):
     template_name = "matrixs/LUWithPartialPivoting.html"
 
 
-class VandermondeTemplateView(TemplateView):
+class SorTemplateView(TemplateView):
     template_name = "matrixs/Sor.html"
