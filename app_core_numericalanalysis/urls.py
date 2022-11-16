@@ -15,7 +15,15 @@ urlpatterns = [
         include('apps.home.urls')
     ),
     path(
-        'functions/',
+        'f/',
+        include('apps.functions.urls')
+    ),
+    path(
+        'matrixs/',
+        include('apps.functions.urls')
+    ),
+    path(
+        'interpolation/',
         include('apps.functions.urls')
     )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
