@@ -16,16 +16,17 @@ class IncrementalSearchTemplateView(TemplateView):
         context = super(IncrementalSearchTemplateView,
                         self).get_context_data(**kwargs)
 
+        function = self.request.GET.get('f', '')
         x0 = self.request.GET.get('x0', '')
         delta = self.request.GET.get('delta', '')
         itermax = self.request.GET.get('itermax', '')
 
-        if x0 and delta and itermax:
+        if function and x0 and delta and itermax:
             x0 = float(x0)
             delta = float(delta)
             itermax = int(itermax)
 
-            functionresult = incrementalsearch(x0, delta, itermax)
+            functionresult = incrementalsearch(function, x0, delta, itermax)
 
             context['result'] = f"{functionresult}"
 

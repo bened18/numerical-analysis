@@ -15,7 +15,7 @@ urlpatterns = [
         include('apps.home.urls')
     ),
     path(
-        'f/',
+        'functions/',
         include('apps.functions.urls')
     ),
     path(
