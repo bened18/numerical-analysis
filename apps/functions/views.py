@@ -40,18 +40,19 @@ class FalseRuleTemplateView(TemplateView):
         context = super(FalseRuleTemplateView,
                         self).get_context_data(**kwargs)
 
+        function = self.request.GET.get('f', '')
         a = self.request.GET.get('a', '')
         b = self.request.GET.get('b', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
 
-        if a and b and tol and n:
+        if function and a and b and tol and n:
             a = float(a)
             b = float(b)
             tol = float(tol)
             n = int(n)
 
-            functionresult = false_position(a, b, tol, n)
+            functionresult = false_position(function, a, b, tol, n)
 
             context['result'] = f"{functionresult}"
 
