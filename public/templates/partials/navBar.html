@@ -13,6 +13,19 @@
 {% url 'interpolations:quadratic-spline' as quadratic_spline %}
 {% url 'interpolations:vandermonde' as vandermonde %}
 
+
+{% url 'matrixs:cholesky' as cholesky %}
+{% url 'matrixs:crout' as crout %}
+{% url 'matrixs:doolittle' as doolittle %}
+{% url 'matrixs:gauss-seidel' as gauss_seidel %}
+{% url 'matrixs:gaussian-elimination-with-partial-pivoting' as gaussian_elimination_with_partial_pivoting %}
+{% url 'matrixs:gaussian-elimination-with-total-pivoting' as gaussian_elimination_with_total_pivoting %}
+{% url 'matrixs:gaussian-simple-elimination' as gaussian_simple_elimination %}
+{% url 'matrixs:jacobi' as jacobi %}
+{% url 'matrixs:lu-with-partial-pivoting' as lu_with_partial_pivoting %}
+{% url 'matrixs:lu-with-gaussian-simple-elimination' as lu_with_gaussian_simple_elimination %}
+{% url 'matrixs:sor' as sor %}
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
