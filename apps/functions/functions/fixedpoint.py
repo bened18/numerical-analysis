@@ -3,23 +3,23 @@ import numpy as np
 from tabulate import tabulate
 
 
-def g(x):
-    return (np.log(np.sin(x)**2+1)) - 1/2  # evaluate the function
+def g(g, x):
+    return eval(g)
 
 
-def f1(x):
-    return (np.log(np.sin(x)**2+1)) - 1/2 - x
+def f1(f1, x):
+    return eval(f1)
 
 
-def fixed_point(x0, tol, itermax):
+def fixed_point(g, f1, x0, tol, itermax):
     iter = 0
-    resultados = [[iter, x0,  g(x0), f1(x0), "NA"]]
+    resultados = [[iter, x0,  g(g, x0), f1(f1, x0), "NA"]]
     while iter <= itermax:
-        x1 = g(x0)  # evaluate function in last point
-        error = abs(f1(x0))
+        x1 = g(g, x0)  # evaluate function in last point
+        error = abs(f1(f1, x0))
         x0 = x1
         iter += 1
-        resultados.append([iter, x0, g(x0), f1(x0), error])
+        resultados.append([iter, x0, g(g, x0), f1(f1, x0), error])
         if error < tol:  # if we reach the desired tolerance stop
             break
     if iter > itermax:

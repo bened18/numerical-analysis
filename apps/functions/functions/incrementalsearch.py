@@ -4,7 +4,6 @@ import numpy as np
 
 def f(function, x):
     # evaluate function
-    #return (np.log(np.sin(x)**2+1)) - 1/2
     return eval(function)
 
 

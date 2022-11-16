@@ -2,22 +2,22 @@ import numpy as np
 from math import *
 from tabulate import tabulate
 
-def f(x):
-    return (12*x**4-2.72*x**3+0.2153*x**2-0.0042*x);
+def f(function, x):
+    return eval(function)
 
-def secant(p_0, p_1, tol, n):
+def secant(function, p_0, p_1, tol, n):
     e_abs = abs(p_1 - p_0);
     i = 2;
-    resultados =[[0,p_0,f(p_0),""]]
-    resultados.append([1,p_1,f(p_1),""])
+    resultados =[[0,p_0,f(function, p_0),""]]
+    resultados.append([1,p_1,f(function, p_1),""])
     while i <= n:
-        if f(p_1) == f(p_0): #division by cero
+        if f(function, p_1) == f(function, p_0): #division by cero
             return('solution not found (error in the initial values)');
         
-        p_2 = p_0 - (f(p_0)*(p_1 - p_0))/(f(p_1) - f(p_0)); # secant method formula
+        p_2 = p_0 - (f(function, p_0)*(p_1 - p_0))/(f(function, p_1) - f(function, p_0)); # secant method formula
         e_abs = abs(p_2- p_1);
         #return('iteration:',i,'p = ', p_2, 'error = ', e_abs);
-        resultados.append([i,p_2,f(p_2),e_abs]) 
+        resultados.append([i,p_2,f(function, p_2),e_abs]) 
         
         if e_abs < tol: #stop criterion
             break;
