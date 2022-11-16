@@ -18,6 +18,22 @@
 
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
+        <div class="mb-3">
+            <label for="function" class="form-label">Function:</label>
+            <input class="form-control" type="text" id="f" name="f">
+        </div>
+
+        <div class="mb-3">
+            <label for="function" class="form-label">Function df:</label>
+            <input class="form-control" type="text" id="df" name="df">
+        </div>
+
+        <div class="mb-3">
+            <label for="function" class="form-label">Function d2f:</label>
+            <input class="form-control" type="text" id="d2f" name="d2f">
+        </div>
+
+
         <div class="input-group">
             <input type="text" class="form-control" placeholder="x0" id="function_falserule_p_0" name="x0">
             <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">

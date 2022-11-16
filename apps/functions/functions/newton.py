@@ -2,16 +2,16 @@ import numpy as np
 from tabulate import tabulate
 
 
-def f(x):
-    return (np.log(np.sin(x)**2+1)) - 1/2
+def f(function, x):
+    return eval(function)
 
 
-def df(x):
-    return (2 * (np.sin(x)**2 + 1)**-1) * (np.sin(x) * np.cos(x))
+def df(dfunction, x):
+    return eval(dfunction)
 
 
-def newton(p_0, tol, n):
-    resultados = [[0, p_0, f(p_0), ""]]
+def newton(function, dfunction, p_0, tol, n):
+    resultados = [[0, p_0, f(function, p_0), ""]]
     e_abs = 1
     i = 1
 
@@ -20,12 +20,12 @@ def newton(p_0, tol, n):
     solution_div_by_zero = ""
 
     while i <= n:
-        if df(p_0) == 0:  # division by zero
+        if df(dfunction, p_0) == 0:  # division by zero
             solution_div_by_zero = "solution not found, derivative is zero"
 
-        p_1 = p_0 - (f(p_0))/(df(p_0))  # method formula
+        p_1 = p_0 - (f(function, p_0))/(df(dfunction, p_0))  # method formula
         e_abs = abs(p_1 - p_0)
-        resultados.append([i, p_1, f(p_1), e_abs])
+        resultados.append([i, p_1, f(function, p_1), e_abs])
         if e_abs < tol:  # stop criterion
             solution = f"solution found in x = {p_1} iterations: {i}"
         p_0 = p_1

@@ -18,6 +18,16 @@
 
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
+        <div class="mb-3">
+            <label for="function" class="form-label">Function:</label>
+            <input class="form-control" type="text" id="function" name="f">
+        </div>
+
+        <div class="mb-3">
+            <label for="dfunction" class="form-label">Derivate Function:</label>
+            <input class="form-control" type="text" id="dfunction" name="df">
+        </div>
+
         <div class="input-group">
             <input type="text" class="form-control" placeholder="p_0" id="function_falserule_p_0" name="p_0">
             <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
