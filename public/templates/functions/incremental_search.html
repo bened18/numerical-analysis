@@ -18,7 +18,10 @@
 
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
-        
+        <div class="mb-3">
+            <label for="function" class="form-label">Function:</label>
+            <input class="form-control" type="text" id="function" name="f">
+        </div>
         <div class="input-group">
             <input type="text" class="form-control" placeholder="x0" id="function_incrementalsearch_x0" name="x0">
             <input type="text" class="form-control" placeholder="delta" id="function_incrementalsearch_delta"
