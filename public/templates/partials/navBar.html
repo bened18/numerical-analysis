@@ -74,28 +74,54 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle {% if request.path == functions_incrementalsearch %}active{% endif %}"
-                        id="matrixDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle 
+                    {% if request.path == cholesky %}active
+                    {% elif request.path == crout %}active
+                    {% elif request.path == doolittle %}active
+                    {% elif request.path == gauss_seidel %}active
+                    {% elif request.path == gaussian_elimination_with_partial_pivoting %}active
+                    {% elif request.path == gaussian_elimination_with_total_pivoting %}active
+                    {% elif request.path == gaussian_simple_elimination %}active
+                    {% elif request.path == jacobi %}active
+                    {% elif request.path == lu_with_partial_pivoting %}active
+                    {% elif request.path == lu_with_gaussian_simple_elimination %}active
+                    {% elif request.path == sor %}active
+                    {% endif %}" id="matrixDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Matrix</a>
                     <div class="dropdown-menu" aria-labelledby="matrixDropdownID">
 
-                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
-                            href="{{functions_incrementalsearch}}">Lo de matrix 1</a>
+                        <a class="dropdown-item {% if request.path == cholesky %}active{% endif %}"
+                            href="{{cholesky}}">Lo de matrix 1</a>
 
-                        <a class="dropdown-item {% if request.path == false_rule %}active{% endif %}"
-                            href="{{false_rule}}">Lo de matrix 2</a>
+                        <a class="dropdown-item {% if request.path == crout %}active{% endif %}"
+                            href="{{crout}}">Lo de matrix 2</a>
 
-                        <a class="dropdown-item {% if request.path == newton %}active{% endif %}"
-                            href="{{newton}}">Newton</a>
+                        <a class="dropdown-item {% if request.path == doolittle %}active{% endif %}"
+                            href="{{doolittle}}">Multiple Roots</a>
 
-                        <a class="dropdown-item {% if request.path == fixed_point %}active{% endif %}"
-                            href="{{fixed_point}}">Fixed Point</a>
+                        <a class="dropdown-item {% if request.path == gauss_seidel %}active{% endif %}"
+                            href="{{gauss_seidel}}">Newton</a>
 
-                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
-                            href="#">Secant</a>
+                        <a class="dropdown-item {% if request.path == gaussian_elimination_with_partial_pivoting %}active{% endif %}"
+                            href="{{gaussian_elimination_with_partial_pivoting}}">Fixed Point</a>
 
-                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
-                            href="#">Multiple Roots</a>
+                        <a class="dropdown-item {% if request.path == gaussian_elimination_with_total_pivoting %}active{% endif %}"
+                            href="{{gaussian_elimination_with_total_pivoting}}">Secant</a>
+
+                        <a class="dropdown-item {% if request.path == gaussian_simple_elimination %}active{% endif %}"
+                            href="{{gaussian_simple_elimination}}">Gaussian simple elimination</a>
+
+                        <a class="dropdown-item {% if request.path == jacobi %}active{% endif %}"
+                            href="{{jacobi}}">Jacobi</a>
+
+                        <a class="dropdown-item {% if request.path == lu_with_partial_pivoting %}active{% endif %}"
+                            href="{{lu_with_partial_pivoting}}">Multiple Roots</a>
+
+                        <a class="dropdown-item {% if request.path == lu_with_gaussian_simple_elimination %}active{% endif %}"
+                            href="{{lu_with_gaussian_simple_elimination}}">Lu with gaussian simple elimination</a>
+
+                        <a class="dropdown-item {% if request.path == sor %}active{% endif %}"
+                            href="{{sor}}">SOR</a>
                     </div>
                 </li>
 
