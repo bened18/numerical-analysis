@@ -1,0 +1,85 @@
+{% url 'home:index' as home_index %}
+{% url 'functions:incremental-search' as functions_incrementalsearch %}
+{% url 'functions:false-rule' as false_rule %}
+{% url 'functions:newton' as newton %}
+{% url 'functions:fixed-point' as fixed_point %}
+{% url 'functions:secant' as secant %}
+{% url 'functions:multipleroots' as multipleroots %}
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+
+                    <a class="nav-link {% if request.path == home_index %}active{% endif %}" href="{{home_index}}"
+                        aria-current="page">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle
+                    {% if request.path == functions_incrementalsearch %}active
+                    {% elif request.path == false_rule %}active
+                    {% elif request.path == newton %}active
+                    {% elif request.path == fixed_point %}active
+                    {% elif request.path == secant %}active
+                    {% elif request.path == multipleroots %}active
+                    {% endif %}"
+                    id="functionDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Functions</a>
+                    <div class="dropdown-menu" aria-labelledby="functionDropdownID">
+
+                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
+                            href="{{functions_incrementalsearch}}">Incremental Search</a>
+
+                        <a class="dropdown-item {% if request.path == false_rule %}active{% endif %}"
+                            href="{{false_rule}}">False rule</a>
+
+                        <a class="dropdown-item {% if request.path == newton %}active{% endif %}"
+                            href="{{newton}}">Newton</a>
+
+                        <a class="dropdown-item {% if request.path == fixed_point %}active{% endif %}"
+                            href="{{fixed_point}}">Fixed Point</a>
+
+                        <a class="dropdown-item {% if request.path == secant %}active{% endif %}"
+                            href="{{secant}}">Secant</a>
+
+                        <a class="dropdown-item {% if request.path == multipleroots %}active{% endif %}"
+                            href="{{multipleroots}}">Multiple Roots</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.path == functions_incrementalsearch %}active{% endif %}"
+                        id="matrixDropdownID" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Matrix</a>
+                    <div class="dropdown-menu" aria-labelledby="matrixDropdownID">
+
+                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
+                            href="{{functions_incrementalsearch}}">Lo de matrix 1</a>
+
+                        <a class="dropdown-item {% if request.path == false_rule %}active{% endif %}"
+                            href="{{false_rule}}">Lo de matrix 2</a>
+
+                        <a class="dropdown-item {% if request.path == newton %}active{% endif %}"
+                            href="{{newton}}">Newton</a>
+
+                        <a class="dropdown-item {% if request.path == fixed_point %}active{% endif %}"
+                            href="{{fixed_point}}">Fixed Point</a>
+
+                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
+                            href="#">Secant</a>
+
+                        <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
+                            href="#">Multiple Roots</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
