@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Fixed Point{% endblock title %}
+
+{% block bodyCSS %}
+<style>
+    .full-vh {
+        min-height: 100vh;
+    }
+</style>
+{% endblock bodyCSS %}
+
+{% block container %}
+<div class="container full-vh">
+    <div class="d-flex justify-content-center">
+        <h4>Fixed Point</h4>
+    </div>
+
+    <form method="GET" id="function_incrementalsearch_form">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="x0" id="function_fixedpoint_x0" name="x0">
+            <input type="text" class="form-control" placeholder="tol" id="function_fixedpoint_tol" name="tol">
+            <input type="text" class="form-control" placeholder="itermax" id="function_fixedpoint_itermax" name="itermax">
+        </div>
+
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </div>
+    </form>
+
+    {{result_table | safe}}
+
+</div>
+{% endblock container %}

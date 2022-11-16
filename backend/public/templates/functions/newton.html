@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Newton{% endblock title %}
+
+{% block bodyCSS %}
+<style>
+    .full-vh {
+        min-height: 100vh;
+    }
+</style>
+{% endblock bodyCSS %}
+
+{% block container %}
+<div class="container full-vh">
+    <div class="d-flex justify-content-center">
+        <h4>Newton</h4>
+    </div>
+
+    <form method="GET" id="function_incrementalsearch_form">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="p_0" id="function_falserule_p_0" name="p_0">
+            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
+            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+        </div>
+
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </div>
+    </form>
+
+    {% if result %}
+        <div class="card mt-2">
+            <div class="card-body">
+                <p>{{ result }}</p>
+            </div>
+        </div>
+
+        {{ result_table | safe }}
+    {% endif %}
+
+</div>
+{% endblock container %}

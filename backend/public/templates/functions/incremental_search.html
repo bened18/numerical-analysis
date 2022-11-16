@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Incremental Search{% endblock title %}
+
+{% block bodyCSS %}
+<style>
+    .full-vh {
+        min-height: 100vh;
+    }
+</style>
+{% endblock bodyCSS %}
+
+{% block container %}
+<div class="container full-vh">
+    <div class="d-flex justify-content-center">
+        <h4>Incremental Search</h4>
+    </div>
+
+    <form method="GET" id="function_incrementalsearch_form">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="x0" id="function_incrementalsearch_x0" name="x0">
+            <input type="text" class="form-control" placeholder="delta" id="function_incrementalsearch_delta"
+                name="delta">
+            <input type="text" class="form-control" placeholder="itermax" id="function_incrementalsearch_itermax"
+                name="itermax">
+        </div>
+
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" type="submit">Consultar</button>
+        </div>
+    </form>
+
+
+    {% if result %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{{ result }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock container %}
