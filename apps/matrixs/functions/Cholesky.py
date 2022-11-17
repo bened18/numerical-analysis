@@ -13,7 +13,8 @@ def cholesky(A):
                 L[i][j] = (1.0 / L[j][j] * (A[i][j] - s))
     return L
 
-A = np.array([[4,12,-16],[12,37,-43],[-16,-43,98]])
+# A = np.array([[4,12,-16],[12,37,-43],[-16,-43,98]])
+A =np.array(np.mat("4 12 -16; 12 37 -43; -16 -43 98"))
 L = cholesky(A)
 print(L)
 print(np.dot(L,L.T))
@@ -33,9 +34,11 @@ def gauss(A, b):
         x[row] = (b[row] - np.dot(A[row,row+1:], x[row+1:])) / A[row, row]
     return x
 
-
-
-A = np.array([[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]])
-b = np.array([1,1,1,1])
+inputA="4 -1 0 3; 1 15.5 3 8; 0 -1.3 -4 1.1; 14 5 -2 30"
+inputb="1; 1; 1; 1"
+A =np.array(np.mat(inputA))
+b = np.array(np.mat(inputb))
+# A = np.array([[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]])
+# b = np.array([1,1,1,1])
 x = gauss(A, b)
 print(x)
