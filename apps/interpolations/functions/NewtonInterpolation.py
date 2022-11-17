@@ -10,8 +10,24 @@ from sympy.parsing.sympy_parser import parse_expr
 xi = np.array([-1, 0, 3, 4])
 fi = np.array([15.5, 3, 8, 1])
 
+def convert_string_to_list(string):
+    """
+        Receive a comma-separated string and convert it to its type
+        exm:
+            convert_string_to_list("1,2.3,4,5.6")
+        result:
+            [1,2.3,4,5.6]
+            int,float,int,float
+    """
+    res = f"[{string}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
 
-def newton(x, y):
+
+def newton(xi_str, yi_str):
+  
+    x = convert_string_to_list(xi_str)
+    y = convert_string_to_list(yi_str)
     n = len(x)
     ny=len(y)
     if(n==ny):
@@ -22,9 +38,9 @@ def newton(x, y):
           tabla[i][1] = y[i]
 
       res = polinomioNewton(tabla, n)
-      print(res)
+      return(res)
     else:
-      print("the size of the vectors are different")
+      return("the size of the vectors are different")
     # for i in range(len(res)):
     # 	res[i].pop(0)
     # res.pop()
