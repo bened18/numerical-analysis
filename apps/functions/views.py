@@ -32,6 +32,7 @@ class IncrementalSearchTemplateView(TemplateView):
 
         return context
 
+
 class BisectionTemplateView(TemplateView):
     template_name = "functions/bisection.html"
 
@@ -51,11 +52,13 @@ class BisectionTemplateView(TemplateView):
             tol = float(tol)
             n = int(n)
 
-            functionresult = bisection(function, a, b, tol, n)
+            result = bisection(function, a, b, tol, n)[0]
+            result_table = bisection(function, a, b, tol, n)[1]
 
-            context['result'] = f"{functionresult}"
-
+            context['result'] = f"{result}"
+            context['result_table'] = f"{result_table}"
         return context
+
 
 class FalseRuleTemplateView(TemplateView):
     template_name = "functions/false_rule.html"
