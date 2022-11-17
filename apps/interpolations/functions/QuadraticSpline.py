@@ -16,9 +16,7 @@ def createInequality():
         if (i < len(xn)):
             inequality.append(((xn[i], fxn[i]), (xn[i+1], fxn[i+1])))
 
-
 createInequality()
-
 
 def quadratic():
     superMatrix = [[0 for x in range(3*len(inequality)+1)]
