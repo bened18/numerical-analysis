@@ -1,5 +1,6 @@
 import numpy as np
 from tabulate import tabulate
+from math import *
 
 
 def f(function, x):
