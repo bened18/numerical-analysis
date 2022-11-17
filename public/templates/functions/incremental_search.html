@@ -21,7 +21,8 @@
             <p>Given f(x) = 0, we apply the following steps:</p>
             <ol>
                 <li>The continuity of f must be guaranteed with theoretical arguments.</li>
-                <li>We choose a starting value x0 and a Δx that expresses the size of the interval that we wish to find.</li>
+                <li>We choose a starting value x0 and a Δx that expresses the size of the interval that we wish to find.
+                </li>
                 <li>We generate a sequence x0, x1, . . . ,xn such that xn = xn−1 + Δx.</li>
                 <li>Every time a value of xn is generated, we find the value of f(xn).</li>
                 <li>We look at the signs of f(xn) and f(xn−1).</li>
@@ -29,18 +30,23 @@
         </div>
     </div>
 
-    <form method="GET" id="function_incrementalsearch_form">
+    <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="function">Function:</span>
+            <input name="f" type="text" class="form-control" placeholder="cos(x)" aria-describedby="function">
         </div>
+
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="x0" id="function_incrementalsearch_x0" name="x0">
-            <input type="text" class="form-control" placeholder="delta" id="function_incrementalsearch_delta"
-                name="delta">
-            <input type="text" class="form-control" placeholder="itermax" id="function_incrementalsearch_itermax"
-                name="itermax">
+            <span class="input-group-text" id="a">a:</span>
+            <input name="x0" type="text" class="form-control" placeholder="0" aria-describedby="a">
+
+            <span class="input-group-text" id="delta">delta:</span>
+            <input name="delta" type="text" class="form-control" placeholder="0.5" aria-describedby="delta">
+
+            <span class="input-group-text" id="itermax">itermax:</span>
+            <input name="itermax" type="text" class="form-control" placeholder="100" aria-describedby="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
