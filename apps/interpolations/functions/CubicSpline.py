@@ -52,21 +52,52 @@ def traza3natural(xi,yi):
         ptramo = ptramo.expand()
         polinomio.append(ptramo)
     
-    return(polinomio)
+    #return(polinomio)
+    # SALIDA
+    return('Polinomios por tramos: ')
+    for tramo in range(1,n,1):
+        return(' x = ['+str(xi[tramo-1])+','+str(xi[tramo])+']')
+        return(str(polinomio[tramo-1]))
 
 # PROGRAMA de prueba
 # INGRESO , Datos de prueba
-xi = np.array([-1,0,3,4])
-fi = np.array([15.5,3,8,1])
-resolucion = 10 # entre cada par de puntos
+def inputcubic(inputx1, inputf1):
+    x1 = []
+    x1 = inputx1.split(',')
+    xi = []
+    i = 0
+    for i in range(len(x1)):
+        xi.append(float(x1[i]))
+        i = i + 1
 
-# PROCEDIMIENTO
-n = len(xi)
-# Obtiene los polinomios por tramos
-polinomio = traza3natural(xi,fi)
 
-# SALIDA
-print('Polinomios por tramos: ')
-for tramo in range(1,n,1):
-    print(' x = ['+str(xi[tramo-1])+','+str(xi[tramo])+']')
-    print(str(polinomio[tramo-1]))
+    f1 = []
+    f1 = inputf1.split(',')
+    fi = []
+    i = 0
+    for i in range(len(f1)):
+        fi.append(float(f1[i]))
+        i = i + 1
+        
+    # PROCEDIMIENTO
+    n = len(xi)
+    # Obtiene los polinomios por tramos
+    polinomio = traza3natural(xi,fi)
+
+
+
+
+# #xi = np.array([-1,0,3,4])
+# #fi = np.array([15.5,3,8,1])
+# resolucion = 10 # entre cada par de puntos
+
+# # PROCEDIMIENTO
+# n = len(xi)
+# # Obtiene los polinomios por tramos
+# polinomio = traza3natural(xi,fi)
+
+# # SALIDA
+# #return('Polinomios por tramos: ')
+# for tramo in range(1,n,1):
+#     return(' x = ['+str(xi[tramo-1])+','+str(xi[tramo])+']')
+#     return(str(polinomio[tramo-1]))
