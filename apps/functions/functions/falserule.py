@@ -29,7 +29,7 @@ def false_position(function, a, b, tol, n):
             b = c_1
         else:
             a = c_1
-        c = a - (f(function, a)*(b-a))/(f(function, b)-f(a))
+        c = a - (f(function, a)*(b-a))/(f(function, b)-f(function, a))
         if e_abs < tol:
             break
         e_abs = abs(c_1 - c)
