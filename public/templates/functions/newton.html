@@ -16,6 +16,18 @@
         <h4>Newton</h4>
     </div>
 
+    <div class="d-flex justify-content-center mb-3 mt-3">
+        <div class="card mt-2">
+            <h6 class="text-center">Theorem (Newton's method):</h6>
+            <ol>
+                <li>Let f ∈ C^2[a, b] and xv ∈ [a, b] such that f(xv) = 0 and f′(xv) ≠ 0 then there exists d > 0 such
+                    that the
+                    Newton's method generates a sequence {xn}∞n=0, given by xn+1 = x − (f(xn)/f′(xn)) , converges to xv
+                    for any initial approximation x0 ∈ [xv − d, xv + d]</li>
+            </ol>
+        </div>
+    </div>
+
     <form method="GET">
         {% csrf_token %}
 
