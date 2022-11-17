@@ -6,7 +6,7 @@ def f(function, x):
     return eval(function)
 
 
-def false_position(function, a=0, b=1, tol=10**-7, n=100):
+def false_position(function, a, b, tol, n):
 
     if f(function, a)*f(function, b) >= 0:
         return("the interval does not change sign")
