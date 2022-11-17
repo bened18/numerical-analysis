@@ -13,7 +13,7 @@ def f1(f1, x):
 
 def fixed_point(g, f1, x0, tol, itermax):
     iter = 0
-    resultados = [[iter, x0,  g(g, x0), f1(f1, x0), "NA"]]
+    resultados = [[iter, x0,  g(g, x0), f1(f1, x0)]]
     while iter <= itermax:
         x1 = g(g, x0)  # evaluate function in last point
         error = abs(f1(f1, x0))
