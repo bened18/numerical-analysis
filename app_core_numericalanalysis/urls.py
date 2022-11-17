@@ -20,7 +20,7 @@ urlpatterns = [
     ),
     path(
         'matrixs/',
-        include('apps.functions.urls')
+        include('apps.matrixs.urls')
     ),
     path(
         'interpolations/',
