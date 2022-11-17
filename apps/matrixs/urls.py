@@ -15,7 +15,7 @@ from apps.matrixs.views import (
     
 )
 
-app_name = "functions"
+app_name = "matrixs"
 
 urlpatterns = [
     path(
