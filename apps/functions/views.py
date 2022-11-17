@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 
+from apps.functions.functions.bisection import bisection
 from apps.functions.functions.incrementalsearch import incrementalsearch
 from apps.functions.functions.falserule import false_position
 from apps.functions.functions.newton import newton
@@ -31,6 +32,30 @@ class IncrementalSearchTemplateView(TemplateView):
 
         return context
 
+class BisectionTemplateView(TemplateView):
+    template_name = "functions/bisection.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(BisectionTemplateView,
+                        self).get_context_data(**kwargs)
+
+        function = self.request.GET.get('f', '')
+        a = self.request.GET.get('a', '')
+        b = self.request.GET.get('b', '')
+        tol = self.request.GET.get('tol', '')
+        n = self.request.GET.get('n', '')
+
+        if function and a and b and tol and n:
+            a = float(a)
+            b = float(b)
+            tol = float(tol)
+            n = int(n)
+
+            functionresult = bisection(function, a, b, tol, n)
+
+            context['result'] = f"{functionresult}"
+
+        return context
 
 class FalseRuleTemplateView(TemplateView):
     template_name = "functions/false_rule.html"

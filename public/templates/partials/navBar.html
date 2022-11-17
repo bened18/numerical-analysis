@@ -1,5 +1,6 @@
 {% url 'home:index' as home_index %}
 {% url 'functions:incremental-search' as functions_incrementalsearch %}
+{% url 'functions:bisection' as bisection %}
 {% url 'functions:false-rule' as false_rule %}
 {% url 'functions:newton' as newton %}
 {% url 'functions:fixed-point' as fixed_point %}
@@ -44,6 +45,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle
                     {% if request.path == functions_incrementalsearch %}active
+                    {% elif request.path == bisection %}active
                     {% elif request.path == false_rule %}active
                     {% elif request.path == newton %}active
                     {% elif request.path == fixed_point %}active
@@ -55,6 +57,9 @@
 
                         <a class="dropdown-item {% if request.path == functions_incrementalsearch %}active{% endif %}"
                             href="{{functions_incrementalsearch}}">Incremental Search</a>
+
+                        <a class="dropdown-item {% if request.path == bisection %}active{% endif %}"
+                            href="{{bisection}}">Bisection</a>
 
                         <a class="dropdown-item {% if request.path == false_rule %}active{% endif %}"
                             href="{{false_rule}}">False rule</a>

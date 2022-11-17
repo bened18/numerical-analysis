@@ -1,6 +1,7 @@
 from django.urls import path
 
 from apps.functions.views import (
+    BisectionTemplateView,
     IncrementalSearchTemplateView,
     FalseRuleTemplateView,
     MultipleRootsTemplateView,
@@ -16,6 +17,11 @@ urlpatterns = [
         'incremental-search/',
         IncrementalSearchTemplateView.as_view(),
         name='incremental-search'
+    ),
+    path(
+        'bisection/',
+        BisectionTemplateView.as_view(),
+        name='bisection'
     ),
     path(
         'false-rule/',
