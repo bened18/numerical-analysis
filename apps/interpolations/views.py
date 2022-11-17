@@ -5,7 +5,6 @@ from apps.interpolations.functions.CubicSpline import traza3natural
 
 class CubicSplineTemplateView(TemplateView):
     template_name = "interpolations/CubicSpline.html"
-
     def get_context_data(self, **kwargs):
         context = super(CubicSplineTemplateView,
                         self).get_context_data(**kwargs)
