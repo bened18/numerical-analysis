@@ -16,6 +16,22 @@
         <h4>Cubic Spline</h4>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2">
+            <p>Given a function f on [a, b] and nodes a = x0 &#60; x1&#60; · · · &#60; xn = b, a spline (tracer)
+                cubic interpolant p for f is a function that satisfies the following conditions:
+            </p>
+            <ol>
+                <li>p(x) is a cubic polynomial, defined pj(x), over the interval [xj−1, xj] for each j = 1, . . . , n</li>
+                <li>pj(xj−1) = f(xj−1) and pj(xj ) = f(xj ) for each j = 1, . . . , n</li>
+                <li>pj+1(xj) = pj(xj) for each j = 1, . . . ,n−1</li>
+                <li>p′j+1(xj) = p′j(xj) for each j = 1, . . . ,n−1</li>
+                <li>p′′j+1(xj) = p′′j(xj) for each j = 1, . . . ,n−1</li>
+                <li>p′′1(x0) = 0 and p′′n(xn) = 0</li>
+            </ol>
+        </div>
+    </div>
+
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
