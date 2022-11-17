@@ -18,9 +18,12 @@ def convert_string_to_list(string):
     return json.loads(res)
 
 
-def traza3natural(xi, yi):
+def traza3natural(xi_str, yi_str):
     # parse str to float
-
+    xi = convert_string_to_list(xi_str)
+    yi = convert_string_to_list(yi_str)
+    
+    trazadores_list = []
     n = len(xi)
 
     # Valores h
@@ -70,28 +73,19 @@ def traza3natural(xi, yi):
         ptramo = a[j]*(x-xi[j])**3 + b[j]*(x-xi[j])**2 + c[j]*(x-xi[j]) + d[j]
         ptramo = ptramo.expand()
         polinomio.append(ptramo)
+    
+    for tramo in range(1, n, 1):
+        trazadores_list.append(str(xi[tramo-1])+" <= x <= "+str(xi[tramo]))
+    
 
-    return (polinomio)
+    return (polinomio, trazadores_list)
 
 
-# PROGRAMA de prueba
-# INGRESO , Datos de prueba
-xi = np.array([-1, 0, 3, 4])
-fi = np.array([15.5, 3, 8, 1])
-resolucion = 10  # entre cada par de puntos
 
-# PROCEDIMIENTO
-n = len(xi)
-# Obtiene los polinomios por tramos
-polinomio = traza3natural(xi, fi)
+# xi = "-1, 0, 3, 4"
+# fi = "15.5, 3, 8, 1"
 
-# SALIDA
-trazadores = ""
 
-print('Polinomios por tramos: ')
-for tramo in range(1, n, 1):
-    print(str(xi[tramo-1])+" <= x <= "+str(xi[tramo]))
-    trazadores = trazadores + str(polinomio[tramo-1]) + "\n"
-
-print("\nTrazadores")
-print(trazadores)
+# for i in traza3natural(xi, fi):
+#     for j in i:
+#         print(j)
