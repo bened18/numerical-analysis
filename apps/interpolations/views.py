@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 
 from apps.interpolations.functions.CubicSpline import traza3natural
+from apps.interpolations.functions.Lagrange import lagrange
 
 
 class CubicSplineTemplateView(TemplateView):
@@ -21,6 +22,15 @@ class CubicSplineTemplateView(TemplateView):
 
 class LagrangeTemplateView(TemplateView):
     template_name = "interpolations/Lagrange.html"
+    def get_context_data(self, **kwargs):
+        context = super(LagrangeTemplateView,
+                        self).get_context_data(**kwargs)
+        xi = self.request.GET.get('xi', '')
+        fi = self.request.GET.get('fi', '')
+        if xi and fi:
+            context["activate"] = lagrange()
+        
+        return context
 
 
 class LinealSplineTemplateView(TemplateView):
