@@ -17,19 +17,19 @@ SECRET_KEY = "django-4.1.3-)-&q5g+4wrp=w3q$$!yd_c(6x$=ls52^h+!1b#vsvp1h^#dql7"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Debug mode
-DEBUG = True
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False
-CSRF_COOKIE_SECURE              = False
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
+if environment == 'prod':
+    DEBUG = True
+else:
+    DEBUG = True
+
+# SSL Redirect
+if environment == 'prod' or environment == 'dev':
+    SECURE_SSL_REDIRECT = True
+else:
+    SECURE_SSL_REDIRECT = False
 
 # Allowed hosts
-ALLOWED_HOSTS = ["192.168.1.25"]
+ALLOWED_HOSTS = ["bened18.pythonanywhere.com", "Bened18.pythonanywhere.com"]
 
 # Application definition
 # Django Apps
