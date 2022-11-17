@@ -34,12 +34,12 @@ def newton(function, dfunction, p_0, tol, n):
         solution_not_found = f"solution not found for tolerance: {tol} spend iterations:{i-1}"
 
     if solution != "":
-        return solution, tabulate(
+        return (solution, tabulate(
             resultados,
             headers=["iter", "Xi", "f(xi)", "error"],
             tablefmt="html",
             floatfmt=(".10f", ".10f")
-        )
+        ))
 
     if solution_div_by_zero != "":
         return solution_div_by_zero
