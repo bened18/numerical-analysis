@@ -2,16 +2,15 @@ import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
 from tabulate import tabulate
+import json
+import math 
+from sympy.parsing.sympy_parser import parse_expr
 
 
 xi = np.array([-1,0,3,4])
 fi = np.array([15.5,3,8,1])
 
 
-import numpy as np
-from sympy import *
-from sympy.parsing.sympy_parser import parse_expr
-import math
 
 def newton(n, x, y):
     
@@ -34,7 +33,7 @@ def newton(n, x, y):
 def polinomioNewton(tabla,n):
     respuesta=""
     polinomio = "P(X) = " + str(tabla[0][1])
-    F = Function('F')
+    F = sym.Function('F')
     for j in range(2,n+1):
         for i in range(j-1,n):
             tabla[i][j] = (tabla[i][j-1] - tabla[i-1][j-1])/(tabla[i][0] - tabla[i-j+1][0])
@@ -48,7 +47,6 @@ def polinomioNewton(tabla,n):
         respuesta = respuesta + " | "+ str(tabla[i-1][i])
     F = parse_expr(polinomio.replace("P(X) = ","").replace("(","*("))
     respuesta = respuesta + ("\nPolinomio interpolante \n" + polinomio)
-
     return respuesta
 
 
