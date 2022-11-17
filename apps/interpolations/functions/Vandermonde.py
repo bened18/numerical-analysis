@@ -35,12 +35,19 @@ def vandermonde(xi,fi):
   yin = px(xin)
 
   resultado = ""
-  print('Vandermonde: ')
-  print((tabulate(D, tablefmt="html")))
+  #print('Vandermonde: ')
+  #print((tabulate(D, tablefmt="html")))
   resultado = resultado + (tabulate(D, tablefmt="html"))
-  print('Polynomial coefficients: ')
-  print(coeficiente)
-  print('Interpolation polynomial: ')
-  print(polinomio)
-  print('\n ')
-  sym.pprint(polinomio)
+  #print('Polynomial coefficients: ')
+  resultado = resultado +'\nPolynomial coefficients: \n'
+  resultado = resultado +str(coeficiente)
+  #print(coeficiente)
+  #print('Interpolation polynomial: ')
+  resultado = resultado +'\nInterpolation polynomial: \n'
+  resultado = resultado + str(polinomio)
+  #print(polinomio)
+  #print('\n ')
+  #sym.pprint(polinomio)
+  print(resultado)
+
+vandermonde(xi,fi)
