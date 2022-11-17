@@ -6,8 +6,8 @@ import json
 
 
 
-xi = [-1,0,3,4]
-fi = [15.5,3,8,1]
+xi = "1,2.3,4,5.6"
+fi = "1,2.3,4,5.6"
 
 def convert_string_to_list(string):
     """
@@ -22,10 +22,10 @@ def convert_string_to_list(string):
     res_to_json = json.loads(res)
     return res_to_json
 
-def vandermonde(x,f):
+def vandermonde(xi_str,yi_str):
   muestras = 101
-  xi = np.array(xi)
-  B = np.array(fi)
+  xi = np.array(convert_string_to_list(xi_str))
+  B = np.array(convert_string_to_list(yi_str))
   n = len(xi)
   D = np.zeros(shape=(n,n),dtype =float)
   for i in range(0,n,1):
@@ -42,12 +42,7 @@ def vandermonde(x,f):
       termino = coeficiente[i]*(x**potencia)
       polinomio = polinomio + termino
 
-  px = sym.lambdify(x,polinomio)
 
-  a = np.min(xi)
-  b = np.max(xi)
-  xin = np.linspace(a,b,muestras)
-  yin = px(xin)
 
   resultado = ""
   #print('Vandermonde: ')
@@ -63,10 +58,15 @@ def vandermonde(x,f):
   #print(polinomio)
   #print('\n ')
   #sym.pprint(polinomio)
-  print(resultado)
+  return(resultado)
 
 # GRAFICACION DEL EJERCICIO
-# --------------------------------------------
+# --------------------------------------------  
+# # px = sym.lambdify(x,polinomio)
+# a = np.min(xi)
+# b = np.max(xi)
+# xin = np.linspace(a,b,muestras)
+# yin = px(xin)
 # plt.plot(xi,fi,'o', label='[xi,fi]')
 # plt.plot(xin,yin, label='p(x)')
 # plt.xlabel('xi')
