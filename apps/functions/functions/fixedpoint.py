@@ -20,7 +20,7 @@ def fixed_point(g1, f1, x0, tol, itermax):
         iter += 1
         resultados.append([iter,x0,g(g1, x0), f(f1, x0), error])
         if error < tol:  # if we reach the desired tolerance stop
-            break
+            return(tabulate(resultados, headers=["iteration", "Xi", "g(xi)", "f(x)", "error"], tablefmt="html", floatfmt=(".10f",".10f",".10f")))
     if iter > itermax:
         return("solution not found, iterations used: ", iter)
 
