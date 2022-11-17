@@ -27,26 +27,21 @@
             <button class="btn btn-primary" type="submit">Consultar</button>
         </div>
     </form>
+    {% if polynomial_result %}
     <div class="card mt-2">
         <div class="card-body">
-            {% if polynomial_result %}
-                {% for i in polynomial_result %}
-                    {{i}}
-                {% endfor %}
-            {% endif %}
+            {{polynomial_result}}
         </div>
     </div>
+    {% endif %}
 
+    {% if section_result %}
     <div class="card mt-2">
         <div class="card-body">
-            {% if section_result %}
-                {% for j in section_result %}
-                    {{j}}
-                {% endfor %}
-            {% endif %}
-
+            {{section_result}}
         </div>
     </div>
+    {% endif %}
 
 </div>
 {% endblock container %}
