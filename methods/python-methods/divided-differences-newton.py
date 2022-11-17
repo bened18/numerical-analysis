@@ -1,74 +1,63 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
+from tabulate import tabulate
+
 
 xi = np.array([-1,0,3,4])
 fi = np.array([15.5,3,8,1])
 
 
-titulo = ['i   ','xi  ','fi  ']
-n = len(xi)
-ki = np.arange(0,n,1)
-tabla = np.concatenate(([ki],[xi],[fi]),axis=0)
-tabla = np.transpose(tabla)
+import numpy as np
+from sympy import *
+from sympy.parsing.sympy_parser import parse_expr
+import math
 
-dfinita = np.zeros(shape=(n,n),dtype=float)
-tabla = np.concatenate((tabla,dfinita), axis=1)
-
-[n,m] = np.shape(tabla)
-diagonal = n-1
-j = 3
-while (j < m):
-    titulo.append('F['+str(j-2)+']')
-
+def newton(n, x, y):
     
-    i = 0
-    paso = j-2 
-    while (i < diagonal):
-        denominador = (xi[i+paso]-xi[i])
-        numerador = tabla[i+1,j-1]-tabla[i,j-1]
-        tabla[i,j] = numerador/denominador
-        i = i+1
-    diagonal = diagonal - 1
-    j = j+1
+	j=0
+	temp=0
+	tabla = np.zeros((n+1,n+1))
 
-dDividida = tabla[0,3:]
-n = len(dfinita)
+	for i in range(n):
+		tabla[i][0] = x[i]
+		tabla[i][1] = y[i]
 
-x = sym.Symbol('x')
-polinomio = fi[0]
-for j in range(1,n,1):
-    factor = dDividida[j-1]
-    termino = 1
-    for k in range(0,j,1):
-        termino = termino*(x-xi[k])
-    polinomio = polinomio + termino*factor
+	res = polinomioNewton(tabla,n).tolist()
+	#print (res)
+	for i in range(len(res)):
+		res[i].pop(0)
+	res.pop()
+	return np.array(res).tolist()
 
-polisimple = polinomio.expand()
 
-px = sym.lambdify(x,polisimple)
+def polinomioNewton(tabla,n):
+    polinomio = "P(X) = " + str(tabla[0][1])
+    F = Function('F')
+    for j in range(2,n+1):
+        for i in range(j-1,n):
+            tabla[i][j] = (tabla[i][j-1] - tabla[i-1][j-1])/(tabla[i][0] - tabla[i-j+1][0])
+            if(i==j-1):
+                polinomio += " + " + str(tabla[i][j])
+                for i in range(0,i):
+                    polinomio += "(x - " + str(tabla[i][0]) + ")"
+    imprimirTabla(tabla)
+    imprimirDDividida(tabla)
+    F = parse_expr(polinomio.replace("P(X) = ","").replace("(","*("))
+    print("\nPolinomio interpolante \n" + polinomio)
 
-muestras = 101
-a = np.min(xi)
-b = np.max(xi)
-pxi = np.linspace(a,b,muestras)
-pfi = px(pxi)
+    return tabla
 
-np.set_printoptions(precision = 4)
-print('Divided differences Newton')
-print([titulo])
-print(tabla)
-print('dDividida: ')
-print(dDividida)
-print('Polynomial: ')
-print(polinomio)
-print('Simplified polynomial: ' )
-print(polisimple)
+def imprimirTabla(tabla):
+    print(tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta", "Sexta", "Septima" ], tablefmt="github"))
 
-plt.plot(xi,fi,'o', label = 'Points')
-plt.plot(pxi,pfi, label = 'Polynomial')
-plt.legend()
-plt.xlabel('xi')
-plt.ylabel('fi')
-plt.title('Divided differences Newton')
-plt.show()
+def imprimirDDividida(tabla):
+    print("Diferencias divididas")
+    respuesta =""
+    for i in range(1,len(tabla)):
+        respuesta = respuesta + " | "+ str(tabla[i-1][i])
+    print (respuesta)
+
+
+
+newton(4,np.array([-1,0,3,4]),np.array([15.5,3,8,1]))
