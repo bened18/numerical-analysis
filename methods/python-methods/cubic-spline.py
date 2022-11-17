@@ -67,7 +67,12 @@ n = len(xi)
 polinomio = traza3natural(xi,fi)
 
 # SALIDA
+trazadores = ""
+
 print('Polinomios por tramos: ')
 for tramo in range(1,n,1):
-    print(' x = ['+str(xi[tramo-1])+','+str(xi[tramo])+']')
-    print(str(polinomio[tramo-1]))
+    print(str(xi[tramo-1])+" <= x <= "+str(xi[tramo]))
+    trazadores = trazadores + str(polinomio[tramo-1]) + "\n"
+
+print("\nTrazadores")
+print(trazadores)

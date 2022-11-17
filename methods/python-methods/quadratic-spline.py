@@ -50,9 +50,17 @@ def quadratic():
     totalPivoting.marcas = [i for i in range(0,totalPivoting.n)]
     aux = totalPivoting.elimination()
     j = 0
+    trazadores = ""
+    coefTrazadores =""
     for i in range(0,len(inequality)):
+        trazadores = trazadores + str(aux[j]*x**2+aux[j+1]*x + aux[j+2])+  "\n"
         func = aux[j]*x**2+aux[j+1]*x + aux[j+2]
+        coefTrazadores = coefTrazadores + str(aux[j])+" | "+str(aux[j+1])+" | "+ str(aux[j+2])+ "\n"
         print(str(inequality[i][0][0])+" <= x <= "+str(inequality[i][1][0]))
-        print(func)
         j += 3
+    
+    print("\nCoeficientes de los trazadores")
+    print(coefTrazadores)
+    print("Trazadores")
+    print(trazadores)
 quadratic()
