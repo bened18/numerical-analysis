@@ -18,7 +18,7 @@ SECRET_KEY = "django-4.1.3-)-&q5g+4wrp=w3q$$!yd_c(6x$=ls52^h+!1b#vsvp1h^#dql7"
 # SECURITY WARNING: don't run with debug turned on in production!
 # Debug mode
 if environment == 'prod':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
