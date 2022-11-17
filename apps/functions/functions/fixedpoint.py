@@ -10,7 +10,7 @@ def f(f1, x):
     return eval(f1)
 
 
-def punto_fijo(g1, f1, x0, tol, itermax):
+def fixed_point(g1, f1, x0, tol, itermax):
     iter = 0
     resultados = [[iter, x0,  g(g1, x0), f(f1, x0), "NA"]]
     while iter <= itermax:
