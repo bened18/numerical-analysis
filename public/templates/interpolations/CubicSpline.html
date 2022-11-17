@@ -22,7 +22,8 @@
                 cubic interpolant p for f is a function that satisfies the following conditions:
             </p>
             <ol>
-                <li>p(x) is a cubic polynomial, defined pj(x), over the interval [xj−1, xj] for each j = 1, . . . , n</li>
+                <li>p(x) is a cubic polynomial, defined pj(x), over the interval [xj−1, xj] for each j = 1, . . . , n
+                </li>
                 <li>pj(xj−1) = f(xj−1) and pj(xj ) = f(xj ) for each j = 1, . . . , n</li>
                 <li>pj+1(xj) = pj(xj) for each j = 1, . . . ,n−1</li>
                 <li>p′j+1(xj) = p′j(xj) for each j = 1, . . . ,n−1</li>
@@ -35,8 +36,11 @@
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="xi ex: -1, 0, 3, 4" id="cubic_spline_a" name="xi">
-            <input type="text" class="form-control" placeholder="fi ex: 15.5, 3, 8, 1" id="cubic_spline_b" name="fi">
+            <span class="input-group-text" id="xi">xi:</span>
+            <input type="text" class="form-control" placeholder="-1, 0, 3, 4" name="xi" aria-describedby="xi">
+
+            <span class="input-group-text" id="fi">fi:</span>
+            <input type="text" class="form-control" placeholder="15.5, 3, 8, 1" name="fi" aria-describedby="fi">
         </div>
 
         <div class="d-grid gap-2 mt-3">
