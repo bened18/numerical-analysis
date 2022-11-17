@@ -22,12 +22,12 @@ def newton(n, x, y):
 		tabla[i][0] = x[i]
 		tabla[i][1] = y[i]
 
-	res = polinomioNewton(tabla,n).tolist()
-	#print (res)
-	for i in range(len(res)):
-		res[i].pop(0)
-	res.pop()
-	return np.array(res).tolist()
+	res = polinomioNewton(tabla,n)
+	print (res)
+	# for i in range(len(res)):
+	# 	res[i].pop(0)
+	# res.pop()
+	# return np.array(res).tolist()
 
 
 def polinomioNewton(tabla,n):
@@ -41,7 +41,7 @@ def polinomioNewton(tabla,n):
                 polinomio += " + " + str(tabla[i][j])
                 for i in range(0,i):
                     polinomio += "(x - " + str(tabla[i][0]) + ")"
-    respuesta = respuesta + " " (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta", "Sexta", "Septima" ], tablefmt="html"))
+    respuesta = respuesta + (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda", "Tercera", "Cuarta", "Quinta", "Sexta", "Septima" ], tablefmt="html"))
     respuesta = respuesta + ("\nDiferencias divididas\n")
     for i in range(1,len(tabla)):
         respuesta = respuesta + " | "+ str(tabla[i-1][i])
