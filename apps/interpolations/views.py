@@ -12,13 +12,9 @@ class CubicSplineTemplateView(TemplateView):
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
 
-        if xi and fi:
-
-            polynomial_result = traza3natural(xi, fi)[0]
-            section_result = traza3natural(xi, fi)[1]
-            
-            context['polynomial_result'] = f"{polynomial_result}"
-            context['section_result'] = f"{section_result}"
+        if xi and fi:            
+            context['polynomial_result'] = traza3natural(xi, fi)[0]
+            context['section_result'] = traza3natural(xi, fi)[1]
 
         return context
 
