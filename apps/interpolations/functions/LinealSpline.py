@@ -47,7 +47,6 @@ def lineal_spline(xi_str,yi_str):
       #print(pxsection)
   #print(px_table)
   return(resultado)
-lineal_spline(xi,fi)
 
 
 #GRAFICACION DEL EJERCICIO 

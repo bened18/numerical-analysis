@@ -69,4 +69,4 @@ def polinomioNewton(tabla, n):
     return respuesta
 
 
-newton(np.array([-1, 0, 3, 4]), np.array([15.5, 3, 8, 1]))
+#newton(np.array([-1, 0, 3, 4]), np.array([15.5, 3, 8, 1]))
