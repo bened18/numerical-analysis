@@ -29,6 +29,7 @@ def newton(function, dfunction, p_0, tol, n):
         resultados.append([i, p_1, f(function, p_1), e_abs])
         if e_abs < tol:  # stop criterion
             solution = f"solution found in x = {p_1} iterations: {i}"
+            break
         p_0 = p_1
         i += 1
     if i > n:
