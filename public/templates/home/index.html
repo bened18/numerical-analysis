@@ -18,76 +18,92 @@
 <section>
     <div class="container-fluid jaba">
         <div class="container">
-            <section>
-                <h1>JABA Method Solver</h1>
-            </section>
-            <section>
-                <div class="card">
-                    <h4><b>About:</b></h4>
-                    <p>
-                        This is a project created for the course Numerical Analisis in the university of EAFIT, this
-                        project was
-                        developed using Python and Django.
-                    </p>
-                    <p>
-                        If you wish to contribute to this project, or to install it locally, check out <a
-                            href="https://github.com/bened18/numerical-analysis/tree/deployPythonAnyWhere"
-                            target="_blank">GitHub
-                            page.</a>
-                    </p>
-                    <p>Libraries/packages used for this project :</p>
-                    <ul>
-                        <li>
-                            <a href="https://www.python.org/download/releases/3.0/" target="_blank">Python 3</a>: Python
-                            is an
-                            interpreted, high-level and general-purpose programming language.
-                        </li>
-                        <li>
-                            <a href="https://www.djangoproject.com/" target="_blank">Django</a>: Django is a high-level
-                            Python
-                            Web framework that encourages rapid development and clean, pragmatic design.
-                        </li>
-                        <li>
-                            <a href="https://www.sympy.org/en/index.html/" target="_blank"
-                                rel="noopener noreferrer">Sympy</a>:
-                            SymPy is a Python library for symbolic mathematics. It aims to
-                            become a full-featured computer algebra system (CAS) while keeping the
-                            code as simple as possible in order to be comprehensible and easily
-                            extensible. SymPy is written entirely in Python.
-                        </li>
-                    </ul>
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h1>JABA Method Solver</h1>
                 </div>
-            </section>
-            <section>
-                <div class="page-section">
-                    <div class="container">
-                        <h2> Function Plotter </h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <section>
+                            <div class="card">
+                                <h4><b>About:</b></h4>
+                                <p>
+                                    This is a project created for the course Numerical Analisis in the university of
+                                    EAFIT, this
+                                    project was
+                                    developed using Python and Django.
+                                </p>
+                                <p>
+                                    If you wish to contribute to this project, or to install it locally, check out <a
+                                        href="https://github.com/bened18/numerical-analysis/tree/deployPythonAnyWhere"
+                                        target="_blank">GitHub
+                                        page.</a>
+                                </p>
+                                <p>Libraries/packages used for this project :</p>
+                                <ul>
+                                    <li>
+                                        <a href="https://www.python.org/download/releases/3.0/" target="_blank">Python
+                                            3</a>: Python
+                                        is an
+                                        interpreted, high-level and general-purpose programming language.
+                                    </li>
+                                    <li>
+                                        <a href="https://www.djangoproject.com/" target="_blank">Django</a>: Django is a
+                                        high-level
+                                        Python
+                                        Web framework that encourages rapid development and clean, pragmatic design.
+                                    </li>
+                                    <li>
+                                        <a href="https://www.sympy.org/en/index.html/" target="_blank"
+                                            rel="noopener noreferrer">Sympy</a>:
+                                        SymPy is a Python library for symbolic mathematics. It aims to
+                                        become a full-featured computer algebra system (CAS) while keeping the
+                                        code as simple as possible in order to be comprehensible and easily
+                                        extensible. SymPy is written entirely in Python.
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </li>
+                    <li class="list-group-item">
+                        <section>
+                            <div class="page-section">
+                                <div class="container">
+                                    <h2> Function Plotter </h2>
 
-                        <div class="grid-container">
-                            <div class="grid-child purple">
-                                <div id="plot">
-                                    <input class="form-control" id="function" onchange="plot()" type="text"
-                                        placeholder="Write function here" required="required"
-                                        data-validation-required-message="Please enter function." />
-                                    <p class="help-block text-danger"></p>
-                                    <input type="number" id="xMin" value="-10" step="0.5" oninput="plot();" />
-                                    <input type="number" id="xMax" value="10" step="0.5" oninput="plot();" />
-                                    <input type="number" id="yMin" value="-10" step="0.5" oninput="plot();" />
-                                    <input type="number" id="yMax" value="10" step="0.5" oninput="plot();" />
-                                    <input type="color" id="color" onchange="plot();" />
-                                    <div id="myFunction"></div>
+                                    <div class="grid-container">
+                                        <div class="grid-child purple">
+                                            <div id="plot">
+                                                <input class="form-control" id="function" onchange="plot()" type="text"
+                                                    placeholder="Write function here" required="required"
+                                                    data-validation-required-message="Please enter function." />
+                                                <p class="help-block text-danger"></p>
+                                                <input type="number" id="xMin" value="-10" step="0.5"
+                                                    oninput="plot();" />
+                                                <input type="number" id="xMax" value="10" step="0.5"
+                                                    oninput="plot();" />
+                                                <input type="number" id="yMin" value="-10" step="0.5"
+                                                    oninput="plot();" />
+                                                <input type="number" id="yMax" value="10" step="0.5"
+                                                    oninput="plot();" />
+                                                <input type="color" id="color" onchange="plot();" />
+                                                <div id="myFunction"></div>
+                                            </div>
+                                        </div>
+                                        <div class="float-child">
+                                            <canvas id="myChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" id="sendMessageButton" onclick="plot()"
+                                            type="button">Plot</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="float-child">
-                                <canvas id="myChart"></canvas>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-xl" id="sendMessageButton" onclick="plot()">
-                            Plot
-                        </button>
-                    </div>
-                </div>
-            </section>
+                        </section>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
