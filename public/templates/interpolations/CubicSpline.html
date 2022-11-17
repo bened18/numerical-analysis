@@ -19,8 +19,8 @@
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="xi" id="cubic_spline_a" name="xi">
-            <input type="text" class="form-control" placeholder="fi" id="cubic_spline_b" name="fi">
+            <input type="text" class="form-control" placeholder="xi ex: -1, 0, 3, 4" id="cubic_spline_a" name="xi">
+            <input type="text" class="form-control" placeholder="fi ex: 15.5, 3, 8, 1" id="cubic_spline_b" name="fi">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -28,8 +28,12 @@
         </div>
     </form>
 
-    {% if result %}
-        {{ result | safe }}
+    {% if polynomial_result %}
+        <p>{{polynomial_result}}</p>
+    {% endif %}
+
+    {% if section_result %}
+        <p>{{section_result}}</p>
     {% endif %}
 
 </div>

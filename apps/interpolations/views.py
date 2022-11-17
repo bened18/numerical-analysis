@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from apps.interpolations.functions.CubicSpline import inputcubic
+from apps.interpolations.functions.CubicSpline import traza3natural
 
 
 class CubicSplineTemplateView(TemplateView):
@@ -10,14 +10,16 @@ class CubicSplineTemplateView(TemplateView):
         context = super(CubicSplineTemplateView,
                         self).get_context_data(**kwargs)
 
-        inputx1 = self.request.GET.get('xi', '')
-        inputf1 = self.request.GET.get('fi', '')
+        xi = self.request.GET.get('xi', '')
+        fi = self.request.GET.get('fi', '')
 
-        if inputx1 and inputf1:
+        if xi and fi:
 
-            functionresult = inputcubic(inputx1, inputf1)
+            polynomial_result = traza3natural(xi, fi)[0]
+            section_result = traza3natural(xi, fi)[1]
 
-            context['result'] = f"{functionresult}"
+            context['polynomial_result'] = f"{polynomial_result}"
+            context['section_result'] = f"{section_result}"
 
         return context
 
