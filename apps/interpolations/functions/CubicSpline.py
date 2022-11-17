@@ -14,8 +14,11 @@ def convert_string_to_list(string):
             [1,2.3,4,5.6]
             int,float,int,float
     """
-    res = f"[{string}]"
-    return json.loads(res)
+    res = f"[{string}]".strip(" ")
+    print(res)
+    res_to_json = json.loads(res)
+    print(res_to_json)
+    return res_to_json
 
 
 def traza3natural(xi_str, yi_str):
