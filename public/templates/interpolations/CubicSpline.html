@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}False Rule{% endblock title %}
+{% block title %}Cubic Spline{% endblock title %}
 
 {% block bodyCSS %}
 <style>
@@ -19,8 +19,8 @@
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="xi" id="function_falserule_a" name="xi">
-            <input type="text" class="form-control" placeholder="fi" id="function_falserule_b" name="fi">
+            <input type="text" class="form-control" placeholder="xi" id="cubic_spline_a" name="xi">
+            <input type="text" class="form-control" placeholder="fi" id="cubic_spline_b" name="fi">
         </div>
 
         <div class="d-grid gap-2 mt-3">

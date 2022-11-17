@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}False Rule{% endblock title %}
+{% block title %}Quadratic Spline{% endblock title %}
 
 {% block bodyCSS %}
 <style>
@@ -18,16 +18,9 @@
 
     <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
-        </div>
-
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="a" id="function_falserule_a" name="a">
-            <input type="text" class="form-control" placeholder="b" id="function_falserule_b" name="b">
-            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
-            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+            <input type="text" class="form-control" placeholder="xn" id="quadratic_spline_xn" name="xn">
+            <input type="text" class="form-control" placeholder="fxn" id="quadratic _spline_fxn" name="fxn">
         </div>
 
         <div class="d-grid gap-2 mt-3">

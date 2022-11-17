@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}False Rule{% endblock title %}
+{% block title %}Lineal Spline{% endblock title %}
 
 {% block bodyCSS %}
 <style>
@@ -18,16 +18,10 @@
 
     <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
-        </div>
-
+        
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="a" id="function_falserule_a" name="a">
-            <input type="text" class="form-control" placeholder="b" id="function_falserule_b" name="b">
-            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
-            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+            <input type="text" class="form-control" placeholder="xi" id="lineal_spline_xi" name="xi">
+            <input type="text" class="form-control" placeholder="fi" id="lineal_spline_fi" name="fi">
         </div>
 
         <div class="d-grid gap-2 mt-3">
