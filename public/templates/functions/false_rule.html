@@ -16,18 +16,39 @@
         <h4>False Rule</h4>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2">
+            <p>Todo</p>
+            <ol>
+                <li>Todo</li>
+                <li>Todo</li>
+                <li>Todo</li>
+                <li>Todo</li>
+                <li>Todo</li>
+                <li>Todo</li>
+            </ol>
+        </div>
+    </div>
+
     <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="function">Function:</span>
+            <input name="f" type="text" class="form-control" placeholder="cos(x)" aria-describedby="function">
         </div>
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="a" id="function_falserule_a" name="a">
-            <input type="text" class="form-control" placeholder="b" id="function_falserule_b" name="b">
-            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
-            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+            <span class="input-group-text" id="a">a:</span>
+            <input name="a" type="text" class="form-control" placeholder="-3" aria-describedby="a">
+
+            <span class="input-group-text" id="b">b:</span>
+            <input name="b" type="text" class="form-control" placeholder="5" aria-describedby="b">
+
+            <span class="input-group-text" id="tol">tol:</span>
+            <input name="tol" type="text" class="form-control" placeholder="0.0000007" aria-describedby="tol">
+
+            <span class="input-group-text" id="n">n:</span>
+            <input name="n" type="text" class="form-control" placeholder="100" aria-describedby="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -36,12 +57,9 @@
     </form>
 
     {% if result %}
-    <div class="card mt-2">
-        <div class="card-body">
-            <p>{{ result }}</p>
-        </div>
-    </div>
+        {{ result | safe }}
     {% endif %}
+        
 
 </div>
 {% endblock container %}

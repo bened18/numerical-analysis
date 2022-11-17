@@ -10,7 +10,7 @@ def f(function, x):
 def false_position(function, a, b, tol, n):
 
     if f(function, a)*f(function, b) >= 0:
-        return("the interval does not change sign")
+        return("The interval does not change sign")
 
     resultados = []
 
@@ -36,6 +36,6 @@ def false_position(function, a, b, tol, n):
         i += 1
 
     if i > n:
-        return("solution not found for tolerance:", tol, "spend iterations:", i-1)
+        return("Solution not found for tolerance:", tol, "spend iterations:", i-1)
 
     return(tabulate(resultados, headers=["iter", "a", "xm", "b", "f(xm)", "error"], tablefmt="html"))

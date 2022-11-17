@@ -22,13 +22,14 @@
             <input type="text" class="form-control" placeholder="xi" id="newton_interpolation_xi" name="fi">
             <input type="text" class="form-control" placeholder="fi" id="newton_interpolation_fi" name="xi">
 
-        <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="submit">Consultar</button>
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary" type="submit">Consultar</button>
+            </div>
         </div>
     </form>
 
     {% if result %}
-        {{ result | safe }}
+    {{ result | safe }}
     {% endif %}
 
 </div>

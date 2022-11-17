@@ -16,22 +16,40 @@
         <h4>Newton</h4>
     </div>
 
-    <form method="GET" id="function_incrementalsearch_form">
+    <div class="d-flex justify-content-center mb-3 mt-3">
+        <div class="card mt-2">
+            <h6 class="text-center">Theorem (Newton's method):</h6>
+            <ol>
+                <li>Let f ∈ C^2[a, b] and xv ∈ [a, b] such that f(xv) = 0 and f′(xv) ≠ 0 then there exists d > 0 such
+                    that the
+                    Newton's method generates a sequence {xn}∞n=0, given by xn+1 = x − (f(xn)/f′(xn)) , converges to xv
+                    for any initial approximation x0 ∈ [xv − d, xv + d]</li>
+            </ol>
+        </div>
+    </div>
+
+    <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="function">Function:</span>
+            <input name="f" type="text" class="form-control" placeholder="pow(x,5)" aria-describedby="function">
         </div>
 
-        <div class="mb-3">
-            <label for="dfunction" class="form-label">Derivate Function:</label>
-            <input class="form-control" type="text" id="dfunction" name="df">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="dffunction">Derivate Function:</span>
+            <input name="df" type="text" class="form-control" placeholder="5*pow(x,4)" aria-describedby="dffunction">
         </div>
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="p_0" id="function_falserule_p_0" name="p_0">
-            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
-            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+            <span class="input-group-text" id="a">p_0:</span>
+            <input name="p_0" type="text" class="form-control" placeholder="p_0" aria-describedby="p_0">
+
+            <span class="input-group-text" id="tol">tol:</span>
+            <input name="tol" type="text" class="form-control" placeholder="tol" aria-describedby="tol">
+
+            <span class="input-group-text" id="n">n:</span>
+            <input name="n" type="text" class="form-control" placeholder="n" aria-describedby="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -40,13 +58,13 @@
     </form>
 
     {% if result %}
-        <div class="card mt-2">
-            <div class="card-body">
-                <p>{{ result }}</p>
-            </div>
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{{ result }}</p>
         </div>
+    </div>
 
-        {{ result_table | safe }}
+    {{ result_table | safe }}
     {% endif %}
 
 </div>
