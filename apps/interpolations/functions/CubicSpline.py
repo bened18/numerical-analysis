@@ -15,9 +15,7 @@ def convert_string_to_list(string):
             int,float,int,float
     """
     res = f"[{string}]".strip(" ")
-    print(res)
     res_to_json = json.loads(res)
-    print(res_to_json)
     return res_to_json
 
 

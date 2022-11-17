@@ -29,11 +29,23 @@
     </form>
 
     {% if polynomial_result %}
-        <p>{{polynomial_result}}</p>
+    <ul>
+        {% for i in polynomial_result %}
+            <li>
+                {{i}}
+            </li>
+        {% endfor %}
+    </ul>
     {% endif %}
 
     {% if section_result %}
-        <p>{{section_result}}</p>
+        <ul>
+            {% for j in section_result %}
+            <li>
+                {{j}}
+            </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
 </div>

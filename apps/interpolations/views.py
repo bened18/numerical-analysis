@@ -17,8 +17,6 @@ class CubicSplineTemplateView(TemplateView):
             polynomial_result = traza3natural(xi, fi)[0]
             section_result = traza3natural(xi, fi)[1]
             
-            print(polynomial_result, section_result)
-
             context['polynomial_result'] = f"{polynomial_result}"
             context['section_result'] = f"{section_result}"
 
