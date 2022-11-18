@@ -56,6 +56,8 @@ def back_substitution(U, y):
     return X
 
 def Crout(A,b):
+
+    
     A=np.array(A,dtype=float)
     b=np.array(b,dtype=float)
 
@@ -102,7 +104,7 @@ def defmatrizB(n):
 A = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
 B = [[1],[1],[1],[1]]
 
-(L,U,X)=Crout(A, B)
+(U,L,X)=Crout(A, B)
 print("Matriz L")
 print(L)
 print("Matriz U")

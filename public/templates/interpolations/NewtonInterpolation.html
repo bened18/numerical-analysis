@@ -28,9 +28,32 @@
         </div>
     </form>
 
-    {% if result %}
-    {{ result | safe }}
-    {% endif %}
+    {% if tablaDD %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{tablaDD}</p>
+        </div>
+    </div>
+    {% endif %} 
+<!-- 
+    {% if coeficientes %}
+    <div class="card mt-2">
+        <div class="card-body">
+            {% for i in coeficientes %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}  -->
 
+    <!-- {% if polynomial_result %}
+    <div class="card mt-2">
+        <div class="card-body">
+            {% for i in polynomial_result %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} -->
 </div>
 {% endblock container %}

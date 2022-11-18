@@ -41,12 +41,13 @@ def lineal_spline(xi_str,yi_str):
       px_table.append(pxsection )
 
   #salida
+  polinomio = []
   for section in range(1,n,1):
       pxsection = px_table[section-1]
-      resultado = resultado + str(pxsection) + "\n"
+      polinomio.append( str(pxsection))
       #print(pxsection)
   #print(px_table)
-  return(resultado)
+  return(polinomio)
 
 
 #GRAFICACION DEL EJERCICIO 

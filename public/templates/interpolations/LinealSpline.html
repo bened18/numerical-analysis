@@ -30,8 +30,13 @@
     </form>
 
     {% if result %}
-        {{ result | safe }}
+    <div class="card mt-2">
+        <div class="card-body">
+            {% for i in result %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
     {% endif %}
-
 </div>
 {% endblock container %}

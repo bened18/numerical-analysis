@@ -40,7 +40,7 @@ class LagrangeTemplateView(TemplateView):
 class LinealSplineTemplateView(TemplateView):
     template_name = "interpolations/LinealSpline.html"
     def get_context_data(self, **kwargs):
-        context = super(CubicSplineTemplateView,
+        context = super(LinealSplineTemplateView,
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
@@ -51,18 +51,20 @@ class LinealSplineTemplateView(TemplateView):
 class NewtonInterpolationTemplateView(TemplateView):
     template_name = "interpolations/NewtonInterpolation.html"
     def get_context_data(self, **kwargs):
-        context = super(CubicSplineTemplateView,
+        context = super(NewtonInterpolationTemplateView,
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
         if xi and fi:            
-            context['result'] = newton(xi, fi)
+            context['tablaDD'] = newton(xi, fi)[0]
+            context['coeficientes'] = newton(xi, fi)[1]
+            context['polynomial_result'] = newton(xi, fi)[2]
 
 
 class QuadraticSplineTemplateView(TemplateView):
     template_name = "interpolations/QuadraticSpline.html"
     def get_context_data(self, **kwargs):
-        context = super(CubicSplineTemplateView,
+        context = super(QuadraticSplineTemplateView,
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
@@ -73,7 +75,7 @@ class QuadraticSplineTemplateView(TemplateView):
 class VandermondeTemplateView(TemplateView):
     template_name = "interpolations/Vandermonde.html"
     def get_context_data(self, **kwargs):
-        context = super(CubicSplineTemplateView,
+        context = super(VandermondeTemplateView,
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')

@@ -65,4 +65,4 @@ def vandermonde(xi_str,yi_str):
 # plt.show()
 # --------------------------------------------
 
-vandermonde(xi,fi)
+# vandermonde(xi,fi)

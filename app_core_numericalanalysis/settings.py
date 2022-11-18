@@ -1,7 +1,7 @@
 from unipath import Path
 
 # Select the appropriate environment
-environment = "prod"
+environment = "local"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).ancestor(2)

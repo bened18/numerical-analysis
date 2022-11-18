@@ -1,5 +1,5 @@
 import sympy
-import totalPivoting
+#import totalPivoting
 x = sympy.Symbol('x')
 import json
 
@@ -69,15 +69,15 @@ def quadratic(xi_str, yi_str ):
             k += 1
             z += 3
         superMatrix[k][0] = 1
-        totalPivoting.a = superMatrix
-        totalPivoting.n = len(superMatrix)
-        totalPivoting.marcas = [i for i in range(0, totalPivoting.n)]
-        aux = totalPivoting.elimination()
-        j = 0
-        for i in range(0, len(inequality)):
-            func = aux[j]*x**2+aux[j+1]*x + aux[j+2]
-            result.append(f"{inequality[i][0][0]} <= x <= {inequality[i][1][0]} | {func}")
-            j += 3
+        # totalPivoting.a = superMatrix
+        # totalPivoting.n = len(superMatrix)
+        # totalPivoting.marcas = [i for i in range(0, totalPivoting.n)]
+        # aux = totalPivoting.elimination()
+        # j = 0
+        # for i in range(0, len(inequality)):
+        #     func = aux[j]*x**2+aux[j+1]*x + aux[j+2]
+        #     result.append(f"{inequality[i][0][0]} <= x <= {inequality[i][1][0]} | {func}")
+        #     j += 3
             
         return result
     else:

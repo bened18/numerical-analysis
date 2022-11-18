@@ -1,10 +1,11 @@
 import numpy as np
 
 
-m = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
-matriz = np.zeros([m,m])
-u = np.zeros([m,m])
-l = np.zeros([m,m])
+A = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
+m = len(A)
+matriz = np.zeros(m)
+u = np.zeros(m)
+l = np.zeros(m)
 
 for r in range(0,m):
     for c in range(0,m):
