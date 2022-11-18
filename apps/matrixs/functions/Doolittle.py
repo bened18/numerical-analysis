@@ -107,7 +107,7 @@ def defmatrizB(n):
 A = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
 B = [[1],[1],[1],[1]]
 
-(L,U,X)=Doolittle(A, B)
+(U,L,X)=Doolittle(A, B)
 print("Matriz A: ")
 print(A)
 print("Matriz B: ")

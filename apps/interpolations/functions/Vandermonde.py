@@ -6,8 +6,8 @@ from tabulate import tabulate
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
 
-xi = "1,2.3,4,5.6"
-fi = "1,2.3,4,5.6"
+#xi = "1,2.3,4,5.6"
+#fi = "1,2.3,4,5.6"
 
 
 
@@ -65,4 +65,4 @@ def vandermonde(xi_str,yi_str):
 # plt.show()
 # --------------------------------------------
 
-vandermonde(xi,fi)
+# vandermonde(xi,fi)

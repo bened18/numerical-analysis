@@ -46,7 +46,9 @@ def newton(xi_str, yi_str):
     # res.pop()
     # return np.array(res).tolist()
 
-
+tablaDD=[]
+coeficientes=[]
+polinomioInter=[]
 def polinomioNewton(tabla, n):
     respuesta = ""
     polinomio = "P(X) = " + str(tabla[0][1])
@@ -59,14 +61,14 @@ def polinomioNewton(tabla, n):
                 polinomio += " + " + str(tabla[i][j])
                 for i in range(0, i):
                     polinomio += "(x - " + str(tabla[i][0]) + ")"
-    respuesta = respuesta + (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda",
+    tablaDD = (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda",
                              "Tercera", "Cuarta", "Quinta", "Sexta", "Septima"], tablefmt="html"))
     respuesta = respuesta + ("\nDiferencias divididas\n")
     for i in range(1, len(tabla)):
-        respuesta = respuesta + " | " + str(tabla[i-1][i])
+        coeficientes.append(tabla[i-1][i])
     F = parse_expr(polinomio.replace("P(X) = ", "").replace("(", "*("))
-    respuesta = respuesta + ("\nPolinomio interpolante \n" + polinomio)
-    return respuesta
+    polinomioInter.append(polinomio)
+    return (tablaDD, coeficientes, polinomioInter)
 
 
-newton(np.array([-1, 0, 3, 4]), np.array([15.5, 3, 8, 1]))
+#newton(np.array([-1, 0, 3, 4]), np.array([15.5, 3, 8, 1]))

@@ -1,12 +1,31 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
+import json
+
 
 #ingreso
-xi = np.array([-1,0,3,4])
-fi = np.array([15.5,3,8,1])
+xi = "-1,0,3,4"
+fi = "15.5,3,8,1"
 
-def lineal_spline(xi,fi):
+
+def convert_string_to_list(string):
+    """
+        Receive a comma-separated string and convert it to its type
+        exm:
+            convert_string_to_list("1,2.3,4,5.6")
+        result:
+            [1,2.3,4,5.6]
+            int,float,int,float
+    """
+    res = f"[{string}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
+
+def lineal_spline(xi_str,yi_str):
+  xi = np.array(convert_string_to_list(xi_str))
+  fi = np.array(convert_string_to_list(yi_str))
+
   resultado = ""
   #procedimiento
   n = len(xi)
@@ -18,17 +37,17 @@ def lineal_spline(xi,fi):
       denominator = xi[section]-xi[section-1]
       m = numerator/denominator
       pxsection = fi[section-1]
-      print(str( m*(x-xi[section-1]) + pxsection ))
       pxsection = m*(x-xi[section-1]) + pxsection 
       px_table.append(pxsection )
 
   #salida
-  # for section in range(1,n,1):
-  #     pxsection = px_table[section-1]
-      #resultado = resultado + str(pxsection)
+  polinomio = []
+  for section in range(1,n,1):
+      pxsection = px_table[section-1]
+      polinomio.append( str(pxsection))
       #print(pxsection)
-  print(px_table)
-lineal_spline(xi,fi)
+  #print(px_table)
+  return(polinomio)
 
 
 #GRAFICACION DEL EJERCICIO 

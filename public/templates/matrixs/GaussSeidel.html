@@ -16,11 +16,31 @@
         <h4>Gauss Seidel</h4>
     </div>
 
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2">
+
+                <h6 class="text-center">Help for this method:</h6>
+                <ol>
+                    <li>if A is diagonally dominant, the method will converge to the unique solution of the system.</li>
+                    <li>A must be symmetric and positively defined</li>
+                    <li>A must be invertible</li>
+                    <li>The converge is determined by p(T). It must be less than one.
+                    </li>
+                </ol>
+        </div>
+    </div>
+
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
         <div class="input-group">
             <input type="text" class="form-control" placeholder="A" id="Gauss_Seidel_A" name="A">
             <input type="text" class="form-control" placeholder="B" id="Gauss_Seidel_B" name="B">
+            <input type="text" class="form-control" placeholder="x0" id="Gauss_Seidel_x0" name="x0">
+            <input type="text" class="form-control" placeholder="tolerance" id="Gauss_Seidel_delta"
+                name="tolerance">
+            <input type="text" class="form-control" placeholder="W" id="Gauss_Seidel_W" name="W">
+            <input type="text" class="form-control" placeholder="itermax" id="Gauss_Seidel_itermax"
+                name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">

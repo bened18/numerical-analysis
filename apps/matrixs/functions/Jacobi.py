@@ -17,6 +17,7 @@ def jacobi(a,b,x):
 def jacobim(a,b,x,e,m): 
 	n=len(x)  
 	t=x.copy()
+	print ("Para la iteración "+str(0)+": X = "+"0.0      0.0  0.0       0.0"+"\tError: "+ " ")
 	for  k  in  range(m): 
 		x=jacobi(a,b,x)
 		d=np.linalg.norm(np.array(x)-np.array(t),np.inf)

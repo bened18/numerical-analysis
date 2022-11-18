@@ -15,12 +15,18 @@
     <div class="d-flex justify-content-center">
         <h4>Newton Interpolation</h4>
     </div>
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2 mb-2">
+            <h6 class="text-center">Newton Interpolation Help</h6>
+            <p class="ms-2">All values in xi and fi have to be different</p>
+        </div>
+    </div>
 
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="xi" id="newton_interpolation_xi" name="fi">
-            <input type="text" class="form-control" placeholder="fi" id="newton_interpolation_fi" name="xi">
+            <input type="text" class="form-control" placeholder="xi" id="newton_interpolation_xi" name="xi">
+            <input type="text" class="form-control" placeholder="fi" id="newton_interpolation_fi" name="fi">
 
             <div class="d-grid gap-2 mt-3">
                 <button class="btn btn-primary" type="submit">Consultar</button>
@@ -28,9 +34,30 @@
         </div>
     </form>
 
-    {% if result %}
-    {{ result | safe }}
-    {% endif %}
+    {% if tablaDD %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{{tablaDD}}</p>
+        </div>
+    </div>
+    {% endif %} 
 
+    {% if coeficientes %}
+    <div class="card mt-2">
+        <div class="card-body">
+            {% for i in coeficientes %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} 
+
+    {% if polynomial_result %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{{polynomial_result}}</p>
+        </div>
+    </div>
+    {% endif %} 
 </div>
 {% endblock container %}
