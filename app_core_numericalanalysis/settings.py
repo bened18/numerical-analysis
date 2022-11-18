@@ -1,7 +1,7 @@
 from unipath import Path
 
 # Select the appropriate environment
-environment = "prod"
+environment = "local"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).ancestor(2)
@@ -15,8 +15,6 @@ BASE_URL = "https://bened18.pythonanywhere.com"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-4.1.3-)-&q5g+4wrp=w3q$$!yd_c(6x$=ls52^h+!1b#vsvp1h^#dql7"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# Debug mode
 if environment == "local":
     DEBUG = True
     CORS_REPLACE_HTTPS_REFERER      = False
@@ -28,8 +26,9 @@ if environment == "local":
     SECURE_HSTS_SECONDS             = None
     SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
     SECURE_FRAME_DENY               = False
-    ALLOWED_HOSTS = ["192.168.1.25", "127.0.0.1", "localhost"]
+    ALLOWED_HOSTS = ["*", "127.0.0.1", "localhost"]
 else:
+    DEBUG = False
     ALLOWED_HOSTS = ["bened18.pythonanywhere.com"]
 
 # Application definition

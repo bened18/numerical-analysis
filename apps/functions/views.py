@@ -6,7 +6,7 @@ from apps.functions.functions.falserule import false_position
 from apps.functions.functions.newton import newton
 from apps.functions.functions.fixedpoint import fixed_point
 from apps.functions.functions.secant import secant
-from apps.functions.functions.multipleroots import multipleroot
+from apps.functions.functions.multipleroots import multipleroot, dfun, d2fun
 
 
 class IncrementalSearchTemplateView(TemplateView):
@@ -158,6 +158,9 @@ class SecantTemplateView(TemplateView):
 
             result = secant(function, p_0, p_1, tol, n)[0]
             result_table = secant(function, p_0, p_1, tol, n)[1]
+            print(result)
+            print()
+            print(result_table)
             context['result'] = f"{result}"
             context['result_table'] = f"{result_table}"
         return context
@@ -171,21 +174,21 @@ class MultipleRootsTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
 
         function = self.request.GET.get('f', '')
-        dfunction = self.request.GET.get('df', '')
-        d2function = self.request.GET.get('d2f', '')
         x0 = self.request.GET.get('x0', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
 
-        if function and dfunction and d2function and x0 and tol and n:
+        if function and x0 and tol and n:
             x0 = float(x0)
             tol = float(tol)
             n = int(n)
 
-            result = multipleroot(function, dfunction,
-                                  d2function, x0, tol, n)[0]
-            result_table = multipleroot(
-                function, dfunction, d2function, x0, tol, n)[1]
+            result = multipleroot(function, x0, tol, n)[0]
+            result_table = multipleroot(function, x0, tol, n)[1]
+            
+            context['f'] = function
+            context['df'] = dfun(function, x0)[1]
+            context['d2f'] = d2fun(function, x0)[1]
             context['result'] = f"{result}"
             context['result_table'] = f"{result_table}"
         return context

@@ -17,29 +17,36 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <div class="card mt-2">
-
-                <h6 class="text-center">Help for this method:</h6>
-                <ol>
-                    <li>p0 and p1 must be close to a root</li>
-                    <li>tolerance must be positive</li>
-                    <li>Never put a divided by zero operation</li>
-                </ol>
+        <div class="card mt-2 mb-2">
+            <h6 class="text-center">Help for this method:</h6>
+            <ol>
+                <li>p0 and p1 must be close to a root</li>
+                <li>tolerance must be positive</li>
+                <li>Never put a divided by zero operation</li>
+            </ol>
         </div>
     </div>
 
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function:</label>
-            <input class="form-control" type="text" id="function" name="f">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="function">Function:</span>
+            <input name="f" type="text" class="form-control" placeholder="12*pow(x,4)-2.72*pow(x,3)+0.0042*x"
+                aria-describedby="function">
         </div>
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="p_0" id="function_falserule_p_0" name="p_0">
-            <input type="text" class="form-control" placeholder="p_1" id="function_falserule_p_1" name="p_1">
-            <input type="text" class="form-control" placeholder="tol" id="function_falserule_tol" name="tol">
-            <input type="text" class="form-control" placeholder="n" id="function_falserule_n" name="n">
+            <span class="input-group-text" id="p_0">p_0:</span>
+            <input type="text" class="form-control" placeholder="12" name="p_0">
+
+            <span class="input-group-text" id="p_1">p_1:</span>
+            <input type="text" class="form-control" placeholder="18" name="p_1">
+
+            <span class="input-group-text" id="tol">tol:</span>
+            <input type="text" class="form-control" placeholder="0.00005" name="tol">
+
+            <span class="input-group-text" id="n">n:</span>
+            <input type="text" class="form-control" placeholder="100" name="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">

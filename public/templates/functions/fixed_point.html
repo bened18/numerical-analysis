@@ -17,10 +17,10 @@
     </div>
 
     <div class="d-flex justify-content-center">
-        <div class="card mt-2">
+        <div class="card mt-2 mb-2">
             <h6 class="text-center">Help for this method:</h6>
             <ol>
-                <li>g must be a continuous function on the interval [a, b]</li> 
+                <li>g must be a continuous function on the interval [a, b]</li>
                 <li>You must verified that |g′(x)| ≤ k < 1</li>
                 <li>All x in the interval [a,b], g(x) must belong to the same interval [a, b]</li>
                 <li>a must be less than b</li>
@@ -31,23 +31,28 @@
         </div>
     </div>
 
-    <form method="GET" id="function_incrementalsearch_form">
+    <form method="GET">
         {% csrf_token %}
-        <div class="mb-3">
-            <label for="function" class="form-label">Function g:</label>
-            <input class="form-control" type="text" id="g" name="g">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="functionf">Function f:</span>
+            <input name="f1" type="text" class="form-control" placeholder="pow(x,3) + pow(x,2) - 1"
+                aria-describedby="functionf">
         </div>
 
-        <div class="mb-3">
-            <label for="function" class="form-label">Function f1:</label>
-            <input class="form-control" type="text" id="f1" name="f1">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="functiong">Function g:</span>
+            <input name="g" type="text" class="form-control" placeholder="1/sqrt(1+x)" aria-describedby="functiong">
         </div>
-
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="x0" id="function_fixedpoint_x0" name="x0">
-            <input type="text" class="form-control" placeholder="tol" id="function_fixedpoint_tol" name="tol">
-            <input type="text" class="form-control" placeholder="itermax" id="function_fixedpoint_itermax" name="itermax">
+            <span class="input-group-text" id="x0">x0:</span>
+            <input type="text" class="form-control" placeholder="2" name="x0">
+
+            <span class="input-group-text" id="tol">tol:</span>
+            <input type="text" class="form-control" placeholder="0.00001" name="tol">
+
+            <span class="input-group-text" id="itermax">itermax:</span>
+            <input type="text" class="form-control" placeholder="10" name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
