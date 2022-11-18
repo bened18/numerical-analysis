@@ -15,6 +15,13 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
 
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js"
+        integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     {% block stylesheets %}{% endblock stylesheets %}
 
     {% block headJs %}{% endblock headJs %}
@@ -34,6 +41,8 @@
     {% block footer %}
     {% include 'partials/footer.html' %}
     {% endblock footer %}
+
+    {% block chartJs %}{% endblock chartJs %}
 
     {% block bodyJs %}{% endblock bodyJs %}
 </body>

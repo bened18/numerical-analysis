@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block title %}Lagrange{% endblock title %}
-
 {% block bodyCSS %}
 <style>
     .full-vh {
@@ -19,8 +17,11 @@
     <form method="GET">
         {% csrf_token %}
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="xi" id="largage_a" name="xi">
-            <input type="text" class="form-control" placeholder="fi" id="largage_b" name="fi">
+            <span class="input-group-text" id="xi">xi:</span>
+            <input type="text" class="form-control" placeholder="-1, 0, 3, 4" name="xi" />
+            
+            <span class="input-group-text" id="fi">fi:</span>
+            <input type="text" class="form-control" placeholder="15.5, 3, 8, 1" name="fi" />
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -28,11 +29,56 @@
         </div>
     </form>
 
-    {% if result %}
-        {{ result | safe }}
+    {% if fi %}
+    <ul>
+        <li>fi: {{fi}}</li>
+        <li>xi: {{xi}}</li>
+        <li>Dividers: {{dividers}}</li>
+        <li>Lagrange polynomial expresion: {{lagrangePolynomialExpresion}}</li>
+        <li>Lagrange polynomial: {{lagrangePolynomial}}</li>
+    </ul>
+    {% endif %} {% if pxi.any %}
+    <div>
+        <canvas id="lagrange"></canvas>
+    </div>
     {% endif %}
-
-    {{activate}}
-
 </div>
 {% endblock container %}
+
+{% block chartJs %}
+<script>
+    const ctx = document.getElementById('lagrange');
+
+    var xi = {{ xi }};
+    var fi = {{ fi }};
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xi,
+            datasets: [{
+                label: 'Polynomial',
+                data: fi,
+                borderWidth: 1,
+                fill: false,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Lagrange Interpolation'
+                },
+            }
+        }
+    });
+</script>
+{% endblock chartJs %}
