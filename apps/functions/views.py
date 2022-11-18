@@ -94,19 +94,20 @@ class NewtonTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
 
         function = self.request.GET.get('f', '')
-        dfunction = self.request.GET.get('df', '')
         p_0 = self.request.GET.get('p_0', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
 
-        if function and dfunction and p_0 and tol and n:
+        if function and p_0 and tol and n:
             p_0 = float(p_0)
             tol = float(tol)
             n = int(n)
 
-            functionresult = newton(function, dfunction, p_0, tol, n)[0]
-            functiontable = newton(function, dfunction, p_0, tol, n)[1]
+            functionresult = newton(function, p_0, tol, n)[0]
+            functiontable = newton(function, p_0, tol, n)[1]
 
+            context['f'] = function
+            context['df'] = dfun(function, p_0)[1]
             context['result'] = f"{functionresult}"
             context['result_table'] = f"{functiontable}"
 

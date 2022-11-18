@@ -1,8 +1,7 @@
 from math import *
+from sympy import *
 import numpy as np
 from tabulate import tabulate
-from sympy.parsing.sympy_parser import parse_expr
-from sympy import diff
 
 
 def fun(function, x):

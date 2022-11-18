@@ -1,5 +1,6 @@
-import numpy as np
 from math import *
+from sympy import *
+import numpy as np
 from tabulate import tabulate
 
 def f(function, x):
