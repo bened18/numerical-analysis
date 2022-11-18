@@ -18,16 +18,15 @@
 
     <div class="d-flex justify-content-center">
         <div class="card mt-2">
-            <h6 class="text-center">Definition: </h6>
-            <p>We say that xv is a root of multiplicity m of f if and only if f (x) can be written
-                as <br>
-                <P class="text-center">f(x) = (x−xv)^m*q(x)</P><br>
-                where q(xv) ≠ = 0. If m = 1, it is called a simple root.
-            </p>
-            <h6 class="text-center">theorem: </h6>
-            <p>Let f ∈ C^m[a, b]. The function f has a root of multiplicity m in xv if and only if
-                0 = f(xv) = f′(xv) = f′′(xv) = · · · = f^(m−1)(xv) but f^m(xv ) ≠ = 0.</p>
-        </div>
+            <h6 class="text-center">Help for this method:</h6>
+            <ol>
+                <li>f must be a continuous function </li> 
+                <li>f must be differentiable two times for the inputs</li> 
+                <li>For the method to converge faster, x0 must be close to a root</li>
+                <li>Check derivates</li>
+                <li>tolerance must be positive</li>
+                <li>Never put a divided by zero operation</li>
+            </ol>
     </div>
 
     <form method="GET" id="function_incrementalsearch_form">
