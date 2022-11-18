@@ -15,12 +15,20 @@
     <div class="d-flex justify-content-center">
         <h4>Gaussian Elimination With Partial Pivoting</h4>
     </div>
+    <div class="d-flex justify-content-center">
+        <div class="card mt-2 mb-2">
+            <h6 class="text-center">Gaussian Elimination With Partial Pivoting Help</h6>
+            <p class="ms-2">The determinant and the diagonal of the matrix A =! 0 </p>
+            <p class="text-center">The Matrix A must be square </p>
+            <p class="text-center">b must be the same numbers of rows as A </p>
+        </div>
+    </div>
 
     <form method="GET" id="function_incrementalsearch_form">
         {% csrf_token %}
         <div class="input-group">
             <input type="text" class="form-control" placeholder="A" id="GaussianEliminationWithPartialPivoting_A" name="A">
-            <input type="text" class="form-control" placeholder="B" id="GaussianEliminationWithPartialPivoting_B" name="B">
+            <input type="text" class="form-control" placeholder="b" id="GaussianEliminationWithPartialPivoting_b" name="b">
         </div>
 
         <div class="d-grid gap-2 mt-3">
