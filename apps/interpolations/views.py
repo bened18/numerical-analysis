@@ -55,6 +55,7 @@ class NewtonInterpolationTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
+        print(xi, fi)
         if xi and fi:            
             context['tablaDD'] = newton(xi, fi)[0]
             context['coeficientes'] = newton(xi, fi)[1]
