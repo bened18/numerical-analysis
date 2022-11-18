@@ -103,13 +103,19 @@ class NewtonTemplateView(TemplateView):
             tol = float(tol)
             n = int(n)
 
-            functionresult = newton(function, p_0, tol, n)[0]
-            functiontable = newton(function, p_0, tol, n)[1]
+            n_dict = newton(function, p_0, tol, n)
+            
+            result = n_dict["solution"]
+            result_table = n_dict["table"]
+            xi = n_dict["xi"]
+            fxi = n_dict["f(xi)"]
 
             context['f'] = function
             context['df'] = dfun(function, p_0)[1]
-            context['result'] = f"{functionresult}"
-            context['result_table'] = f"{functiontable}"
+            context['result'] = f"{result}"
+            context['result_table'] = f"{result_table}"
+            context['xi'] = xi
+            context['fxi'] = fxi
 
         return context
 

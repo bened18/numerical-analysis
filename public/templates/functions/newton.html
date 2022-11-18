@@ -61,6 +61,13 @@
     </div>
     {% endif %}
 
+    {% if fxi %}
+    <div>
+        <canvas id="newton"></canvas>
+    </div>
+    {% endif %}
+
+
     {% if result %}
     <div class="card mt-2">
         <div class="card-body">
@@ -73,3 +80,44 @@
 
 </div>
 {% endblock container %}
+
+{% block chartJs %}
+<script>
+    const ctx = document.getElementById('newton');
+
+    var xi = {{ xi }};
+    var fxi = {{ fxi }};
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xi,
+            datasets: [{
+                label: 'f(x)',
+                data: fxi,
+                borderWidth: 1,
+                fill: false,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Newton'
+                },
+            },
+            interaction: {
+                mode: 'point'
+            }
+        }
+    });
+</script>
+{% endblock chartJs %}

@@ -34,12 +34,12 @@ def newton(function, p_0, tol, n):
     if i > n:
         solution = f"solution not found for tolerance: {tol} spend iterations:{i-1}"
 
-    return solution, tabulate(
-            resultados,
-            headers=["iter", "Xi", "f(xi)", "error"],
-            tablefmt="html",
-            floatfmt=(".10f", ".10f")
-        )
+    return {
+        "solution":solution,
+        "table": tabulate(resultados,headers=["iter", "Xi", "f(xi)", "error"],tablefmt="html",floatfmt=(".10f", ".10f")),
+        "xi": resultados[1],
+        "f(xi)": resultados[2],
+    }
 
 
 # print(newton("x-cos(x)", 1, 0.01, 20)[0])
