@@ -15,37 +15,35 @@
     <div class="d-flex justify-content-center">
         <h4>Sor</h4>
     </div>
-    
+
 
     <div class="d-flex justify-content-center">
         <div class="card mt-2">
 
-                <h6 class="text-center">Help for this method:</h6>
-                <ol>
-                    <li>if A is diagonally dominant, the method will converge to the unique solution of the system.
-                    <li>What is relaxation? Relaxation refers to a slight modification to Gauss- Seidel method with the intention of improving the convergence.</li>
-                    <li>if w = 1, is pure Gauss-Seidel</li>
-                    <li>if 0 &#60; w &#60; 1 is a under-relaxation method</li>
-                    <li>if 1 &#60; w &#60; 2 is a over-relaxation</li>
-                    <li>A must be symmetric and positively defined</li>
-                    <li>A must be invertible</li>
-                    <li>The converge is determined by p(T). It must be less than one.
-                    </li>
-                </ol>
+            <h6 class="text-center">Help for this method:</h6>
+            <ol>
+                <li>if A is diagonally dominant, the method will converge to the unique solution of the system.
+                <li>What is relaxation? Relaxation refers to a slight modification to Gauss- Seidel method with the
+                    intention of improving the convergence.</li>
+                <li>if w = 1, is pure Gauss-Seidel</li>
+                <li>if 0 &#60; w &#60; 1 is a under-relaxation method</li>
+                <li>if 1 &#60; w &#60; 2 is a over-relaxation</li>
+                <li>A must be symmetric and positively defined</li>
+                <li>A must be invertible</li>
+                <li>The converge is determined by p(T). It must be less than one.
+                </li>
+            </ol>
         </div>
     </div>
 
-    <form method="GET" id="Sor_form">
-        {% csrf_token %}
+    <form method="GET">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="A" id="Sor_A" name="A">
             <input type="text" class="form-control" placeholder="B" id="Sor_B" name="B">
             <input type="text" class="form-control" placeholder="x0" id="Sor_x0" name="x0">
-            <input type="text" class="form-control" placeholder="tolerance" id="Sor_delta"
-                name="tolerance">
+            <input type="text" class="form-control" placeholder="tolerance" id="Sor_delta" name="tolerance">
             <input type="text" class="form-control" placeholder="W" id="Sor_W" name="W">
-            <input type="text" class="form-control" placeholder="itermax" id="Sor_itermax"
-                name="itermax">
+            <input type="text" class="form-control" placeholder="itermax" id="Sor_itermax" name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
