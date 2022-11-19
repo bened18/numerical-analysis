@@ -1,50 +1,33 @@
 import numpy as np
 
-#Ingreso
-a = ([[2, -1, 0, 3],
-     [1, 0.5, 3, 8],
-     [0, 13, -2, 11],
-     [14, 5, -2, 3]])
+#K = [[4,-2,1],[20,-7,12],[-8,13,17]]
 
-b = ([[1],
-      [1],
-      [1],
-      [1]])
+m = int(input("\nintroduce el orden de la matriz: "))
+matriz = np.zeros([m,m])
+u = np.zeros([m,m])
+l = np.zeros([m,m])
 
-#procedimiento
-#matriz aumentada
+for r in range(0,m):
+    for c in range(0,m):
+        matriz[r,c]=(input("Elemento a[" + str(r+1) + "," + str(c+1) + "]"))
+        matriz[r,c]=float(matriz[r,c])
+        u[r,c]=matriz[r,c]
+#operaciones para hacer ceros debajo de la diagonal principal
 
-M = np.concatenate((a,b), axis=1)
-M = M.astype(np.float)
-#pivoteo parcial por filas
-tamano = np.shape(a)
-n = tamano[0]
-print(n)
-
-print("Etapa 0");
-print(M)
-print("")
-
-for i in range(0,n-1,1):
-    print("Etapa ", i+1);
-    for j in range(i+1,n,1):
-        if M[j,i]!=0:
-            M[j,i:n+1]=M[j,i:n+1]-(M[j,i]/M[i,i])*M[i,i:n+1]
-    print(M)
-    print("")
-
-ultfila = n-1;
-ultcolumna = n;
-x = np.zeros(n,dtype=float);
-i = ultfila;
-print("Despues de aplicar sustitucion regresiva");
-print("x:");
-for i in range(ultfila,0-1,-1):
-    suma = 0;
-    for j in range(i+1,ultcolumna,1):
-        suma = suma + M[i,j]*x[j];
-    b = M[i,ultcolumna];
-    x[i] = (b - suma) / M[i,i];
-x = np.transpose([x]);
-
-print(x)
+for k in range (0,m):
+    
+    for r in range(0,m):
+        if (k == r):
+            l[k,r]=1
+        if (k<r):
+            factor=(matriz[r,k]/matriz[k,k])
+            l[r,k]=factor
+            for c in range (0,m):
+                matriz[r,c]=matriz[r,c]-(factor*matriz[k,c])
+                u[r,c]=matriz[r,c]
+    print("\nEtapa ",  k, ":" )
+    print("\nMatriz L")
+    print(l)
+    print("\nMatriz U")
+    print(u)  
+print ("\n\n\n Prueba: (analiza con la matriz ingresada)\n", np.dot(l,u))          
