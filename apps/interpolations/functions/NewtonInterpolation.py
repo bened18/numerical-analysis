@@ -1,9 +1,7 @@
 import numpy as np
 import sympy as sym
-import matplotlib.pyplot as plt
+from math import *
 from tabulate import tabulate
-import json
-import math
 from sympy.parsing.sympy_parser import parse_expr
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
