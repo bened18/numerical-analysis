@@ -12,7 +12,7 @@ fi = np.array([15.5, 3, 8, 1])
 
 
 def newton(xi_str, yi_str):
-  
+
     x = convert_string_to_list(xi_str)
     y = convert_string_to_list(yi_str)
     n = len(x)
@@ -48,8 +48,7 @@ def polinomioNewton(tabla, n):
                 polinomio += " + " + str(tabla[i][j])
                 for i in range(0, i):
                     polinomio += "(x - " + str(tabla[i][0]) + ")"
-    tablaDD = (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda",
-                             "Tercera", "Cuarta", "Quinta", "Sexta", "Septima"], tablefmt="html"))
+    tablaDD = (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda","Tercera", "Cuarta", "Quinta", "Sexta", "Septima"], tablefmt="html"))
     respuesta = respuesta + ("\nDiferencias divididas\n")
     for i in range(1, len(tabla)):
         coeficientes.append(tabla[i-1][i])
