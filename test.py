@@ -10,7 +10,7 @@ print('MÉTODO LU CON PIVOTEO',end="\n\ n")
 print("Este método te halla las matrices L, U y P y cálcula la solución del sistema L * U * X = P * b. Siendo L * U = P * A.\n")
 
 # Coloca la matriz A:
-A=np.array([[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]],float)
+A=np.array([[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]],float)
 
 # Coloca el vector solución b:
 b=np.array([1,1,1,1],float)
@@ -44,3 +44,5 @@ x = np.linalg.solve(U,y)
 print("La solución de X es: \n"+str(x))
 
 R = x - np.linalg.solve(A,b)
+
+

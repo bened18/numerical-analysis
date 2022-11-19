@@ -1,12 +1,12 @@
 import sys
 import numpy as npy
- 
+
 def forma_matriz_aumentada(A,b):
    for i in range(len(A)):
-       A[i].append(b[i])
+    A[i].append(b[i])
    return A
- 
- 
+
+
 def pivoteo_total(Ab,k,marcas,n):
     #inicializar marcas
     mayor = 0
@@ -28,7 +28,7 @@ def pivoteo_total(Ab,k,marcas,n):
                 row[k],row[columna_mayor] = row[columna_mayor],row[k]
             marcas[k],marcas[columna_mayor] = marcas[columna_mayor],marcas[k]
     return Ab,marcas
- 
+
 def eliminacion_gaussiana_pivoteo(A,b,metodo):
     n = len(A)
     marcas = npy.arange(n)
@@ -50,13 +50,9 @@ def eliminacion_gaussiana_pivoteo(A,b,metodo):
         return Ab
     elif metodo == 2:
         return Ab,marcas
- 
- 
- 
-a = ([[2, -1, 0, 3],
-     [1, 0.5, 3, 8],
-     [0, 13, -2, 11],
-     [14, 5, -2, 3]])
 
-b = ([1, 1, 1, 1])
-eliminacion_gaussiana_pivoteo(a,b,2)
+
+
+A = [[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]]
+b = [1,1,1,1]  
+eliminacion_gaussiana_pivoteo(A,b,2)

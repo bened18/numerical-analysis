@@ -1,44 +1,48 @@
+from cmath import sqrt
 import numpy as np
-import math
-
-def cholesky(A):
-    n = len(A)
-    L = np.zeros((n,n))
-    for i in range(n):
-        for j in range(i+1):
-            s = sum(L[i][k] * L[j][k] for k in range(j))
-            if (i == j):
-                L[i][j] = math.sqrt(A[i][i] - s)
-            else:
-                L[i][j] = (1.0 / L[j][j] * (A[i][j] - s))
-    return L
-
-# A = np.array([[4,12,-16],[12,37,-43],[-16,-43,98]])
-A =np.array(np.mat("4 12 -16; 12 37 -43; -16 -43 98"))
-L = cholesky(A)
-print(L)
-print(np.dot(L,L.T))
 
 
-def gauss(A, b):
-    n = len(A)
-    for row in range(0, n):
-        for i in range(row+1, n):
-            factor = A[i][row] / A[row][row]
-            for j in range(row, n):
-                A[i][j] = A[i][j] - factor * A[row][j]
-            b[i] = b[i] - factor * b[row]
-    x = np.zeros(n)
-    x[n-1] = b[n-1] / A[n-1, n-1]
-    for row in range(n-2, -1, -1):
-        x[row] = (b[row] - np.dot(A[row,row+1:], x[row+1:])) / A[row, row]
-    return x
+def inicializa(n,metodo):
+    L , U = [] , []
+    if metodo == 0:
+        L = [[1 if j == i else 0 for j in range(n)] for i in range(n)]
+        U = [[0 for j in range(n)] for i in range(n)]
+    elif metodo == 1:
+        L = [[0 for j in range(n)] for i in range(n)]
+        U = [[1 if j == i else 0 for j in range(n)] for i in range(n)]
+    elif metodo == 2:
+        L = [[0 for j in range(n)] for i in range(n)]
+        U = [[0 for j in range(n)] for i in range(n)]
+    return L , U
 
-inputA="4 -1 0 3; 1 15.5 3 8; 0 -1.3 -4 1.1; 14 5 -2 30"
-inputb="1; 1; 1; 1"
-A =np.array(np.mat(inputA))
-b = np.array(np.mat(inputb))
-# A = np.array([[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]])
-# b = np.array([1,1,1,1])
-x = gauss(A, b)
-print(x)
+def cholesky(A,n):
+    L,U = inicializa(n,2)
+
+    for k in range(n):
+        suma1 = 0
+        for p in range(0,k):
+            suma1 += L[k][p]*U[p][k]
+        L[k][k] = sqrt(A[k][k]-suma1)
+        U[k][k] = L[k][k]
+        for i in range(k,n):
+            suma2 = 0
+            for p in range(k):
+                suma2+=L[i][p]*U[p][k]
+            L[i][k] = (A[i][k]-suma2)/(U[k][k])
+        for j in range(k+1,n):
+            suma3 = 0
+            for p in range(k):
+                suma3+= L[k][p]*U[p][j]
+            U[k][j]= (A[k][j]-suma3)/(L[k][k])
+        print("\nEtapa ",  k, ":" )
+        print("\nMatriz L")
+        print(L)
+        print("\nMatriz U")
+        print(U)
+    print ("\n\n\n Prueba: (analiza con la matriz ingresada)\n", np.dot(L,U))
+    return L,U
+
+K = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]] 
+n = 4
+
+cholesky(K,n)

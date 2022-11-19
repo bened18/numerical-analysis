@@ -13,7 +13,7 @@ def convert_string_to_list(string):
 
 
 def newton(xi_str, yi_str):
-    
+  
     #solution = ""
     solution_table = ""
     solution_divided_table = ""
@@ -76,6 +76,8 @@ def polinomioNewton(tabla, n):
 
 def imprimirDDividida(tabla):
     respuesta = ""
+    tablaDD = (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda","Tercera", "Cuarta", "Quinta", "Sexta", "Septima"], tablefmt="html"))
+    respuesta = respuesta + ("\nDiferencias divididas\n")
     for i in range(1, len(tabla)):
         respuesta = respuesta + " | " + str(tabla[i-1][i])
     return respuesta

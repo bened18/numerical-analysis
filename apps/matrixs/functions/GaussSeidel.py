@@ -1,7 +1,9 @@
-import numpy as np
+from tabulate import tabulate
 
-def gaussSeidel(A, b, x, N, tol):
-    maxIterations = 1000000 # No modificar
+def gaussSeidel(A, b, x, maxIterations, tol):
+    N = len(b)
+    solution = []
+    filaMatrizSolucion =[]
     xprev = [0.0 for i in range(N)]
     for i in range(maxIterations):
         for j in range(N):
@@ -12,6 +14,8 @@ def gaussSeidel(A, b, x, N, tol):
                 if (k != j):
                     summ = summ + A[j][k] * x[k]
             x[j] = (b[j] - summ) / A[j][j]
+            filaMatrizSolucion.append(x[j])
+        
         diff1norm = 0.0
         oldnorm = 0.0
         for j in range(N):
@@ -20,35 +24,21 @@ def gaussSeidel(A, b, x, N, tol):
         if oldnorm == 0.0:
             oldnorm = 1.0
         norm = diff1norm / oldnorm
+        solution.append([i,norm, filaMatrizSolucion])
+        filaMatrizSolucion =[]
         if (norm < tol) and i != 0:
-            print("\nLa solución converge en x: [", end="")
-            for j in range(N - 1):
-                print(x[j], ",", end="")
-            print(x[N - 1], "]\nLuego de", i + 1, "iteraciones\n")
+
+            print(tabulate(solution, headers=["iter", "error", "Solution)", ], tablefmt="github"))
             return
-    print("La matriz no converge.")
+    print("Doesn't converge.")
 
-# Matriz A
-'''A = [[-4.6658333e+01, -8.6801220e+00, -1.6502950e+00],
-[0.0, 1.2866580e+00, 5.2480200e-01],
-[0.0, 0.0, 3.3315000e-02]]'''
-A = np.array((
-    (4, -1, 0, 3),
-    (1, 15.5, 3, 8),
-    (0, -1.3, -4, 1.1),
-    (14, 5, -2, 30)
-))
-
-# Vector b
-'''b = [-10.308984, -1.929987, -0.0]'''
-b = [1,1,1,1]
-
-# Xo vector de iteraciòn inicial
-v_inicial = [0.0, 0.0, 0.0, 0.0]
+matrix2 =     [[4, -1, 0, 3],
+    [1, 15.5, 3, 8],
+    [0, -1.3, -4, 1.1],
+    [14, 5, -2, 30]]
+vector2 = [1,1,1,1]
+guess = [0, 0,0,0]
 
 
-print('Matriz A:\n', A.round(6))
 
-print('\nVector b:\n', b)
-
-gaussSeidel(A, b, v_inicial, 2, 1e-7)
+gaussSeidel(matrix2, vector2, guess, 100, 10**-7)
