@@ -54,7 +54,7 @@ def traza3natural(xi_str, yi_str):
         d[j] = yi[j]
 
     # Polinomio trazador
-    x = sym.Symbol('x')
+    x = Symbol('x')
     polinomio = []
     for j in range(0, n-1, 1):
         ptramo = a[j]*(x-xi[j])**3 + b[j]*(x-xi[j])**2 + c[j]*(x-xi[j]) + d[j]
