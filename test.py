@@ -44,3 +44,5 @@ x = np.linalg.solve(U,y)
 print("La solución de X es: \n"+str(x))
 
 R = x - np.linalg.solve(A,b)
+
+
