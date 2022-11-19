@@ -1,122 +1,46 @@
+from cmath import sqrt
 import numpy as np
 
-def matrizLU(mat):
-    m = len(mat)
-    matriz=np.zeros([m,m])
-    U=np.zeros([m,m])
-    L=np.zeros([m,m])
-
-    matriz=np.array(mat,dtype=float) 
-    U=np.array(mat,dtype=float)
-    #Operaciones para hacer ceros debajo de la diagonal principal
-
-    for k in range(0,m):
-        for r in range(0,m):
-            if (k==r):
-                L[k,r]=1
-            if(k<r):
-                factor=(matriz[r,k]/matriz[k,k])
-                L[r,k]=factor
-                for c in range(0,m):
-                    matriz[r,c]=matriz[r,c] - (factor*matriz[k,c])
-                    U[r,c]=matriz[r,c]
+def doolittle(A,n):
+    L,U = inicializa(n,0)
+    for k in range(n):
+        suma1 = 0.0
+        for p in range(0,k):
+            suma1 += L[k][p]*U[p][k]
+        U[k][k] = A[k][k]-suma1
+        for i in range(k+1,n):
+            suma2 = 0.0
+            for p in range(k):
+                suma2 += L[i][p]*U[p][k]
+            L[i][k] = (A[i][k]-suma2)/(U[k][k])
+        for j in range(k+1,n):
+            suma3 = 0.0
+            for p in range(k):
+                suma3 += L[k][p]*U[p][j]
+            U[k][j]= (A[k][j]-suma3)/(L[k][k])
+        print("\nEtapa ",  k )
+        print("\nL:\n")
+        print(L)
+        print("\nU:\n")
+        print(U)#imprimir L  U y k etapa
+    print ("\n\n\n Prueba: (analiza con la matriz ingresada)\n", np.dot(L,U))
     return L,U
-
-def forward_substitution(L, b):
-    AB  = np.concatenate((L,b),axis=1)
-    tamano = np.shape(AB)
-    n = tamano[0]
-    m = tamano[1]
-    for i in range(0,n-1,1):
-        pivote   = AB[i,i]
-        adelante = i + 1
-        for k in range(adelante,n,1):
-            factor  = AB[k,i]/pivote
-            AB[k,:] = AB[k,:] - AB[i,:]*factor
-    return AB
-
-
-def back_substitution(U, y):
-    AB  = np.concatenate((U,y),axis=1)
-    tamano = np.shape(AB)
-    n = tamano[0]
-    m = tamano[1]
-    ultfila = n-1
-    ultcolumna = m-1
-    X = np.zeros(n,dtype=float)
-
-    for i in range(ultfila,0-1,-1):
-        suma = 0
-        for j in range(i+1,n,1):
-            suma = suma + AB[i,j]*X[j]
-        b = AB[i,ultcolumna]
-        X[i] = (b-suma)/AB[i,i]
-
-    X = np.transpose([X])
-    return X
-
-def Doolittle(A,b):
-    A=np.array(A,dtype=float)
-    b=np.array(b,dtype=float)
-
-    L,U= matrizLU(A)
-    z=forward_substitution(L,b)
-    x=back_substitution(U,z)
-    return L,U,x
-
-'''A = np.array([
-    [2, -1, -2],
-    [-4, 6, 3],
-    [-4, -2, -8]
-])
-b = np.array([-1, 13, -6])'''
-
-def defmatrizA(n):
-    '''n = int(input("ingrese filas"))
-    m = int(input("ingrese columnas"))'''
-    #a = n*m
-    matriz = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
-    n = int(n)
-
-    for i in range(n):
-        matriz.append([])
-        for j in range(n):
-            val = float(input("ingrese dato: "))
-            matriz[i].append(val)
-
-    #print(matriz)
-    return matriz
-
-def defmatrizB(n):
-    '''n = int(input("ingrese filas"))
-    m = int(input("ingrese columnas"))'''
-    #a = n*m
-    matriz = [1,1,1,1]
-    n = int(n)
-    print("Ingrese los datos de la matriz B: ")
-    for i in range(n):
-        matriz.append([])
-        for j in range(1):
-            val = float(input("ingrese dato: "))
-            matriz[i].append(val)
-
-    #print(matriz)
-    return matriz
+#Doolittle == 0, Crout == 1, Cholesky == 2
+def inicializa(n,metodo):
+    L , U = [] , []
+    if metodo == 0:
+        L = [[1 if j == i else 0 for j in range(n)] for i in range(n)]
+        U = [[0 for j in range(n)] for i in range(n)]
+    elif metodo == 1:
+        L = [[0 for j in range(n)] for i in range(n)]
+        U = [[1 if j == i else 0 for j in range(n)] for i in range(n)]
+    elif metodo == 2:
+        L = [[0 for j in range(n)] for i in range(n)]
+        U = [[0 for j in range(n)] for i in range(n)]
+    return L , U
 
 
-A = [[4,-1,0,3],[1, 15.5, 3, 8], [0,-1.3,-4,1.1], [14, 5, -2, 30]]
-B = [[1],[1],[1],[1]]
+K = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]
+n = 4
 
-(U,L,X)=Doolittle(A, B)
-print("Matriz A: ")
-print(A)
-print("Matriz B: ")
-print(B)
-print("Matriz L")
-print(L)
-print("Matriz U")
-print(U)
-print("Solucion")
-print(X)
-print("Verificacion Ax=B: ")
-print(np.dot(A,X))
+doolittle(K,n)
