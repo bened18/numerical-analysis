@@ -1,8 +1,6 @@
 from math import *
-from sympy import *
-import numpy as np
+from sympy import diff
 from tabulate import tabulate
-
 
 def fun(function, x):
     eval_f = eval(f"{function}")
@@ -24,7 +22,7 @@ def d2fun(function, x):
 def multipleroot(function, x0, tol, n):
     xant = x0
     fant = fun(function, xant)[0]
-    e_abs = 1000
+    e_abs = float("inf")
     iteration = 0
     results = [[iteration, xant, fun(function, xant)[0], ""]]
     dfunction = dfun(function, xant)[1]
@@ -34,7 +32,11 @@ def multipleroot(function, x0, tol, n):
     solution_table = ""
 
     while iteration <= n:
+        if ((dfun(dfunction, xant)[0]) ** 2 - fant * d2fun(d2function, xant)[0]) == 0:
+            solution = "Zero division"
+            return solution, solution_table
         xact = xant - fant * dfun(dfunction, xant)[0] / ((dfun(dfunction, xant)[0]) ** 2 - fant * d2fun(d2function, xant)[0])
+        
         fact = fun(function, xact)[0]
         e_abs = abs(xact-xant)
         iteration += 1
@@ -52,4 +54,4 @@ def multipleroot(function, x0, tol, n):
     
     return solution, solution_table
 
-# print(multipleroot("x**2-x-1",1,0.000007,100))
+# print(multipleroot("cos(x)",1,0.000007,100))
