@@ -26,6 +26,8 @@
                 <li>Check derivates</li>
                 <li>tolerance must be positive</li>
                 <li>Never put a divided by zero operation</li>
+
+                <li><b>The system validate the derivatives</b></li>
             </ol>
         </div>
     </div>
@@ -57,9 +59,9 @@
     {% if df %}
     <div class="card mt-2">
         <div class="card-body text-center">
-            <p>{{ f }}</p>
-            <p>{{ df }}</p>
-            <p>{{ d2f }}</p>
+            <p>Function: {{ f }}</p>
+            <p>First derivative: {{ df }}</p>
+            <p>Second derivative: {{ d2f }}</p>
         </div>
     </div>
     {% endif %}

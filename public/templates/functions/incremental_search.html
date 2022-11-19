@@ -69,23 +69,29 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunction">Function:</span>
-            <input name="f" id="function" required="required" onchange="plot()" type="text" class="form-control"
-                placeholder="cos(x)^3" aria-describedby="spanfunction">
+            <input name="f" id="function" required="required" type="text" class="form-control" placeholder="cos(x)^3"
+                aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
             <span class="input-group-text" id="a">a:</span>
-            <input id="x0_input" required="required" name="x0" type="text" class="form-control" placeholder="0" aria-describedby="a">
+            <input id="x0_input" required="required" name="x0" type="text" class="form-control" placeholder="0"
+                aria-describedby="a">
 
             <span class="input-group-text" id="delta">delta:</span>
-            <input id="delta_input" required="required" name="delta" type="text" class="form-control" placeholder="0.5" aria-describedby="delta">
+            <input id="delta_input" required="required" name="delta" type="text" class="form-control" placeholder="0.5"
+                aria-describedby="delta">
 
             <span class="input-group-text" id="itermax">itermax:</span>
-            <input id="itermax_input" required="required" name="itermax" type="text" class="form-control" placeholder="100" aria-describedby="itermax">
+            <input id="itermax_input" required="required" name="itermax" type="text" class="form-control"
+                placeholder="100" aria-describedby="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" onclick="plot()" type="submit">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
         </div>
     </form>
 
@@ -114,9 +120,6 @@
     </div>
     <input type="color" id="color" onchange="plot();" />
     <div class="d-flex justify-content-center" id="myFunction"></div>
-    <div class="d-grid gap-2 mt-3">
-        <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
-    </div>
 
 
 </div>
@@ -126,9 +129,9 @@
 <script>
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    document.getElementById("function").value=urlParams.get('f')
-    document.getElementById("x0_input").value=urlParams.get('x0')
-    document.getElementById("delta_input").value=urlParams.get('delta')
-    document.getElementById("itermax_input").value=urlParams.get('itermax')
+    document.getElementById("function").value = urlParams.get('f')
+    document.getElementById("x0_input").value = urlParams.get('x0')
+    document.getElementById("delta_input").value = urlParams.get('delta')
+    document.getElementById("itermax_input").value = urlParams.get('itermax')
 </script>
 {% endblock js %}
