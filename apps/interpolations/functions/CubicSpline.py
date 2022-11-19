@@ -1,10 +1,9 @@
 # Trazador cúbico natural
-import numpy as np
-import sympy as sym
 from math import *
+from sympy import *
+import numpy as np
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
-
 
 def traza3natural(xi_str, yi_str):
     # parse str to float

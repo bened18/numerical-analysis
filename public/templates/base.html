@@ -44,7 +44,11 @@
 
     {% block chartJs %}{% endblock chartJs %}
 
-    {% block bodyJs %}{% endblock bodyJs %}
+    {% block bodyJs %}
+    <script src="https://bened18.pythonanywhere.com/static/assets/js/plotter.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://mauriciopoppe.github.io/function-plot/js/function-plot.js"></script>
+    {% endblock bodyJs %}
 </body>
 
 </html>

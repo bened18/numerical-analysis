@@ -1,6 +1,7 @@
 import numpy as np
 import sympy as sym
 import matplotlib.pyplot as plt
+from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 import json
 
 
@@ -9,18 +10,7 @@ xi = "-1,0,3,4"
 fi = "15.5,3,8,1"
 
 
-def convert_string_to_list(string):
-    """
-        Receive a comma-separated string and convert it to its type
-        exm:
-            convert_string_to_list("1,2.3,4,5.6")
-        result:
-            [1,2.3,4,5.6]
-            int,float,int,float
-    """
-    res = f"[{string}]".strip(" ")
-    res_to_json = json.loads(res)
-    return res_to_json
+
 
 def lineal_spline(xi_str,yi_str):
   xi = np.array(convert_string_to_list(xi_str))

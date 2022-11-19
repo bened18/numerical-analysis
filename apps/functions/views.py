@@ -16,7 +16,7 @@ class IncrementalSearchTemplateView(TemplateView):
         context = super(IncrementalSearchTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         x0 = self.request.GET.get('x0', '')
         delta = self.request.GET.get('delta', '')
         itermax = self.request.GET.get('itermax', '')

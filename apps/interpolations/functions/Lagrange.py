@@ -4,20 +4,7 @@ import json
 from math import *
 import matplotlib.pyplot as plt
 
-
-def convert_string_to_list(string):
-    """
-        Receive a comma-separated string and convert it to its type
-        exm:
-            convert_string_to_list("1,2.3,4,5.6")
-        result:
-            [1,2.3,4,5.6]
-            int,float,int,float
-    """
-    res = f"[{string}]".strip(" ")
-    res_to_json = json.loads(res)
-    return res_to_json
-
+from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
 def lagrange(xi_str, fi_str):
     xi = convert_string_to_list(xi_str)

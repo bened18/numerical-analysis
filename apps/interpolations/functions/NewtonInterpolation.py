@@ -6,22 +6,11 @@ import json
 import math
 from sympy.parsing.sympy_parser import parse_expr
 
+from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
+
 
 xi = np.array([-1, 0, 3, 4])
 fi = np.array([15.5, 3, 8, 1])
-
-def convert_string_to_list(string):
-    """
-        Receive a comma-separated string and convert it to its type
-        exm:
-            convert_string_to_list("1,2.3,4,5.6")
-        result:
-            [1,2.3,4,5.6]
-            int,float,int,float
-    """
-    res = f"[{string}]".strip(" ")
-    res_to_json = json.loads(res)
-    return res_to_json
 
 
 def newton(xi_str, yi_str):
