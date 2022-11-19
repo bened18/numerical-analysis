@@ -77,13 +77,13 @@
 
         <div class="input-group">
             <span class="input-group-text" id="a">a:</span>
-            <input required="required" name="x0" type="text" class="form-control" placeholder="0" aria-describedby="a">
+            <input id="x0_input" required="required" name="x0" type="text" class="form-control" placeholder="0" aria-describedby="a">
 
             <span class="input-group-text" id="delta">delta:</span>
-            <input required="required" name="delta" type="text" class="form-control" placeholder="0.5" aria-describedby="delta">
+            <input id="delta_input" required="required" name="delta" type="text" class="form-control" placeholder="0.5" aria-describedby="delta">
 
             <span class="input-group-text" id="itermax">itermax:</span>
-            <input required="required" name="itermax" type="text" class="form-control" placeholder="100" aria-describedby="itermax">
+            <input id="itermax_input" required="required" name="itermax" type="text" class="form-control" placeholder="100" aria-describedby="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -123,3 +123,18 @@
 
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const fun = urlParams.get('f')
+    const x0 = urlParams.get('x0')
+    const delta = urlParams.get('delta')
+    const itermax = urlParams.get('itermax')
+    document.getElementById("function").value=fun
+    document.getElementById("x0_input").value=delta
+    document.getElementById("delta_input").value=fun
+    document.getElementById("itermax_input").value=itermax
+</script>
+{% endblock js %}
