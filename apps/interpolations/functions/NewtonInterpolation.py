@@ -1,45 +1,68 @@
+import json
 import numpy as np
-import sympy as sym
 from math import *
+from sympy import Function
 from tabulate import tabulate
 from sympy.parsing.sympy_parser import parse_expr
 
-from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
-
-xi = np.array([-1, 0, 3, 4])
-fi = np.array([15.5, 3, 8, 1])
+def convert_string_to_list(string):
+    res = f"[{string}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
 
 
 def newton(xi_str, yi_str):
-  
+    
+    #solution = ""
+    solution_table = ""
+    solution_divided_table = ""
+    interpolating_polynomial = ""
+    if (xi_str and yi_str) == "":
+        return {
+            #"solution":solution,
+            "solution_table":solution_table,
+            "solution_divided_table":solution_divided_table,
+            "interpolating_polynomial":interpolating_polynomial
+        }
+    
     x = convert_string_to_list(xi_str)
     y = convert_string_to_list(yi_str)
-    n = len(x)
-    ny=len(y)
-    if(n==ny):
-      tabla = np.zeros((n+1, n+1))
+    
+    nx = len(x)
+    ny = len(y)
+        
+    tabla = np.zeros((nx+1, nx+1))
 
-      for i in range(n):
-          tabla[i][0] = x[i]
-          tabla[i][1] = y[i]
+    if (nx == ny):
+        for i in range(nx):
+            tabla[i][0] = x[i]
+            tabla[i][1] = y[i]
 
-      res = polinomioNewton(tabla, n)
-      return(res)
+        res = polinomioNewton(tabla, nx)[0].tolist()
+        for i in range(len(res)):
+            res[i].pop(0)
+        res.pop()
+        #solution = np.array(res).tolist()
+        solution_table = tabulate(tabla, headers=["xi", "yi", "First", "Second",
+                                                  "Third", "Quarter", "Fifth", "Sixth", "Seventh"], tablefmt="html")
+        solution_divided_table = f"Divided difference: <br/> {format(imprimirDDividida(tabla))}"
+        interpolating_polynomial = f"Interpolating polynomial: <br/> {polinomioNewton(tabla, nx)[1]}"
+        return {
+            #"solution":solution,
+            "solution_table":solution_table,
+            "solution_divided_table":solution_divided_table,
+            "interpolating_polynomial":interpolating_polynomial,
+            "xi": x,
+            "yi": y
+        }
+
     else:
-      return("the size of the vectors are different")
-    # for i in range(len(res)):
-    # 	res[i].pop(0)
-    # res.pop()
-    # return np.array(res).tolist()
+        print(f"The size must be the same {nx} != {ny}\n {x} != {y}")
 
-tablaDD=[]
-coeficientes=[]
-polinomioInter=[]
+
 def polinomioNewton(tabla, n):
-    respuesta = ""
     polinomio = "P(X) = " + str(tabla[0][1])
-    F = sym.Function('F')
     for j in range(2, n+1):
         for i in range(j-1, n):
             tabla[i][j] = (tabla[i][j-1] - tabla[i-1][j-1]) / \
@@ -48,14 +71,14 @@ def polinomioNewton(tabla, n):
                 polinomio += " + " + str(tabla[i][j])
                 for i in range(0, i):
                     polinomio += "(x - " + str(tabla[i][0]) + ")"
-    tablaDD = (tabulate(tabla, headers=["xi", "yi", "Primera", "Segunda",
-                             "Tercera", "Cuarta", "Quinta", "Sexta", "Septima"], tablefmt="html"))
-    respuesta = respuesta + ("\nDiferencias divididas\n")
+    return tabla, polinomio
+
+
+def imprimirDDividida(tabla):
+    respuesta = ""
     for i in range(1, len(tabla)):
-        coeficientes.append(tabla[i-1][i])
-    F = parse_expr(polinomio.replace("P(X) = ", "").replace("(", "*("))
-    polinomioInter.append(polinomio)
-    return (tablaDD, coeficientes, polinomioInter)
+        respuesta = respuesta + " | " + str(tabla[i-1][i])
+    return respuesta
 
 
-#newton(np.array([-1, 0, 3, 4]), np.array([15.5, 3, 8, 1]))
+# print(newton("", ""))

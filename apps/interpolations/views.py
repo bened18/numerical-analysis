@@ -62,13 +62,20 @@ class NewtonInterpolationTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(NewtonInterpolationTemplateView,
                         self).get_context_data(**kwargs)
+        
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
-        print(xi, fi)
-        if xi and fi:            
-            context['tablaDD'] = newton(xi, fi)[0]
-            context['coeficientes'] = newton(xi, fi)[1]
-            context['polynomial_result'] = newton(xi, fi)[2]
+        
+        n_dict = newton(xi, fi)
+        
+        if xi and fi:           
+            context['tablaDD'] = n_dict["solution_table"]
+            context['coeficientes'] = n_dict["solution_divided_table"]
+            context['polynomial_result'] = n_dict["interpolating_polynomial"]
+            context["xi"] = n_dict["xi"]
+            context["yi"] = n_dict["yi"]
+            
+        return context
 
 
 class QuadraticSplineTemplateView(TemplateView):
