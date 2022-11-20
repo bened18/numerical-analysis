@@ -40,7 +40,7 @@ class BisectionTemplateView(TemplateView):
         context = super(BisectionTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         a = self.request.GET.get('a', '')
         b = self.request.GET.get('b', '')
         tol = self.request.GET.get('tol', '')
@@ -67,7 +67,7 @@ class FalseRuleTemplateView(TemplateView):
         context = super(FalseRuleTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         a = self.request.GET.get('a', '')
         b = self.request.GET.get('b', '')
         tol = self.request.GET.get('tol', '')
@@ -93,7 +93,7 @@ class NewtonTemplateView(TemplateView):
         context = super(NewtonTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         p_0 = self.request.GET.get('p_0', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
@@ -104,7 +104,7 @@ class NewtonTemplateView(TemplateView):
             n = int(n)
 
             n_dict = newton(function, p_0, tol, n)
-            
+
             result = n_dict["solution"]
             result_table = n_dict["table"]
             xi = n_dict["xi"]
@@ -127,8 +127,8 @@ class FixedPointTemplateView(TemplateView):
         context = super(FixedPointTemplateView,
                         self).get_context_data(**kwargs)
 
-        g = self.request.GET.get('g', '')
-        f1 = self.request.GET.get('f1', '')
+        g = self.request.GET.get('g', '').replace("^", "**")
+        f1 = self.request.GET.get('f1', '').replace("^", "**")
         x0 = self.request.GET.get('x0', '')
         tol = self.request.GET.get('tol', '')
         itermax = self.request.GET.get('itermax', '')
@@ -151,7 +151,7 @@ class SecantTemplateView(TemplateView):
         context = super(SecantTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         p_0 = self.request.GET.get('p_0', '')
         p_1 = self.request.GET.get('p_1', '')
         tol = self.request.GET.get('tol', '')
@@ -180,7 +180,7 @@ class MultipleRootsTemplateView(TemplateView):
         context = super(MultipleRootsTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '')
+        function = self.request.GET.get('f', '').replace("^", "**")
         x0 = self.request.GET.get('x0', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
@@ -192,7 +192,7 @@ class MultipleRootsTemplateView(TemplateView):
 
             result = multipleroot(function, x0, tol, n)[0]
             result_table = multipleroot(function, x0, tol, n)[1]
-            
+
             context['f'] = function
             context['df'] = dfun(function, x0)[1]
             context['d2f'] = d2fun(function, x0)[1]

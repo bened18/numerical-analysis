@@ -33,33 +33,70 @@
 
     <form method="GET">
         <div class="input-group mb-3">
-            <span class="input-group-text" id="function">Function:</span>
-            <input name="f" type="text" class="form-control" placeholder="cos(x)" aria-describedby="function">
+            <span class="input-group-text" id="spanfunction">Function:</span>
+            <input name="f" type="text" id="function" class="form-control" placeholder="cos(x)"
+                aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
             <span class="input-group-text" id="a">a:</span>
-            <input name="a" type="text" class="form-control" placeholder="-3" aria-describedby="a">
+            <input name="a" id="input_a" required="required" type="text" class="form-control" placeholder="-3"
+                aria-describedby="a">
 
             <span class="input-group-text" id="b">b:</span>
-            <input name="b" type="text" class="form-control" placeholder="5" aria-describedby="b">
+            <input name="b" id="input_b" required="required" type="text" class="form-control" placeholder="5"
+                aria-describedby="b">
 
             <span class="input-group-text" id="tol">tol:</span>
-            <input name="tol" type="text" class="form-control" placeholder="0.0000007" aria-describedby="tol">
+            <input name="tol" id="input_tol" required="required" type="text" class="form-control"
+                placeholder="0.0000007" aria-describedby="tol">
 
             <span class="input-group-text" id="n">n:</span>
-            <input name="n" type="text" class="form-control" placeholder="100" aria-describedby="n">
+            <input name="n" id="input_n" required="required" type="text" class="form-control" placeholder="100"
+                aria-describedby="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="submit">Consultar</button>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
         </div>
     </form>
+
+
+    <h6 class="m-4">Chart options: </h6>
+    <div class="input-group mb-3">
+
+        <span class="input-group-text">Min x:</span>
+        <input class="form-control" type="number" id="xMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max x:</span>
+        <input class="form-control" type="number" id="xMax" value="50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Min y:</span>
+        <input class="form-control" type="number" id="yMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max y:</span>
+        <input class="form-control" type="number" id="yMax" value="50" step="0.5" oninput="plot();" />
+    </div>
+    <input type="color" id="color" onchange="plot();" />
+    <div class="d-flex justify-content-center" id="myFunction"></div>
 
     {% if result %}
     {{ result | safe }}
     {% endif %}
-
-
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("function").value = urlParams.get('f')
+    document.getElementById("input_a").value = urlParams.get('a')
+    document.getElementById("input_b").value = urlParams.get('b')
+    document.getElementById("input_tol").value = urlParams.get('tol')
+    document.getElementById("input_n").value = urlParams.get('n')
+</script>
+{% endblock js %}

@@ -30,37 +30,38 @@
 
     <form method="GET">
         <div class="input-group mb-3">
-            <span class="input-group-text" id="function">Function:</span>
-            <input name="f" type="text" class="form-control" placeholder="x-cos(x)" aria-describedby="function">
+            <span class="input-group-text" id="spanfunction">Function:</span>
+            <input name="f" type="text" id="function" required="required" class="form-control" placeholder="x-cos(x)"
+                aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
-            <span class="input-group-text" id="p_0">p_0:</span>
-            <input name="p_0" type="text" class="form-control" placeholder="1" aria-describedby="p_0">
+            <span class="input-group-text" id="spanp_0">p_0:</span>
+            <input name="p_0" type="text" id="p_0" required="required" class="form-control" placeholder="1"
+                aria-describedby="p_0">
 
-            <span class="input-group-text" id="tol">tol:</span>
-            <input name="tol" type="text" class="form-control" placeholder="0.0000007" aria-describedby="tol">
+            <span class="input-group-text" id="spantol">tol:</span>
+            <input name="tol" type="text" id="tol" required="required" class="form-control" placeholder="0.0000007"
+                aria-describedby="tol">
 
-            <span class="input-group-text" id="n">n:</span>
-            <input name="n" type="text" class="form-control" placeholder="20" aria-describedby="n">
+            <span class="input-group-text" id="spann">n:</span>
+            <input name="n" type="text" id="n" required="required" class="form-control" placeholder="20"
+                aria-describedby="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="submit">Consultar</button>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
         </div>
     </form>
     {% if df %}
     <div class="card mt-2">
         <div class="card-body text-center">
-            <p>{{ f }}</p>
-            <p>{{ df }}</p>
+            <p>First derivative: {{ f }}</p>
+            <p>Second derivative: {{ df }}</p>
         </div>
-    </div>
-    {% endif %}
-
-    {% if fxi %}
-    <div>
-        <canvas id="newton"></canvas>
     </div>
     {% endif %}
 
@@ -72,49 +73,39 @@
         </div>
     </div>
 
+    <h6 class="m-4">Chart options: </h6>
+    <div class="input-group mb-3">
+
+        <span class="input-group-text">Min x:</span>
+        <input class="form-control" type="number" id="xMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max x:</span>
+        <input class="form-control" type="number" id="xMax" value="50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Min y:</span>
+        <input class="form-control" type="number" id="yMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max y:</span>
+        <input class="form-control" type="number" id="yMax" value="50" step="0.5" oninput="plot();" />
+    </div>
+    <input type="color" id="color" onchange="plot();" />
+    <div class="d-flex justify-content-center" id="myFunction"></div>
+
     {{ result_table | safe }}
     {% endif %}
 
 </div>
 {% endblock container %}
 
-{% block chartJs %}
+
+
+{% block js %}
 <script>
-    const ctx = document.getElementById('newton');
-
-    var xi = {{ xi }};
-    var fxi = {{ fxi }};
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: xi,
-            datasets: [{
-                label: 'f(x)',
-                data: fxi,
-                borderWidth: 1,
-                fill: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            },
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Newton'
-                },
-            },
-            interaction: {
-                mode: 'point'
-            }
-        }
-    });
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("function").value = urlParams.get('f')
+    document.getElementById("p_0").value = urlParams.get('p_0')
+    document.getElementById("tol").value = urlParams.get('tol')
+    document.getElementById("n").value = urlParams.get('n')
 </script>
-{% endblock chartJs %}
+{% endblock js %}

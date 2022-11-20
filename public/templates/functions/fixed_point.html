@@ -31,25 +31,26 @@
 
     <form method="GET">
         <div class="input-group mb-3">
-            <span class="input-group-text" id="functionf">Function f:</span>
-            <input name="f1" type="text" class="form-control" placeholder="x**3 + x**2 - 1"
-                aria-describedby="functionf">
+            <span class="input-group-text" id="spanfunctionf">Function f:</span>
+            <input name="f1" type="text" id="functionf" required="required" class="form-control"
+                placeholder="x^3 + x^2 - 1" aria-describedby="functionf">
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text" id="functiong">Function g:</span>
-            <input name="g" type="text" class="form-control" placeholder="1/sqrt(1+x)" aria-describedby="functiong">
+            <span class="input-group-text" id="spanfunctiong">Function g:</span>
+            <input name="g" type="text" id="functiong" required="required" class="form-control"
+                placeholder="1/sqrt(1+x)" aria-describedby="functiong">
         </div>
 
         <div class="input-group">
-            <span class="input-group-text" id="x0">x0:</span>
-            <input type="text" class="form-control" placeholder="2" name="x0">
+            <span class="input-group-text" id="spanx0">x0:</span>
+            <input type="text" id="x0" required="required" class="form-control" placeholder="2" name="x0">
 
-            <span class="input-group-text" id="tol">tol:</span>
-            <input type="text" class="form-control" placeholder="0.00001" name="tol">
+            <span class="input-group-text" id="spantol">tol:</span>
+            <input type="text" id="tol" required="required" class="form-control" placeholder="0.00001" name="tol">
 
-            <span class="input-group-text" id="itermax">itermax:</span>
-            <input type="text" class="form-control" placeholder="10" name="itermax">
+            <span class="input-group-text" id="spanitermax">itermax:</span>
+            <input type="text" id="itermax" required="required" class="form-control" placeholder="10" name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -61,3 +62,15 @@
 
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("functionf").value = urlParams.get('f1')
+    document.getElementById("functiong").value = urlParams.get('g')
+    document.getElementById("x0").value = urlParams.get('x0')
+    document.getElementById("tol").value = urlParams.get('tol')
+    document.getElementById("itermax").value = urlParams.get('itermax')
+</script>
+{% endblock js %}
