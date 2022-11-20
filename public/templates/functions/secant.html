@@ -29,26 +29,29 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunction">Function:</span>
-            <input name="f" type="text" required="required" class="form-control" placeholder="12*x**4-2.72*x**3+0.0042*x"
-                aria-describedby="spanfunction">
+            <input name="f" type="text" id="function" required="required" class="form-control"
+                placeholder="12*x^4-2.72*x^3+0.0042*x" aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
-            <span class="input-group-text" id="p_0">p_0:</span>
-            <input type="text" required="required" class="form-control" placeholder="12" name="p_0">
+            <span class="input-group-text" id="span_p_0">p_0:</span>
+            <input type="text" id="p_0" required="required" class="form-control" placeholder="12" name="p_0">
 
-            <span class="input-group-text" id="p_1">p_1:</span>
-            <input type="text" required="required" class="form-control" placeholder="18" name="p_1">
+            <span class="input-group-text" id="span_p_1">p_1:</span>
+            <input type="text" id="p_1" required="required" class="form-control" placeholder="18" name="p_1">
 
-            <span class="input-group-text" id="tol">tol:</span>
-            <input type="text" required="required" class="form-control" placeholder="0.00005" name="tol">
+            <span class="input-group-text" id="span_tol">tol:</span>
+            <input type="text" id="tol" required="required" class="form-control" placeholder="0.00005" name="tol">
 
-            <span class="input-group-text" id="n">n:</span>
-            <input type="text" required="required" class="form-control" placeholder="100" name="n">
+            <span class="input-group-text" id="span_n">n:</span>
+            <input type="text" id="n" required="required" class="form-control" placeholder="100" name="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" type="submit">Consultar</button>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
         </div>
     </form>
 
@@ -59,7 +62,37 @@
         </div>
     </div>
 
+    <h6 class="m-4">Chart options: </h6>
+    <div class="input-group mb-3">
+
+        <span class="input-group-text">Min x:</span>
+        <input class="form-control" type="number" id="xMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max x:</span>
+        <input class="form-control" type="number" id="xMax" value="50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Min y:</span>
+        <input class="form-control" type="number" id="yMin" value="-50" step="0.5" oninput="plot();" />
+
+        <span class="input-group-text">Max y:</span>
+        <input class="form-control" type="number" id="yMax" value="50" step="0.5" oninput="plot();" />
+    </div>
+    <input type="color" id="color" onchange="plot();" />
+    <div class="d-flex justify-content-center" id="myFunction"></div>
+
     {{ result_table | safe }}
     {% endif %}
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("function").value = urlParams.get('f')
+    document.getElementById("p_0").value = urlParams.get('p_0')
+    document.getElementById("p_1").value = urlParams.get('p_1')
+    document.getElementById("tol").value = urlParams.get('tol')
+    document.getElementById("n").value = urlParams.get('n')
+</script>
+{% endblock js %}

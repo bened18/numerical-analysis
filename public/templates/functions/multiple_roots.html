@@ -32,19 +32,22 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunction">Function:</span>
-            <input name="f" type="text" required="required" class="form-control" placeholder="x**2 - x - 1"
+            <input name="f" type="text" id="function" required="required" class="form-control" placeholder="x^2 - x - 1"
                 aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
-            <span class="input-group-text" id="x0">x0:</span>
-            <input type="text" required="required" class="form-control" placeholder="1" aria-describedby="x0" name="x0">
-            
-            <span class="input-group-text" id="tol">tol:</span>
-            <input type="text" required="required" class="form-control" placeholder="0.0000007" aria-describedby="tol" name="tol">
-            
-            <span class="input-group-text" id="n">n:</span>
-            <input type="text" required="required" class="form-control" placeholder="20" aria-describedby="n" name="n">
+            <span class="input-group-text" id="spanx0">x0:</span>
+            <input type="text" id="x0" required="required" class="form-control" placeholder="1" aria-describedby="x0"
+                name="x0">
+
+            <span class="input-group-text" id="spantol">tol:</span>
+            <input type="text" id="tol" required="required" class="form-control" placeholder="0.0000007"
+                aria-describedby="tol" name="tol">
+
+            <span class="input-group-text" id="spann">n:</span>
+            <input type="text" id="n" required="required" class="form-control" placeholder="20" aria-describedby="n"
+                name="n">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -74,9 +77,16 @@
     {% if result_table %}
     {{ result_table | safe }}
     {% endif %}
-
-
-
-
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("function").value = urlParams.get('f')
+    document.getElementById("x0").value = urlParams.get('x0')
+    document.getElementById("tol").value = urlParams.get('tol')
+    document.getElementById("n").value = urlParams.get('n')
+</script>
+{% endblock js %}
