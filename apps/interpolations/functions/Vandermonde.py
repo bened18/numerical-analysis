@@ -3,11 +3,16 @@ import sympy as sym
 import matplotlib.pyplot as plt
 from tabulate import tabulate
 
-from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
+import json
+
+def convert_string_to_list(string):
+    res = f"[{string}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
 
 
-#xi = "1,2.3,4,5.6"
-#fi = "1,2.3,4,5.6"
+xi = "-1,0,3,4"
+fi = "15.5,3,8,1"
 
 
 
@@ -65,4 +70,4 @@ def vandermonde(xi_str,yi_str):
 # plt.show()
 # --------------------------------------------
 
-# vandermonde(xi,fi)
+print(vandermonde(xi,fi))
