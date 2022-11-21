@@ -27,18 +27,14 @@ def gaussSeidel(A, b, x, maxIterations, tol):
         solution.append([i,norm, filaMatrizSolucion])
         filaMatrizSolucion =[]
         if (norm < tol) and i != 0:
+            return tabulate(solution, headers=["iter", "error", "Solution", ], tablefmt="html")
+            
+    return "Doesn't converge."
 
-            print(tabulate(solution, headers=["iter", "error", "Solution)", ], tablefmt="github"))
-            return
-    print("Doesn't converge.")
-
-matrix2 =     [[4, -1, 0, 3],
-    [1, 15.5, 3, 8],
-    [0, -1.3, -4, 1.1],
-    [14, 5, -2, 30]]
-vector2 = [1,1,1,1]
-guess = [0, 0,0,0]
+#matrix2 =     [[4, -1, 0, 3],[1, 15.5, 3, 8],[0, -1.3, -4, 1.1],[14, 5, -2, 30]]
+#vector2 = [1,1,1,1]
+#guess = [0, 0,0,0]
 
 
 
-gaussSeidel(matrix2, vector2, guess, 100, 10**-7)
+#gaussSeidel(matrix2, vector2, guess, 100, 10**-7)
