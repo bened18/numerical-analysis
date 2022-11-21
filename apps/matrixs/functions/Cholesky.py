@@ -36,20 +36,21 @@ def cholesky(A):
                 suma3+= L[k][p]*U[p][j]
             U[k][j]= (A[k][j]-suma3)/(L[k][k])
             
-        epoch = f"Epoch {k}: <br>"
+        epoch = f"<br> <b>Stage  {k}: </b> <br>"
         epochs.append(epoch)
         
-        matrix = f"Matrix L<br>"
+        matrix = f"<b>Matrix L</b><br>"
         epochs.append(matrix)
         values_matrix = f"{L}<br>"
         epochs.append(values_matrix)
         
-        matrix2 = f"Matrix U<br>"
+        matrix2 = f"<b>Matrix U</b><br>"
         epochs.append(matrix2)
         values_matrix2 = f"{U}<br>"
         epochs.append(f"{values_matrix2}<br>")
         
-    return(epochs, f"<br><br>Test: (matrix) <br> {np.dot(L,U)}".replace("\n", "<br>"))
+    return(f"<br><br><b>Input: (matrix)</b> <br> {np.dot(L,U)}".replace("\n", "<br>"), epochs)
     
 # K = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]] 
+#n = 4
 # cholesky(K)
