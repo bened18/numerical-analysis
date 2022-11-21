@@ -7,6 +7,7 @@ from apps.interpolations.functions.convert_string_to_type import convert_string_
 from apps.matrixs.functions.Crout import crout
 from apps.matrixs.functions.Doolittle import doolittle
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
+from apps.matrixs.functions.GaussianEliminationWithPartialPivoting import gausspartialpivot
 from apps.matrixs.functions.Sor import sor
 
 
@@ -75,6 +76,21 @@ class DoolittleTemplateView(TemplateView):
 
 class GaussianEliminationWithPartialPivotingTemplateView(TemplateView):
     template_name = "matrixs/GaussianEliminationWithPartialPivoting.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(GaussianEliminationWithPartialPivotingTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+
+        
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)    
+            matrix_b =  convert_string_to_list(matrix_b)
+            context["result"] = gausspartialpivot(matrix_a, matrix_b)
+        
+        return context
 
 
 class GaussianEliminationWithTotalPivotingTemplateView(TemplateView):
