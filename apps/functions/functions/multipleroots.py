@@ -2,7 +2,6 @@ from math import *
 from sympy import diff
 from tabulate import tabulate
 
-
 def fun(function, x):
     try:
         eval_f = eval(f"{function}")
@@ -18,7 +17,6 @@ def dfun(function, x):
         return eval_df, df
     except Exception as e:
         return f"Syntax error, can not be evaluated: {e}", f"Syntax error {e}"
-
 
 def d2fun(function, x):
     try:

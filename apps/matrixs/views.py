@@ -5,6 +5,7 @@ from apps.matrixs.functions.Cholesky import cholesky
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
+from apps.matrixs.functions.Sor import sor
 
 
 def convert_string_to_list(string1):
@@ -97,3 +98,27 @@ class LUWithPartialPivotingTemplateView(TemplateView):
 
 class SorTemplateView(TemplateView):
     template_name = "matrixs/Sor.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(SorTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('A', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('B', '') # [1,1,1,1]
+        tolerance = self.request.GET.get('tolerance', '') #0.00000007
+        w = self.request.GET.get('w', '') #1.5
+        itermax = self.request.GET.get('itermax', '') # 100
+        
+        
+        if matrix_a and matrix_b and tolerance and w and itermax:
+            
+            itermax = int(itermax)
+            tolerance = float(tolerance)
+            w = float(w)
+            
+            matrix_a = convert_string_to_list_individual(matrix_a)
+            matrix_b = convert_string_to_list_individual(matrix_b) 
+        
+            context["result"] = sor(matrix_a, matrix_b, tolerance, w, itermax)
+        
+        return context

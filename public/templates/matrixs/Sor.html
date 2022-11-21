@@ -37,13 +37,20 @@
     </div>
 
     <form method="GET">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="spanfunction">Matrix A:</span>
+            <input type="text" class="form-control" placeholder="[4, -1, 0, 3],[1, 15.5, 3, 8],[0, -1.3, -4, 1.1],[14, 5, -2, 30]" id="Gauss_Seidel_A" name="A">
+        </div>
+
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="A" id="Sor_A" name="A">
-            <input type="text" class="form-control" placeholder="B" id="Sor_B" name="B">
-            <input type="text" class="form-control" placeholder="x0" id="Sor_x0" name="x0">
-            <input type="text" class="form-control" placeholder="tolerance" id="Sor_delta" name="tolerance">
-            <input type="text" class="form-control" placeholder="W" id="Sor_W" name="W">
-            <input type="text" class="form-control" placeholder="itermax" id="Sor_itermax" name="itermax">
+            <span class="input-group-text" id="spanfunction">Matrix b:</span>
+            <input type="text" class="form-control" placeholder="1,1,1,1" id="Gauss_Seidel_B" name="B">
+            <span class="input-group-text" id="spanfunction">Tolerance:</span>
+            <input type="text" class="form-control" placeholder="0.0000007" id="Gauss_Seidel_tolerance" name="tolerance">
+            <span class="input-group-text" id="spanfunction">w:</span>
+            <input type="text" class="form-control" placeholder="1.5" id="Gauss_Seidel_w" name="w">
+            <span class="input-group-text" id="spanfunction">Itermax:</span>
+            <input type="text" class="form-control" placeholder="100" id="Gauss_Seidel_itermax" name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -55,7 +62,7 @@
     {% if result %}
     <div class="card mt-2">
         <div class="card-body">
-            <p>{{ result }}</p>
+            <p>{{ result | safe }}</p>
         </div>
     </div>
     {% endif %}

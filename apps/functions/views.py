@@ -180,7 +180,7 @@ class MultipleRootsTemplateView(TemplateView):
         context = super(MultipleRootsTemplateView,
                         self).get_context_data(**kwargs)
 
-        function = self.request.GET.get('f', '').replace("^", "**")
+        function = self.request.GET.get('f', '').replace("^", "**").replace("e","2.71828")
         x0 = self.request.GET.get('x0', '')
         tol = self.request.GET.get('tol', '')
         n = self.request.GET.get('n', '')
