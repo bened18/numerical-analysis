@@ -26,8 +26,7 @@
 
     <form method="GET">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="[4,-1,0,3],[1,15.5,3,8]" id="cholesky_A" name="a">
-            <input type="text" class="form-control" placeholder="[0,-1.3,-4,1.1],[14,5,-2,30]" id="cholesky_b" name="b">
+            <input type="text" class="form-control" placeholder="[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]" id="cholesky_A" name="a">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -46,3 +45,11 @@
 
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("cholesky_A").value = urlParams.get('a')
+</script>
+{% endblock js %}
