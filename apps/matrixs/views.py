@@ -7,8 +7,8 @@ from apps.interpolations.functions.convert_string_to_type import convert_string_
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
 
 
-def convert_string_to_list(string1, string2):
-    res = f"[{string1}, {string2}]".strip(" ")
+def convert_string_to_list(string1):
+    res = f"[{string1}]".strip(" ")
     res_to_json = json.loads(res)
     return res_to_json
 
@@ -25,11 +25,10 @@ class CholeskyTemplateView(TemplateView):
         context = super(CholeskyTemplateView,
                         self).get_context_data(**kwargs)
         
-        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8]
-        matrix_b = self.request.GET.get('b', '') # [0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
         
-        if matrix_a and matrix_b:
-            matrix = convert_string_to_list(matrix_a, matrix_b)        
+        if matrix_a:
+            matrix = convert_string_to_list(matrix_a)        
             context["result"] = cholesky(matrix)
         
         return context
