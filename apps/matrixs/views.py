@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from apps.matrixs.functions.Cholesky import cholesky
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
+from apps.matrixs.functions.Crout import crout
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
 from apps.matrixs.functions.Sor import sor
 
@@ -39,6 +40,19 @@ class CholeskyTemplateView(TemplateView):
 
 class CroutTemplateView(TemplateView):
     template_name = "matrixs/Crout.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(CroutTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+
+        
+        if matrix_a:
+            matrix = convert_string_to_list(matrix_a)     
+            context["result"] = crout(matrix)
+        
+        return context
 
 
 class DoolittleTemplateView(TemplateView):
