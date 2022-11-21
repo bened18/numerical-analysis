@@ -1,7 +1,8 @@
-import numpy as np
 from tabulate import tabulate
-from math import *
-from sympy import *
+from math import (
+    acos, acosh, asin, asinh, atan, atan2, atanh, cos, cosh, e, exp, log, log10, log1p, log2, pi, sin, sinh, sqrt, tan, tanh
+)
+from sympy import diff, ln
 
 
 def f(function, x):
