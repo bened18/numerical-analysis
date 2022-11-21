@@ -4,7 +4,7 @@ from apps.interpolations.functions.CubicSpline import traza3natural
 from apps.interpolations.functions.Lagrange import lagrange
 from apps.interpolations.functions.LinealSpline import lineal_spline
 from apps.interpolations.functions.NewtonInterpolation import newton
-from apps.interpolations.functions.QuadraticSpline import quadratic
+from apps.interpolations.functions.QuadraticSpline import splain
 from apps.interpolations.functions.Vandermonde import vandermonde
 
 
@@ -85,8 +85,14 @@ class QuadraticSplineTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
-        if xi and fi:            
-            context['result'] = quadratic(xi, fi)
+        if xi and fi:
+            values = []
+            for i in splain(xi, fi)[0]:
+                values.append(f"{i}")
+                
+                                
+            context['tracers'] = f"Tracers: {values}"
+            context['coefficients'] = f"Coefficients: {splain(xi, fi)[1]}"
         return context
 
 

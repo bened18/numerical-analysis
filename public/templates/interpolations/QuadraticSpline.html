@@ -36,10 +36,11 @@
         </div>
     </form>
 
-    {% if result %}
+    {% if tracers %}
     <div class="card mt-2">
         <div class="card-body">
-            <p>{{result}</p>
+            <p>{{tracers | safe}}</p>
+            <p>{{coefficients | safe}}</p>
         </div>
     </div>
     {% endif %}
