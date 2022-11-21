@@ -110,7 +110,7 @@ class NewtonTemplateView(TemplateView):
             xi = n_dict["xi"]
             fxi = n_dict["f(xi)"]
 
-            context['f'] = function
+            context['f'] = self.request.GET.get('f', '').replace("^", "**")
             context['df'] = dfun(function, p_0)[1]
             context['result'] = f"{result}"
             context['result_table'] = f"{result_table}"
