@@ -19,25 +19,31 @@ def lineal_spline(xi_str,yi_str):
   resultado = ""
   #procedimiento
   n = len(xi)
-  x = sym.Symbol('x')
-  px_table = []
-  section = 1
-  for section in range(1,n,1):
-      numerator = fi[section]-fi[section-1]
-      denominator = xi[section]-xi[section-1]
-      m = numerator/denominator
-      pxsection = fi[section-1]
-      pxsection = m*(x-xi[section-1]) + pxsection 
-      px_table.append(pxsection )
+  ny = len(fi)
+  if(n==ny):
+    x = sym.Symbol('x')
+    px_table = []
+    section = 1
+    for section in range(1,n,1):
+        numerator = fi[section]-fi[section-1]
+        denominator = xi[section]-xi[section-1]
+        m = numerator/denominator
+        pxsection = fi[section-1]
+        pxsection = m*(x-xi[section-1]) + pxsection 
+        px_table.append(pxsection )
 
-  #salida
-  polinomio = []
-  for section in range(1,n,1):
-      pxsection = px_table[section-1]
-      polinomio.append( str(pxsection))
-      #print(pxsection)
-  #print(px_table)
-  return(polinomio)
+    #salida
+    polinomio = []
+    for section in range(1,n,1):
+        pxsection = px_table[section-1]
+        polinomio.append( str(pxsection))
+        #print(pxsection)
+    #print(px_table)
+    return(polinomio,"")
+  else:
+    return(0,f"The size must be the same {n} != {ny}")
+
+
 
 
 #GRAFICACION DEL EJERCICIO 
