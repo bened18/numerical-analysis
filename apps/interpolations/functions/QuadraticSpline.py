@@ -126,43 +126,48 @@ def splain(x_str, y_str):
 
     x = np.array(x_list)
     y = np.array(y_list)
+    nx =len(x)
+    ny=len(y)
+    if(nx==ny):
 
-    if not checkUnique(x):
-        return None, None, 'X vector can\'t contain repeated values'
+        if not checkUnique(x):
+            return None, None, 'X vector can\'t contain repeated values'
 
-    dimension = 3*len(x) - 3
+        dimension = 3*len(x) - 3
 
-    matrix = np.zeros((dimension, dimension))
+        matrix = np.zeros((dimension, dimension))
 
-    m = (dimension-len(y))
-    b = np.append(y, np.zeros(m))
+        m = (dimension-len(y))
+        b = np.append(y, np.zeros(m))
 
-    interpolation(x, matrix)
-    continuity(x, matrix)
-    smoothness(x, matrix)
-    borderline(matrix)
+        interpolation(x, matrix)
+        continuity(x, matrix)
+        smoothness(x, matrix)
+        borderline(matrix)
 
-    np.set_printoptions(formatter={'float': lambda x: "{0:0.5f}".format(x)})
+        np.set_printoptions(formatter={'float': lambda x: "{0:0.5f}".format(x)})
 
-    xact = np.linalg.solve(matrix, b)
-    coefficients = []
-    count = 0
-    for i in range(0, len(matrix), 3):
-        expr = f'a{count} = {float("{:.5f}".format(xact[i]))}, b{count} = {float("{:.5f}".format(xact[i+1]))}, c{count} = {float("{:.5f}".format(xact[i+2]))}'
-        coefficients.append(expr)
+        xact = np.linalg.solve(matrix, b)
+        coefficients = []
+        count = 0
+        for i in range(0, len(matrix), 3):
+            expr = f'a{count} = {float("{:.5f}".format(xact[i]))}, b{count} = {float("{:.5f}".format(xact[i+1]))}, c{count} = {float("{:.5f}".format(xact[i+2]))}'
+            coefficients.append(expr)
 
-    xv = sp.symbols('x')
-    tracers = []
-    for i in range(0, len(matrix), 3):
-        expr = float("{:.5f}".format(xact[i]))*xv*xv + float(
-            "{:.5f}".format(xact[i+1]))*xv + float("{:.5f}".format(xact[i+2]))
-        tracer = [sp.latex(expr)]
-        tracers.append(tracer)
+        xv = sp.symbols('x')
+        tracers = []
+        for i in range(0, len(matrix), 3):
+            expr = float("{:.5f}".format(xact[i]))*xv*xv + float(
+                "{:.5f}".format(xact[i+1]))*xv + float("{:.5f}".format(xact[i+2]))
+            tracer = [sp.latex(expr)]
+            tracers.append(tracer)
 
-    for i in range(len(x)-1):
-        tracers[i].append(f'{x[i]} <= x <= {x[i+1]}')
+        for i in range(len(x)-1):
+            tracers[i].append(f'{x[i]} <= x <= {x[i+1]}')
 
-    return tracers, coefficients
+        return tracers, coefficients
+    else:
+        return " ", f"The size must be the same {nx} != {ny}"
 
 
 def interpolation(x, matrix):
