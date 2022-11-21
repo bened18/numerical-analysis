@@ -26,7 +26,7 @@
         <div class="input-group">
             <span class="input-group-text" id="xi">xi:</span>
             <input type="text" id="xi_input" class="form-control" placeholder="-1, 0, 3, 4" name="xi" />
-            
+
             <span class="input-group-text" id="fi">fi:</span>
             <input type="text" id="fi_input" class="form-control" placeholder="15.5, 3, 8, 1" name="fi" />
         </div>
@@ -39,6 +39,22 @@
     {% if result %}
         {{ result | safe }}
     {% endif %}
+
+    {% if result_table %}
+        {{ result_table | safe }}
+    {% endif %}
+
+    {% if result_polynomial %}
+        <p>{{ result_polynomial | safe }}</p>
+    {% endif %}
+
+    {% if result_coefficients %}
+      <p>{{ result_coefficients | safe }}</p>
+    {% endif %}
+
+    
+    
+
 
 </div>
 {% endblock container %}
