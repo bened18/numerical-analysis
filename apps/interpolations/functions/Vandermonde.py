@@ -12,12 +12,12 @@ def convert_string_to_list(string):
     return res_to_json
 
 
-#xi = "-1,0,3,4"
-#fi = "15.5,3,8,1"
-
-
 def vandermonde(xi_str, yi_str):
-    muestras = 101
+    result = ""
+    result_table = ""
+    result_coefficients = ""
+    result_polynomial = ""
+    
     xi = np.array(convert_string_to_list(xi_str))
     B = np.array(convert_string_to_list(yi_str))
     n = len(xi)
@@ -36,21 +36,17 @@ def vandermonde(xi_str, yi_str):
         termino = coeficiente[i]*(x**potencia)
         polinomio = polinomio + termino
 
-    resultado = ""
-    #return('Vandermonde: ')
-    #return((tabulate(D, tablefmt="html")))
-    resultado = resultado + (tabulate(D, tablefmt="html"))
-    #return('Polynomial coefficients: ')
-    resultado = resultado + '\nPolynomial coefficients: \n'
-    resultado = resultado + str(coeficiente)
-    # return(coeficiente)
-    #return('Interpolation polynomial: ')
-    resultado_polynomial = resultado + '\nInterpolation polynomial: \n'
-    resultado = resultado + str(polinomio)
-    # return(polinomio)
-    #return('\n ')
-    # sym.preturn(polinomio)
-    return resultado
+    
+    result_table = tabulate(D, tablefmt="html")
+    result_coefficients = f"Polynomial coefficients: <br> {coeficiente}"
+    result_polynomial = f"Interpolation polynomial: <br> {polinomio}"
+    
+    return {
+        "result":result,
+        "result_table": result_table,
+        "result_coefficients": result_coefficients,
+        "result_polynomial": result_polynomial
+    }
 
 # GRAFICACION DEL EJERCICIO
 # --------------------------------------------

@@ -97,6 +97,13 @@ class VandermondeTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
+        
+        v_dict = vandermonde(xi, fi)
+        
         if xi and fi:            
-            context['result'] = vandermonde(xi, fi)
+            context['result'] = v_dict['result']
+            context['result_table'] = v_dict['result_table']
+            context['result_coefficients'] = v_dict['result_coefficients']
+            context['result_polynomial'] = v_dict['result_polynomial']
+            
         return context
