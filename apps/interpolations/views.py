@@ -20,7 +20,7 @@ class CubicSplineTemplateView(TemplateView):
         if xi and fi:            
             context['polynomial_result'] = traza3natural(xi, fi)[0]
             context['section_result'] = traza3natural(xi, fi)[1]
-
+            context['result'] = traza3natural(xi, fi)[2]
         return context
 
 
@@ -54,7 +54,8 @@ class LinealSplineTemplateView(TemplateView):
         xi = self.request.GET.get('xi', '')
         fi = self.request.GET.get('fi', '')
         if xi and fi:            
-            context['result'] = lineal_spline(xi, fi)
+            context['result'] = lineal_spline(xi, fi)[0]
+            context['result_error'] = lineal_spline(xi, fi)[1]
         return context
 
 class NewtonInterpolationTemplateView(TemplateView):

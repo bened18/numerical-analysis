@@ -58,7 +58,13 @@ def newton(xi_str, yi_str):
         }
 
     else:
-        print(f"The size must be the same {nx} != {ny}\n {x} != {y}")
+        return{
+            "solution_table":f"The size must be the same {nx} != {ny}\n {x} != {y}",
+            "solution_divided_table":solution_divided_table,
+            "interpolating_polynomial":interpolating_polynomial,
+            "xi": 0,
+            "yi": 0
+        }
 
 
 def polinomioNewton(tabla, n):

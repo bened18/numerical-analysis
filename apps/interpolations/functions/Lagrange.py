@@ -11,41 +11,52 @@ def lagrange(xi_str, fi_str):
     fi = convert_string_to_list(fi_str)
 
     n = len(xi)
+    ny= len(fi)
     x = sym.Symbol('x')
     polinomio = 0
     divisorL = np.zeros(n, dtype=float)
-    for i in range(0, n, 1):
+    if(n==ny):
+        for i in range(0, n, 1):
+            numerador = 1
+            denominador = 1
+            for j in range(0, n, 1):
+                if (j != i):
+                    numerador = numerador*(x-xi[j])
+                    denominador = denominador*(xi[i]-xi[j])
+            terminoLi = numerador/denominador
 
-        numerador = 1
-        denominador = 1
-        for j in range(0, n, 1):
-            if (j != i):
-                numerador = numerador*(x-xi[j])
-                denominador = denominador*(xi[i]-xi[j])
-        terminoLi = numerador/denominador
+            polinomio = polinomio + terminoLi*fi[i]
+            divisorL[i] = denominador
 
-        polinomio = polinomio + terminoLi*fi[i]
-        divisorL[i] = denominador
+        polisimple = sym.expand(polinomio)
 
-    polisimple = sym.expand(polinomio)
+        px = sym.lambdify(x, polisimple)
 
-    px = sym.lambdify(x, polisimple)
+        muestras = 101
+        a = min(xi, default=0)
+        b = max(xi, default=0)
+        pxi = np.linspace(a, b, muestras)
+        pfi = px(pxi)
 
-    muestras = 101
-    a = min(xi, default=0)
-    b = max(xi, default=0)
-    pxi = np.linspace(a, b, muestras)
-    pfi = px(pxi)
-
-    return {
-        "fi": fi,
-        "dividers": divisorL,
-        "lpe": polinomio,
-        "lp": polisimple,
-        "xi": xi,
-        "pxi": pxi,
-        "pfi": pfi
-    }
+        return {
+            "fi": fi,
+            "dividers": divisorL,
+            "lpe": polinomio,
+            "lp": polisimple,
+            "xi": xi,
+            "pxi": pxi,
+            "pfi": pfi
+        }
+    else:
+        return {
+            "fi": f"The size must be the same {n} != {ny}",
+            "dividers":0,
+            "lpe": polinomio,
+            "lp": 0,
+            "xi": 0,
+            "pxi": 0,
+            "pfi": 0
+        }
 
     # print('    fi values: ',fi)
     # print('dividers L(i): ',divisorL)
