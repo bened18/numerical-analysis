@@ -22,7 +22,7 @@ def createInequality(xn, fxn):
     for i in range(0, len(xn)-1):
         if (i < len(xn)):
             inequality.append(((xn[i], fxn[i]), (xn[i+1], fxn[i+1])))
-    return inequality
+    print(inequality)
 
 
 def quadratic(xi_str, yi_str):
@@ -31,8 +31,7 @@ def quadratic(xi_str, yi_str):
     fxn = np.array(convert_string_to_list(yi_str))
 
     inequality = createInequality(xn, fxn)
-    superMatrix = [[0 for x in range(3*len(inequality)+1)]
-                   for y in range(3*len(inequality))]
+    superMatrix = [[0 for x in range(3*len(inequality)+1)] for y in range(3*len(inequality))]
     n = len(superMatrix)
     j = 0
     z = 0
@@ -71,6 +70,6 @@ def quadratic(xi_str, yi_str):
         j += 3
 
 
-xi = "-1,0,3,4"
-fxi = "15.5,3,8,1"
-quadratic(xi, fxi)
+#xi = "-1,0,3,4"
+#fxi = "15.5,3,8,1"
+#quadratic(xi, fxi)

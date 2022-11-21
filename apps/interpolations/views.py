@@ -87,6 +87,7 @@ class QuadraticSplineTemplateView(TemplateView):
         fi = self.request.GET.get('fi', '')
         if xi and fi:            
             context['result'] = quadratic(xi, fi)
+        return context
 
 
 class VandermondeTemplateView(TemplateView):
@@ -98,3 +99,4 @@ class VandermondeTemplateView(TemplateView):
         fi = self.request.GET.get('fi', '')
         if xi and fi:            
             context['result'] = vandermonde(xi, fi)
+        return context
