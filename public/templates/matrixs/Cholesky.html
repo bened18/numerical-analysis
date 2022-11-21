@@ -39,7 +39,7 @@
     {% if result %}
     <div class="card mt-2">
         <div class="card-body">
-            <p>{{ result }}</p>
+            <p>{{ result | safe }}</p>
         </div>
     </div>
     {% endif %}

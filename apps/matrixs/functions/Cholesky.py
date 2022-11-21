@@ -15,8 +15,10 @@ def inicializa(n,metodo):
         U = [[0 for j in range(n)] for i in range(n)]
     return L , U
 
-def cholesky(A,n):
+def cholesky(A):
+    n = len(A)
     L,U = inicializa(n,2)
+    epochs = []
 
     for k in range(n):
         suma1 = 0
@@ -34,15 +36,21 @@ def cholesky(A,n):
             for p in range(k):
                 suma3+= L[k][p]*U[p][j]
             U[k][j]= (A[k][j]-suma3)/(L[k][k])
-        print("\nEtapa ",  k, ":" )
-        print("\nMatriz L")
-        print(L)
-        print("\nMatriz U")
-        print(U)
-    print ("\n\n\n Prueba: (analiza con la matriz ingresada)\n", np.dot(L,U))
-    return L,U
-
-K = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]] 
-n = 4
-
-cholesky(K,n)
+            
+        epoch = f"Epoch {k}: <br>"
+        epochs.append(epoch)
+        
+        matrix = f"Matrix L<br>"
+        epochs.append(matrix)
+        values_matrix = f"{L}<br>"
+        epochs.append(values_matrix)
+        
+        matrix2 = f"<br>Matrix U<br>"
+        epochs.append(matrix2)
+        values_matrix2 = f"{U}<br>"
+        epochs.append(f"{values_matrix2}<br>")
+        
+    return(epochs, f"<br><br>Test: (matrix) <br> {np.dot(L,U)}".replace("\n", "<br>"))
+    
+# K = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]] 
+# cholesky(K)
