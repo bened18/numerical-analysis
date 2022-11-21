@@ -1,7 +1,15 @@
+import json
 from django.views.generic import TemplateView
 
 from apps.matrixs.functions.Cholesky import cholesky
 
+from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
+
+
+def convert_string_to_list(string1, string2):
+    res = f"[{string1}, {string2}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
 
 class CholeskyTemplateView(TemplateView):
     template_name = "matrixs/Cholesky.html"
@@ -10,11 +18,12 @@ class CholeskyTemplateView(TemplateView):
         context = super(CholeskyTemplateView,
                         self).get_context_data(**kwargs)
         
-        matrix = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]
+        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8]
+        matrix_b = self.request.GET.get('b', '') # [0,-1.3,-4,1.1],[14,5,-2,30]
         
-        print(cholesky(matrix))
-        
-        context["result"] = cholesky(matrix)
+        if matrix_a and matrix_b:
+            matrix = convert_string_to_list(matrix_a, matrix_b)        
+            context["result"] = cholesky(matrix)
         
         return context
     

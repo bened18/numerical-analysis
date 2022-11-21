@@ -1,7 +1,6 @@
 from cmath import sqrt
 import numpy as np
 
-
 def inicializa(n,metodo):
     L , U = [] , []
     if metodo == 0:
@@ -45,7 +44,7 @@ def cholesky(A):
         values_matrix = f"{L}<br>"
         epochs.append(values_matrix)
         
-        matrix2 = f"<br>Matrix U<br>"
+        matrix2 = f"Matrix U<br>"
         epochs.append(matrix2)
         values_matrix2 = f"{U}<br>"
         epochs.append(f"{values_matrix2}<br>")
