@@ -1,10 +1,7 @@
 import json
 import numpy as np
 from cmath import sqrt
-from prettytable import PrettyTable
-
-
-
+from tabulate import tabulate
 
 
 def sustProg(L, b, n):
@@ -48,6 +45,7 @@ def sustRegr(U, z, n):
 
 
 def cholesky(A):
+    stages= []
     result = []
     n = len(A)
     L = [[0 for j in range(n)] for i in range(n)]
@@ -73,23 +71,13 @@ def cholesky(A):
             for p in range(k):
                 suma3 += L[k][p]*U[p][j]
             U[k][j] = (A[k][j]-suma3)/(L[k][k])
-        result.append(f"<br><br>Stage {k+1} <br>")
-        result.append("<br>Matrix L:<br>")
-        table = PrettyTable()
-        table.field_names = [f"x{i}" for i in range(n)]
-        for row in L:
-            table.add_row(
-                ['({0.real:.4f} + {0.imag:.2f}i)'.format(i) for i in row])
-        result.append(table)
-        result.append("<br>Matrix U:<br>")
-        table = PrettyTable()
-        table.field_names = [f"x{i}" for i in range(n)]
-        for row in U:
-            table.add_row(
-                ['({0.real:.4f} + {0.imag:.2f}i)'.format(i) for i in row])
-        result.append(table)
+            
+        #stages.append((L,U))
+        stageL=tabulate(L,[f"x{i}" for i in range(len(L))], tablefmt="html")
+        stageU=tabulate(U,[f"x{i}" for i in range(len(U))], tablefmt="html")
+        stages.append([stageL,stageU])
 
-    return L, U, result
+    return L, U, result, stages
 
 
 def convert_string_to_list(string):
@@ -109,6 +97,7 @@ def fill_matrix(A_str, b_str):
     LU_cholesky = cholesky(A)
     L = LU_cholesky[0]
     U = LU_cholesky[1]
+    stages=LU_cholesky[3]
     n = len(A)
 
     # Apply sustitution
@@ -116,12 +105,11 @@ def fill_matrix(A_str, b_str):
     x = sustRegr(U, z, n)[0]
 
     # Show answer
-    ans = PrettyTable()
-    ans.field_names = [f"x{i}" for i in range(n)]
-    ans.add_row(['({0.real:.4f} + {0.imag:.2f}i)'.format(i) for i in x])
-    result.append("<br><br>Answer: <br>")
-    result.append(ans)
-    return result, LU_cholesky[2]
+    result=x
+    return result, LU_cholesky[2], stages
 
-
+##stages todas las l y u por etapas 
+## x respuesta 
+## L lFinal
+## U uFinal
 #fill_matrix("[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]", "[1],[1],[1],[1]")

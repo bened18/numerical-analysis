@@ -22,7 +22,6 @@ def convert_string_to_list(string1):
 
 class CholeskyTemplateView(TemplateView):
     template_name = "matrixs/Cholesky.html"
-
     def get_context_data(self, **kwargs):
         context = super(CholeskyTemplateView,
                         self).get_context_data(**kwargs)
@@ -36,6 +35,7 @@ class CholeskyTemplateView(TemplateView):
             matrix_b = matrix_b
             context["result"] = fill_matrix(matrix_a, matrix_b)[0]
             context["result_chol"] = fill_matrix(matrix_a, matrix_b)[1]
+            context["stages"] = fill_matrix(matrix_a, matrix_b)[2]
         return context
 
 
