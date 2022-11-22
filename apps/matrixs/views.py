@@ -1,7 +1,7 @@
 import json
 from django.views.generic import TemplateView
 
-from apps.matrixs.functions.Cholesky import entradas
+from apps.matrixs.functions.Cholesky import fill_matrix
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 from apps.matrixs.functions.Crout import crout
@@ -32,13 +32,13 @@ class CholeskyTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         
         matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
-        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [1],[1],[1],[1]
 
         
         if matrix_a and matrix_b:
-            matrix_a = convert_string_to_list(matrix_a)    
-            matrix_b =  convert_string_to_list(matrix_b)
-            context["result"] = entradas(matrix_a, matrix_b)
+            matrix_a = matrix_a
+            matrix_b =  matrix_b
+            context["result"] = fill_matrix(matrix_a, matrix_b)
         
         return context
     
