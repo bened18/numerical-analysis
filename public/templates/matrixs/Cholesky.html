@@ -26,10 +26,10 @@
 
     <form method="GET">
         <div class="input-group">
-            <span class="input-group-text" id="spanfunction">Matrix A:</span>
-            <input type="text" class="form-control" placeholder="[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]" id="GaussianEliminationWithPartialPivoting_A" name="a">
-            <span class="input-group-text" id="spanfunction">Matrix b:</span>
-            <input type="text" class="form-control" placeholder="[1],[1],[1],[1]" id="GaussianEliminationWithPartialPivoting_b" name="b">
+            <span class="input-group-text" id="spanfunctionA">Matrix A:</span>
+            <input type="text" class="form-control" placeholder="[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]" id="chA" name="a">
+            <span class="input-group-text" id="spanfunctionB">Matrix b:</span>
+            <input type="text" class="form-control" placeholder="[1],[1],[1],[1]" id="chB" name="b">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -37,13 +37,10 @@
         </div>
     </form>
 
+    {{result_chol | safe}}
 
     {% if result %}
-    <div class="card mt-2">
-        <div class="card-body">
-            <p>{{ result | safe }}</p>
-        </div>
-    </div>
+    {{ result | safe }}
     {% endif %}
 
 </div>
@@ -53,6 +50,7 @@
 <script>
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    document.getElementById("cholesky_A").value = urlParams.get('a')
+    document.getElementById("chA").value = urlParams.get('a')
+    document.getElementById("chB").value = urlParams.get('b')
 </script>
 {% endblock js %}

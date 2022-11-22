@@ -2,7 +2,6 @@ import json
 from django.views.generic import TemplateView
 
 from apps.matrixs.functions.Cholesky import fill_matrix
-
 from apps.matrixs.functions.Crout import crout
 from apps.matrixs.functions.Doolittle import doolittle
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
@@ -35,8 +34,8 @@ class CholeskyTemplateView(TemplateView):
         if matrix_a and matrix_b:
             matrix_a = matrix_a
             matrix_b = matrix_b
-            context["result"] = fill_matrix(matrix_a, matrix_b)
-
+            context["result"] = fill_matrix(matrix_a, matrix_b)[0]
+            context["result_chol"] = fill_matrix(matrix_a, matrix_b)[1]
         return context
 
 

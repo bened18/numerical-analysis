@@ -4,10 +4,11 @@ from cmath import sqrt
 from prettytable import PrettyTable
 
 
-result = []
+
 
 
 def sustProg(L, b, n):
+    result = []
     if (L[0][0] == 0):
         return
     else:
@@ -23,10 +24,11 @@ def sustProg(L, b, n):
                     suma3 = suma3+(L[k][r]*z[r])
                 z[k] = (b[k][0]-suma3)/L[k][k]
                 suma3 = 0
-    return z
+    return z, result
 
 
 def sustRegr(U, z, n):
+    result = []
     if (U[0][0] == 0):
         return
     else:
@@ -42,10 +44,11 @@ def sustRegr(U, z, n):
                 for r in range(k+1, n):
                     suma4 = suma4+(U[k][r]*x[r])
                 x[k] = (1/U[k][k])*(z[k]-suma4)
-    return x
+    return x, result
 
 
 def cholesky(A):
+    result = []
     n = len(A)
     L = [[0 for j in range(n)] for i in range(n)]
     U = [[0 for j in range(n)] for i in range(n)]
@@ -86,7 +89,7 @@ def cholesky(A):
                 ['({0.real:.4f} + {0.imag:.2f}i)'.format(i) for i in row])
         result.append(table)
 
-    return L, U
+    return L, U, result
 
 
 def convert_string_to_list(string):
@@ -96,6 +99,7 @@ def convert_string_to_list(string):
 
 
 def fill_matrix(A_str, b_str):
+    result = []
     # Fill matrix
     # [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]
     A = np.array(convert_string_to_list(A_str))
@@ -108,8 +112,8 @@ def fill_matrix(A_str, b_str):
     n = len(A)
 
     # Apply sustitution
-    z = sustProg(L, b, n)
-    x = sustRegr(U, z, n)
+    z = sustProg(L, b, n)[0]
+    x = sustRegr(U, z, n)[0]
 
     # Show answer
     ans = PrettyTable()
@@ -117,8 +121,7 @@ def fill_matrix(A_str, b_str):
     ans.add_row(['({0.real:.4f} + {0.imag:.2f}i)'.format(i) for i in x])
     result.append("<br><br>Answer: <br>")
     result.append(ans)
-    
-    return result
+    return result, LU_cholesky[2]
 
 
 #fill_matrix("[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]", "[1],[1],[1],[1]")
