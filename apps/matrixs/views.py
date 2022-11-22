@@ -7,7 +7,9 @@ from apps.interpolations.functions.convert_string_to_type import convert_string_
 from apps.matrixs.functions.Crout import crout
 from apps.matrixs.functions.Doolittle import doolittle
 from apps.matrixs.functions.GaussSeidel import gaussSeidel
-from apps.matrixs.functions.GaussianEliminationWithPartialPivoting import gausspartialpivot
+from apps.matrixs.functions.GaussianEliminationWithPartialPivoting import eliminacionParcial
+from apps.matrixs.functions.GaussianEliminationWithTotalPivoting import eliminacionTotal
+from apps.matrixs.functions.GaussianSimpleElimination import eliminacionSimple
 from apps.matrixs.functions.Sor import sor
 
 
@@ -88,17 +90,46 @@ class GaussianEliminationWithPartialPivotingTemplateView(TemplateView):
         if matrix_a and matrix_b:
             matrix_a = convert_string_to_list(matrix_a)    
             matrix_b =  convert_string_to_list(matrix_b)
-            context["result"] = gausspartialpivot(matrix_a, matrix_b)
+            context["result"] = eliminacionParcial(matrix_a, matrix_b)
         
         return context
 
 
 class GaussianEliminationWithTotalPivotingTemplateView(TemplateView):
     template_name = "matrixs/GaussianEliminationWithTotalPivoting.html"
+    def get_context_data(self, **kwargs):
+        context = super(GaussianEliminationWithTotalPivotingTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+
+        
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)    
+            matrix_b =  convert_string_to_list(matrix_b)
+            context["result"] = eliminacionTotal(matrix_a, matrix_b)
+        
+        return context
 
 
 class GaussianSimpleEliminationTemplateView(TemplateView):
     template_name = "matrixs/GaussianSimpleElimination.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(GaussianSimpleEliminationTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]
+        matrix_b = self.request.GET.get('b', '') # [1,1,1,1]
+
+        
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)  # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]  
+            matrix_b =  convert_string_to_list(matrix_b) #1,1,1,1
+            context["result"] = eliminacionSimple(matrix_a, matrix_b)
+        
+        return context
     
 class GaussSeidelTemplateView(TemplateView):
     template_name = "matrixs/GaussSeidel.html"
