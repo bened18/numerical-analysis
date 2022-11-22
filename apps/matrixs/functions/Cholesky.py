@@ -101,7 +101,10 @@ def fill_matrix(A_str, b_str):
     A = np.array(convert_string_to_list(A_str))
     b = np.array(convert_string_to_list(b_str),
                  dtype=complex)  # [[1],[1],[1],[1]]
-    L, U = cholesky(A)
+    
+    LU_cholesky = cholesky(A)
+    L = LU_cholesky[0]
+    U = LU_cholesky[1]
     n = len(A)
 
     # Apply sustitution
