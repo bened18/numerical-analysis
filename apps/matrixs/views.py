@@ -11,6 +11,8 @@ from apps.matrixs.functions.GaussianEliminationWithPartialPivoting import elimin
 from apps.matrixs.functions.GaussianEliminationWithTotalPivoting import eliminacionTotal
 from apps.matrixs.functions.GaussianSimpleElimination import eliminacionSimple
 from apps.matrixs.functions.Jacobi import jacobi
+from apps.matrixs.functions.LUWithPartialPivoting import luParcial
+from apps.matrixs.functions.LUwithGaussianSimpleElimination import luSimple
 from apps.matrixs.functions.Sor import sor
 
 
@@ -197,8 +199,38 @@ class JacobiTemplateView(TemplateView):
 class LUwithGaussianSimpleEliminationTemplateView(TemplateView):
     template_name = "matrixs/LUwithGaussianSimpleElimination.html"
     
+    def get_context_data(self, **kwargs):
+        context = super(LUwithGaussianSimpleEliminationTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]
+        matrix_b = self.request.GET.get('b', '') # [1,1,1,1]
+
+        
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)  # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]  
+            matrix_b =  convert_string_to_list(matrix_b) #1,1,1,1
+            context["result"] = luSimple(matrix_a, matrix_b)
+        
+        return context
+
+
 class LUWithPartialPivotingTemplateView(TemplateView):
     template_name = "matrixs/LUWithPartialPivoting.html"
+    def get_context_data(self, **kwargs):
+        context = super(LUWithPartialPivotingTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('a', '') # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]
+        matrix_b = self.request.GET.get('b', '') # [1,1,1,1]
+
+        
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)  # [2, -1, 0, 3],[1, 0.5, 3, 8],[0, 13, -2, 11],[14, 5, -2, 3]  
+            matrix_b =  convert_string_to_list(matrix_b) #1,1,1,1
+            context["result"] = luParcial(matrix_a, matrix_b)
+        
+        return context
 
 
 class SorTemplateView(TemplateView):
