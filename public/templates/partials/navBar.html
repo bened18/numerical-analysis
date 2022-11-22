@@ -1,4 +1,7 @@
 {% url 'home:index' as home_index %}
+{% url 'home:tests' as home_tests %}
+
+
 {% url 'functions:incremental-search' as functions_incrementalsearch %}
 {% url 'functions:bisection' as bisection %}
 {% url 'functions:false-rule' as false_rule %}
@@ -37,7 +40,6 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-
                     <a class="nav-link {% if request.path == home_index %}active{% endif %}" href="{{home_index}}"
                         aria-current="page">Home</a>
                 </li>
@@ -112,7 +114,8 @@
                             pivoting</a>
 
                         <a class="dropdown-item {% if request.path == gaussian_elimination_with_total_pivoting %}active{% endif %}"
-                            href="{{gaussian_elimination_with_total_pivoting}}">Gaussian elimination with total pivoting</a>
+                            href="{{gaussian_elimination_with_total_pivoting}}">Gaussian elimination with total
+                            pivoting</a>
 
                         <a class="dropdown-item {% if request.path == gaussian_simple_elimination %}active{% endif %}"
                             href="{{gaussian_simple_elimination}}">Gaussian simple elimination</a>
@@ -162,6 +165,10 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_tests %}active{% endif %}" href="{{home_tests}}"
+                        aria-current="page">Tests with values</a>
+                </li>
             </ul>
         </div>
     </div>
