@@ -66,8 +66,8 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunction">Function:</span>
-            <input name="f" type="text" id="function" required="required" class="form-control" placeholder="log(sin(x)^2+1)-1/2"
-                aria-describedby="spanfunction">
+            <input name="f" type="text" id="function" required="required" class="form-control"
+                placeholder="log(sin(x)^2+1)-1/2" aria-describedby="spanfunction">
         </div>
 
         <div class="input-group">
@@ -88,7 +88,7 @@
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
         <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()" type="button">Plot</button>
+            <button class="btn btn-primary" onclick="plot()" type="button">Plot</button>
         </div>
     </form>
     {% if df %}
@@ -100,13 +100,15 @@
     </div>
     {% endif %}
 
-
     {% if result %}
     <div class="card mt-2">
         <div class="card-body">
-            <p>{{ result }}</p>
+
+            {{ result | safe }}
+
         </div>
     </div>
+    {% endif %}
 
     <h6 class="m-4">Chart options: </h6>
     <div class="input-group mb-3">
@@ -126,8 +128,8 @@
     <input type="color" id="color" onchange="plot();" />
     <div class="d-flex justify-content-center" id="myFunction"></div>
 
-    {{ result_table | safe }}
-    {% endif %}
+
+
 
 </div>
 {% endblock container %}

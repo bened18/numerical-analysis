@@ -31,30 +31,22 @@
                                     <div class="grid-container">
                                         <div class="grid-child">
                                             <div id="plot">
-                                                <input class="form-control" id="function" onchange="plot()" type="text"
+                                                <input class="form-control" id="function" type="text"
                                                     placeholder="Write function here" required="required"
                                                     data-validation-required-message="Please enter function."
                                                     value="(cos(x)-5)*log(3)+8" />
                                                 <p class="help-block text-danger"></p>
-                                                <input type="number" id="xMin" value="-100" step="0.5"
-                                                    oninput="plot();" />
-                                                <input type="number" id="xMax" value="100" step="0.5"
-                                                    oninput="plot();" />
-                                                <input type="number" id="yMin" value="-100" step="0.5"
-                                                    oninput="plot();" />
-                                                <input type="number" id="yMax" value="100" step="0.5"
-                                                    oninput="plot();" />
-                                                <input type="color" id="color" onchange="plot();" />
-                                                <div id="myFunction"></div>
+                                                <input type="number" id="xMin" value="-50" step="0.5" />
+                                                <input type="number" id="xMax" value="50" step="0.5" />
+                                                <input type="number" id="yMin" value="-50" step="0.5" />
+                                                <input type="number" id="yMax" value="50" step="0.5" />
+                                                <input type="color" id="color" />
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2 mt-3">
-                                            <button class="btn btn-primary" id="sendMessageButton" onclick="plot()"
-                                                type="button">Plot</button>
+                                            <button class="btn btn-primary" type="button" onclick="plot('function', 'myFunction');">Plot</button>
                                         </div>
-                                        <div class="float-child">
-                                            <canvas id="myChart"></canvas>
-                                        </div>
+                                        <div id="myFunction"></div>
                                     </div>
                                 </div>
                             </div>
