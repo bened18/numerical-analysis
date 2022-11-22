@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 
 def sustProg(L, b, n):
-    result = []
+    result = ""
     if (L[0][0] == 0):
         return
     else:
@@ -14,7 +14,7 @@ def sustProg(L, b, n):
         z[0] = b[0][0]/L[0][0]
         for k in range(1, n):
             if (L[k][k] == 0):
-                result.append(f"Element {k} in L diagonal, is zero")
+                result += f"Element {k} in L diagonal, is zero"
                 return result
             else:
                 for r in range(k):
@@ -25,7 +25,7 @@ def sustProg(L, b, n):
 
 
 def sustRegr(U, z, n):
-    result = []
+    result = ""
     if (U[0][0] == 0):
         return
     else:
@@ -34,7 +34,7 @@ def sustRegr(U, z, n):
         x[n-1] = z[n-1]/U[n-1][n-1]
         for k in range(n-2, -1, -1):
             if U[k][k] == 0:
-                result.append(f"Element {k} in U diagonal, is zero")
+                result += f"Element {k} in U diagonal, is zero"
                 return result
             else:
                 suma4 = 0
@@ -45,7 +45,7 @@ def sustRegr(U, z, n):
 
 
 def cholesky(A):
-    stages = []
+    result = ""
     n = len(A)
     L = [[0 for j in range(n)] for i in range(n)]
     U = [[0 for j in range(n)] for i in range(n)]
@@ -71,13 +71,18 @@ def cholesky(A):
                 suma3 += L[k][p]*U[p][j]
             U[k][j] = (A[k][j]-suma3)/(L[k][k])
             
-        stageL=tabulate(L,[f"x{i}" for i in range(len(L))], tablefmt="html")
-        stageU=tabulate(U,[f"x{i}" for i in range(len(U))], tablefmt="html")
+        result += f"<br>Stage: {k+1}:"
+        result += f"<br>Matrix L:"
+        table_L = tabulate(L,[f"x{i}" for i in range(len(L))], tablefmt="html", stralign="left")
+        result += f"{table_L}"
+        
+        result += f"<br>Matrix U:"
+        table_U = tabulate(U,[f"x{i}" for i in range(len(U))], tablefmt="html", stralign="left")
+        result += f"{table_U}"
 
-        stages.append([stageL, stageU])
         
 
-    return L, U, stages
+    return L, U, result
 
 
 def convert_string_to_list(string):
@@ -107,9 +112,8 @@ def fill_matrix(A_str, b_str):
     
 
     # Show answer
-    result = x
     
-    return result, stages
+    return x, stages
 
 ##stages todas las l y u por etapas 
 ## x respuesta 

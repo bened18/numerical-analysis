@@ -42,11 +42,18 @@
 
 
     {% if result.any %}
+    <h6>Result x:</h6>
+    <ul>
+        {% for r in result %}
+        <li>{{r}}</li>
+        {% endfor %}
+    </ul>
     {{ result | safe }}
     {% endif %}
 
 
     {{result_chol | safe}}
+
 </div>
 {% endblock container %}
 
