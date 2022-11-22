@@ -21,32 +21,44 @@ def vandermonde(xi_str, yi_str):
     xi = np.array(convert_string_to_list(xi_str))
     B = np.array(convert_string_to_list(yi_str))
     n = len(xi)
-    D = np.zeros(shape=(n, n), dtype=float)
-    for i in range(0, n, 1):
-        for j in range(0, n, 1):
-            potencia = (n-1)-j
-            D[i, j] = xi[i]**potencia
+    ny = len(B)
 
-    coeficiente = np.linalg.solve(D, B)
+    if(n==ny):
+        D = np.zeros(shape=(n, n), dtype=float)
+        for i in range(0, n, 1):
+            for j in range(0, n, 1):
+                potencia = (n-1)-j
+                D[i, j] = xi[i]**potencia
 
-    x = sym.Symbol('x')
-    polinomio = 0
-    for i in range(0, n, 1):
-        potencia = (n-1)-i
-        termino = coeficiente[i]*(x**potencia)
-        polinomio = polinomio + termino
+        coeficiente = np.linalg.solve(D, B)
 
+        x = sym.Symbol('x')
+        polinomio = 0
+        for i in range(0, n, 1):
+            potencia = (n-1)-i
+            termino = coeficiente[i]*(x**potencia)
+            polinomio = polinomio + termino
+
+        
+        result_table = tabulate(D, tablefmt="html")
+        result_coefficients = f"Polynomial coefficients: <br> {coeficiente}"
+        result_polynomial = f"Interpolation polynomial: <br> {polinomio}"
+        result_error=""
+        
+        return {
+            "result":result,
+            "result_table": result_table,
+            "result_coefficients": result_coefficients,
+            "result_polynomial": result_polynomial,
+        }
+    else:
+        return {
+            "result":f"The size must be the same {n} != {ny}",
+            "result_table": '',
+            "result_coefficients": '',
+            "result_polynomial": '',
+        }
     
-    result_table = tabulate(D, tablefmt="html")
-    result_coefficients = f"Polynomial coefficients: <br> {coeficiente}"
-    result_polynomial = f"Interpolation polynomial: <br> {polinomio}"
-    
-    return {
-        "result":result,
-        "result_table": result_table,
-        "result_coefficients": result_coefficients,
-        "result_polynomial": result_polynomial
-    }
 
 # GRAFICACION DEL EJERCICIO
 # --------------------------------------------
