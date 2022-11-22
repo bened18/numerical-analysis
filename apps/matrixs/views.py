@@ -1,7 +1,7 @@
 import json
 from django.views.generic import TemplateView
 
-from apps.matrixs.functions.Cholesky import cholesky
+from apps.matrixs.functions.Cholesky import entradas
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 from apps.matrixs.functions.Crout import crout
@@ -32,10 +32,13 @@ class CholeskyTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         
         matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+
         
-        if matrix_a:
-            matrix = convert_string_to_list(matrix_a)        
-            context["result"] = cholesky(matrix)
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)    
+            matrix_b =  convert_string_to_list(matrix_b)
+            context["result"] = entradas(matrix_a, matrix_b)
         
         return context
     
@@ -50,11 +53,13 @@ class CroutTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         
         matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
 
         
-        if matrix_a:
-            matrix = convert_string_to_list(matrix_a)     
-            context["result"] = crout(matrix)
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)    
+            matrix_b =  convert_string_to_list(matrix_b)
+            context["result"] = crout(matrix_a, matrix_b)
         
         return context
 
@@ -67,11 +72,13 @@ class DoolittleTemplateView(TemplateView):
                         self).get_context_data(**kwargs)
         
         matrix_a = self.request.GET.get('a', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('b', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
 
         
-        if matrix_a:
-            matrix = convert_string_to_list(matrix_a)     
-            context["result"] = doolittle(matrix)
+        if matrix_a and matrix_b:
+            matrix_a = convert_string_to_list(matrix_a)    
+            matrix_b =  convert_string_to_list(matrix_b)
+            context["result"] = doolittle(matrix_a, matrix_b)
         
         return context
 
