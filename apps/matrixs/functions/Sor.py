@@ -1,6 +1,8 @@
+import json
+from math import sqrt
+import numpy as np
+        
 def estrictamenteDiagonalDominante(A):
-        import numpy as np
-
         X=np.array(A)
 
         Sum_values_in_given_row = np.sum(abs(X),axis=1)
@@ -8,10 +10,16 @@ def estrictamenteDiagonalDominante(A):
             return True
         else:
             return False
+        
+def convert_string_to_list(string1):
+    res = f"[{string1}]".strip(" ")
+    res_to_json = json.loads(res)
+    return res_to_json
 
 def sor(A,b,x0,Tol,w,Nmax):
-        from math import sqrt
-        import numpy as np
+        
+        
+        
         html = "</br>SOR(relajacion)</br></br>Resultados:</br></br>"
         H = [[0 if i >= j else -A[i][j] for i in range(len(A))] for j in range(len(A))]
         T = [[0 if i < j else A[i][j] for i in range(len(A))] for j in range(len(A))]
@@ -46,7 +54,7 @@ def sor(A,b,x0,Tol,w,Nmax):
         else:
             html += f"El sistema no converge a la solucion unica x=Tx + c ya que p(T) >= 1</br></br>"
 
-        if self.estrictamenteDiagonalDominante(A):
+        if estrictamenteDiagonalDominante(A):
             html += f"La matriz es estrictamente diagonal dominante y por lo tanto converge para cualquier aproximacion inical x0</br></br>"
         else:
             html += f"La matriz no es estrictamente diagonal dominante y por lo tanto no converge para toda aproximacion inical x0</br></br>"
@@ -99,9 +107,4 @@ def sor(A,b,x0,Tol,w,Nmax):
             return html
 
 
-#A = [[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]]
-#b = [1, 1, 1, 1]
-#tol = 1e-7
-#w = 1.5
-#itermax = 20
-#sor(A, b, tol, w, itermax)
+# print(sor([[4, -1, 0, 3], [1, 15.5, 3, 8], [0, -1.3, -4, 1.1], [14, 5, -2, 30]],[1,1,1,1],[0,0,0,0],0.0000007,1.5,100))

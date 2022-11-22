@@ -39,24 +39,24 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunction">Matrix A:</span>
-            <input type="text" class="form-control" placeholder="[4, -1, 0, 3],[1, 15.5, 3, 8],[0, -1.3, -4, 1.1],[14, 5, -2, 30]" id="Gauss_Seidel_A" name="A">
+            <input type="text" class="form-control" placeholder="[4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]" id="A" name="A">
         </div>
 
         <div class="input-group">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="spanfunction">Matrix b:</span>
-                <input type="text" class="form-control" placeholder="[1,1,1,1]" id="Gauss_Seidel_B" name="B">
+                <input type="text" class="form-control" placeholder="1,1,1,1" id="B" name="B">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="spanfunction">Matrix x0:</span>
-                <input type="text" class="form-control" placeholder="0,0,0,0" id="Gauss_Seidel_B" name="x0">
+                <input type="text" class="form-control" placeholder="0,0,0,0" id="x0" name="x0">
             </div>
             <span class="input-group-text" id="spanfunction">Tolerance:</span>
-            <input type="text" class="form-control" placeholder="0.0000007" id="Gauss_Seidel_tolerance" name="tolerance">
+            <input type="text" class="form-control" placeholder="0.0000007" id="tol" name="tolerance">
             <span class="input-group-text" id="spanfunction">w:</span>
-            <input type="text" class="form-control" placeholder="1.5" id="Gauss_Seidel_w" name="w">
+            <input type="text" class="form-control" placeholder="1.5" id="w" name="w">
             <span class="input-group-text" id="spanfunction">Itermax:</span>
-            <input type="text" class="form-control" placeholder="100" id="Gauss_Seidel_itermax" name="itermax">
+            <input type="text" class="form-control" placeholder="100" id="iter" name="itermax">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -71,3 +71,16 @@
 
 </div>
 {% endblock container %}
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("A").value = urlParams.get('A')
+    document.getElementById("B").value = urlParams.get('B')
+    document.getElementById("x0").value = urlParams.get('x0')
+    document.getElementById("tol").value = urlParams.get('tolerance')
+    document.getElementById("w").value = urlParams.get('w')
+    document.getElementById("iter").value = urlParams.get('itermax')
+</script>
+{% endblock js %}
