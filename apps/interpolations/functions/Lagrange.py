@@ -23,6 +23,17 @@ def lagrange(xi_str, fi_str):
     x = sym.Symbol('x')
     polinomio = 0
     divisorL = np.zeros(n, dtype=float)
+
+    if not checkUnique(xi):
+        return {
+                "fi": 'X vector can\'t contain repeated values',
+                "dividers":0,
+                "lpe": "",
+                "lp": 0,
+                "xi": 0,
+                "pxi": 0,
+                "pfi": 0
+            }
     if(n==ny):
         for i in range(0, n, 1):
             numerador = 1

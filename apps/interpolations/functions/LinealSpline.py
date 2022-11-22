@@ -26,6 +26,9 @@ def lineal_spline(xi_str,yi_str):
   #procedimiento
   n = len(xi)
   ny = len(fi)
+
+  if not checkUnique(xi):
+            return (0, 'X vector can\'t contain repeated values')
   if(n==ny):
     x = sym.Symbol('x')
     px_table = []

@@ -22,6 +22,9 @@ def traza3natural(xi_str, yi_str):
     n = len(xi)
     ny = len(yi)
 
+    if not checkUnique(xi):
+        return(0, 0,'X vector can\'t contain repeated values')
+
     if(n==ny):
         # Valores h
         h = np.zeros(n-1, dtype=float)
