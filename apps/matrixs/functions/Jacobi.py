@@ -12,14 +12,14 @@ def estrictamenteDiagonalDominante(A):
 def jacobi(A,b,x0,Tol,Nmax):
         import numpy as np
 
-        html = "</br>Jacobi</br></br>Resultados:</br>"
+        html = "</br>Jacobi</br></br>Results:</br>"
 
         C = []
         T = [[0 for i in range(len(A))] for j in range(len(A))]
         for i in range(len(A)):
             coef = 0
             if A[i][i] == 0:
-                return html+f"</br>Existe un 0 en la diagonal, en la posicion {i+1},{i+1} lo que genera una división por cero cuando se desea contruir la matriz C</br>"
+                return html+f"</br>There is a 0 on the diagonal, at position {i+1},{i+1}, which generates a division by zero when you want to build the matrix C</br>"
             C.append((1/A[i][i])*b[i])
             coef = -(1/A[i][i])
             for j in range(len(A)):
@@ -40,16 +40,16 @@ def jacobi(A,b,x0,Tol,Nmax):
         val, ne =  np.linalg.eig(T) # T es la matriz
         sr = max(abs(val))
         
-        html += f"</br>Radio espectral:</br>{sr}</br></br>"
+        html += f"</br>Spectral radius:</br>{sr}</br></br>"
         if sr < 1:
-            html += f"El sistema converge a la solucion unica x=Tx + c ya que p(T) < 1</br></br>"
+            html += f"The system converges to the unique solution x=Tx + c since p(T) < 1</br></br>"
         else:
-            html += f"El sistema no converge a la solucion unica x=Tx + c ya que p(T) >= 1</br></br>"
+            html += f"The system does not converge to the unique solution x=Tx + c since p(T) >= 1</br></br>"
 
         if estrictamenteDiagonalDominante(A):
-            html += f"La matriz es estrictamente diagonal dominante y por lo tanto converge para cualquier aproximacion inical x0</br></br>"
+            html += f"The matrix is ​​strictly diagonal dominant and therefore converges for any initial approximation x0</br></br>"
         else:
-            html += f"La matriz no es estrictamente diagonal dominante y por lo tanto no converge para toda aproximacion inical x0</br></br>"
+            html += f"The matrix is ​​not strictly diagonal dominant and therefore does not converge for every initial approximation x0</br></br>"
 
         html += f"|i|E|X|</br>"
         x1 = [0 for i in range(len(A))]
@@ -96,5 +96,5 @@ def jacobi(A,b,x0,Tol,Nmax):
 
             return html
         else:
-            html+=f"Fracaso en {Nmax} iteraciones</br>"
+            html+=f"Failed in {Nmax} iterations</br>"
             return html

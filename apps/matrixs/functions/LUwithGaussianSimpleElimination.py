@@ -5,18 +5,18 @@ def formaMatrizAumentada(A,b):
 
         for i in A:
             if n != len(i):
-                return A, "La matriz A presenta ecuaciones con más o menos incognitas que otras, por lo tango el sistema es inconsistente y no tiene solucion</br>"
+                return A, "Matrix A presents equations with more or fewer unknowns than others, therefore the system is inconsistent and has no solution.</br>"
         ranA = np.linalg.matrix_rank(np.matrix(A))
         for a, b in zip(A, b):
             a.append(b)
         ranAb =  np.linalg.matrix_rank(np.matrix(A))
         result = ''
         if ranA == ranAb and ranAb == n:
-            result += "El rango de A es igual al rango de la matriz aumentada y el rango de A es igual al numero de incognitas, entonces el sistema es compatible determinado y por esto el sistema tiene solucion unica</br>"
+            result += "The range of A is equal to the range of the augmented matrix and the range of A is equal to the number of unknowns, then the system is compatible determined and therefore the system has a unique solution.</br>"
         elif ranA == ranAb and ranAb < n:
-            result += f"El rango de A es igual al rango de la matriz aumentada pero el rango de la matriz aumentada es menor al numero de incognitas, entonces el sistema es compatible indeterminado y por esto el sistema tiene infinitas soluciones, además el determinante de la matriz es {det:.5f} y por eso el método no converge</br>"
+            result += f"The range of A is equal to the range of the augmented matrix but the range of the augmented matrix is ​​less than the number of unknowns, then the system is compatible indeterminate and for this reason the system has infinite solutions, also the determinant of the matrix is {det:.5f} and therefore the method does not converge</br>"
         else:
-            result += "El rango de A es menor al rango de la matriz aumentada, entonces el sistema es incompatible y no tiene solucion</br>"
+            result += "The rank of A is less than the rank of the augmented matrix, so the system is incompatible and has no solution.</br>"
         return A, result
 
 def sustitucionProgresiva(Lb, n):
@@ -32,14 +32,14 @@ def sustitucionProgresiva(Lb, n):
 def sustitucionRegresiva(Ab, n):
         x = [0 for i in range(n)]
         if Ab[n-1][n-1] == 0:
-            return f"</br>Al intentar hacer sustitucion regresiva, se genera una división por 0, lo que indica que el sistema tiene infinitas soluciones</br>" 
+            return f"</br>When trying to do backward substitution, a division by 0 is generated, which indicates that the system has infinitely many solutions.</br>" 
         x[n-1] = Ab[n-1][n] / Ab[n-1][n-1]
         for i in range(n-1, -1, -1):
             sumatoria = 0
             for p in range(i+1, n):
                 sumatoria += Ab[i][p] * x[p]
             if Ab[i][i] == 0:
-                return f"</br>Al intentar hacer sustitucion regresiva, se genera una división por 0, lo que indica que el sistema tiene infinitas soluciones</br>"    
+                return f"</br>When trying to do backward substitution, a division by 0 is generated, which indicates that the system has infinitely many solutions.</br>"    
             x[i] = (Ab[i][n] -  sumatoria)/Ab[i][i]
         return x
 
@@ -78,13 +78,13 @@ def luSimple(A,b):
             for k in range(n-1):
                 for i in range(k+1, n):
                     if Ab[k][k] == 0:
-                        html += f"</br>se ha encontrado un 0 en la diagonal, en la posicion {k+1},{k+1} el método se suspende por una division por 0</br>"
+                        html += f"</br>a 0 has been found on the diagonal, at position {k+1},{k+1} the method is suspended by a division by 0</br>"
                         return Ab, html
                     L[i][k] = multiplicador = Ab[i][k] / Ab[k][k]
                     for j in range(k, n+1):
                         Ab[i][j] -= (multiplicador * Ab[k][j])
                 etapa += 1
-                html += f"</br>Etapa {etapa}</br></br>"
+                html += f"</br>Stage {etapa}</br></br>"
                 for i in Ab:
                     result = ""
                     for j in i[:len(Ab)]:
@@ -107,7 +107,7 @@ def luSimple(A,b):
                 html+="</br>"
             return Ab, html
 
-        html=f"</br>LU con gaussiana simple:</br></br>Resultados</br></br>Etapa {etapa}</br></br>"
+        html=f"</br>LU with simple Gaussian:</br></br>Results</br></br>Stage {etapa}</br></br>"
         for i in A:
             result = ""
             for j in i:
@@ -118,7 +118,7 @@ def luSimple(A,b):
         if "diagonal" in html:
             return html
         
-        if "no tiene solucion" in html:
+        if "has no solution" in html:
             return html
 
         Lb, result = formaMatrizAumentada(L,b)
@@ -129,12 +129,12 @@ def luSimple(A,b):
         if type(x) == str:    
             html += x
             x = infinitasSoluciones(Ab)
-            html+="</br>Ya que el sistema es compatible indeterminado, tiene infinitas soluciones y se puede respresentar con:</br></br>x:</br>"
+            html+="</br>Since the system is compatible indeterminate, it has infinitely many solutions and can be represented by:</br></br>x:</br>"
 
             for i in x:
                 html+=f"{i}</br></br>"
             
-            html += "</br>con t = 0</br>x:</br>"
+            html += "</br>with t = 0</br>x:</br>"
 
             for i in x:
                 fun = eval(f"lambda t:{i}")
@@ -143,7 +143,7 @@ def luSimple(A,b):
 
             return html
 
-        html+="</br>Despues de aplicar sustitucion progresiva y regresiva</br></br>x:</br>"
+        html+="</br>After applying forward and backward substitution</br></br>x:</br>"
 
         for i in x:
             html+=f"{i}</br>"
