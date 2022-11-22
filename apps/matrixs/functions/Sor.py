@@ -20,19 +20,19 @@ def sor(A,b,x0,Tol,w,Nmax):
         
         
         
-        html = "</br>SOR(relajacion)</br></br>Resultados:</br></br>"
+        html = "</br>SOR(relaxation)</br></br>Results:</br></br>"
         H = [[0 if i >= j else -A[i][j] for i in range(len(A))] for j in range(len(A))]
         T = [[0 if i < j else A[i][j] for i in range(len(A))] for j in range(len(A))]
         T = np.array(T)
         try:
             C = list((np.linalg.inv(T)).dot(np.array(b)))
         except:
-            return html + "</br>La matriz C construida es singular, lo que implica el método se detenga</br>"
+            return html + "</br>The array C constructed is singular, which implies the method stops</br>"
 
         try:
             T = list((np.linalg.inv(T)).dot(np.array(H)))
         except:
-            return html + "</br>La matriz T construida es singular, lo que implica el método se detenga</br>"
+            return html + "</br>The constructed matrix T is singular, which implies the method stops</br>"
 
         html += "</br>T:</br>"
         for i in T:
@@ -47,17 +47,17 @@ def sor(A,b,x0,Tol,w,Nmax):
 
         val, ne =  np.linalg.eig(T) # T es la matriz
         sr = max(abs(val))
-        html += f"</br>Radio espectral:</br>{sr}</br></br>"
+        html += f"</br>Spectral radius:</br>{sr}</br></br>"
 
         if sr < 1:
-            html += f"El sistema converge a la solucion unica x=Tx + c ya que p(T) < 1</br></br>"
+            html += f"The system converges to the unique solution x=Tx + c since p(T) < 1</br></br>"
         else:
-            html += f"El sistema no converge a la solucion unica x=Tx + c ya que p(T) >= 1</br></br>"
+            html += f"The system does not converge to the unique solution x=Tx + c since p(T) >= 1</br></br>"
 
         if estrictamenteDiagonalDominante(A):
-            html += f"La matriz es estrictamente diagonal dominante y por lo tanto converge para cualquier aproximacion inical x0</br></br>"
+            html += f"The matrix is ​​strictly diagonal dominant and therefore converges for any initial approximation x0</br></br>"
         else:
-            html += f"La matriz no es estrictamente diagonal dominante y por lo tanto no converge para toda aproximacion inical x0</br></br>"
+            html += f"The matrix is ​​not strictly diagonal dominant and therefore does not converge for every initial approximation x0</br></br>"
 
         x1 = [0 for i in range(len(A))]
         count = 0
@@ -103,7 +103,7 @@ def sor(A,b,x0,Tol,w,Nmax):
 
             return html
         else:
-            html+=f"Fracaso en {Nmax} iteraciones</br>"
+            html+=f"Failure in {Nmax} iterations</br>"
             return html
 
 
