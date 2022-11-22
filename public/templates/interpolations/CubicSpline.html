@@ -46,10 +46,12 @@
     <form method="GET">
         <div class="input-group">
             <span class="input-group-text" id="xi">xi:</span>
-            <input type="text" class="form-control" placeholder="-1, 0, 3, 4" name="xi" aria-describedby="xi">
+            <input type="text" id="xi_input" class="form-control" required="required" placeholder="-1, 0, 3, 4" name="xi"
+                aria-describedby="xi">
 
             <span class="input-group-text" id="fi">fi:</span>
-            <input type="text" class="form-control" placeholder="15.5, 3, 8, 1" name="fi" aria-describedby="fi">
+            <input type="text" id="fi_input" class="form-control" required="required" placeholder="15.5, 3, 8, 1" name="fi"
+                aria-describedby="fi">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -83,7 +85,66 @@
             <p>{{result}}</p>
         </div>
     </div>
+
     {% endif %}
+
+    <div>
+        <canvas id="cubicSpline"></canvas>
+    </div>
+
 
 </div>
 {% endblock container %}
+
+{% block chartJs %}
+<script>
+    const qs = window.location.search;
+    const up = new URLSearchParams(qs);
+
+    const ctx = document.getElementById('cubicSpline');
+    var xi_str = document.getElementById("xi_input").value = up.get('xi')
+    var fi_str = document.getElementById('fi_input').value = up.get('fi')
+
+    var xi = JSON.parse("[" + xi_str + "]")
+    var fi = JSON.parse("[" + fi_str + "]")
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xi,
+            datasets: [{
+                label: 'Polynomial',
+                data: fi,
+                borderWidth: 1,
+                fill: false,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Cubic Spline Interpolation'
+                },
+            }
+        }
+    });
+</script>
+{% endblock chartJs %}
+
+
+{% block js %}
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    document.getElementById("xi_input").value = urlParams.get('xi')
+    document.getElementById("fi_input").value = urlParams.get('fi')
+</script>
+{% endblock js %}
