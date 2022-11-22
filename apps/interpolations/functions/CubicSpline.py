@@ -5,6 +5,14 @@ import numpy as np
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
+
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
+
 def traza3natural(xi_str, yi_str):
     # parse str to float
     xi = convert_string_to_list(xi_str)
@@ -13,6 +21,9 @@ def traza3natural(xi_str, yi_str):
     trazadores_list = []
     n = len(xi)
     ny = len(yi)
+
+    if not checkUnique(xi):
+        return(0, 0,'X vector can\'t contain repeated values')
 
     if(n==ny):
         # Valores h

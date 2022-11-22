@@ -10,6 +10,12 @@ xi = "-1,0,3,4"
 fi = "15.5,3,8,1"
 
 
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
 
 
 def lineal_spline(xi_str,yi_str):
@@ -20,6 +26,9 @@ def lineal_spline(xi_str,yi_str):
   #procedimiento
   n = len(xi)
   ny = len(fi)
+
+  if not checkUnique(xi):
+            return (0, 'X vector can\'t contain repeated values')
   if(n==ny):
     x = sym.Symbol('x')
     px_table = []

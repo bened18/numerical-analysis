@@ -94,6 +94,7 @@ class QuadraticSplineTemplateView(TemplateView):
                                 
             context['tracers'] = f"Tracers: {values}"
             context['coefficients'] = f"Coefficients: {splain(xi, fi)[1]}"
+            context['result_error'] = splain(xi, fi)[2]
         return context
 
 

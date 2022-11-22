@@ -6,6 +6,14 @@ from tabulate import tabulate
 from sympy.parsing.sympy_parser import parse_expr
 
 
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
+
+
 def convert_string_to_list(string):
     res = f"[{string}]".strip(" ")
     res_to_json = json.loads(res)
@@ -33,6 +41,15 @@ def newton(xi_str, yi_str):
     ny = len(y)
         
     tabla = np.zeros((nx+1, nx+1))
+
+    if not checkUnique(x):
+            return{
+            "solution_table":'X vector can\'t contain repeated values',
+            "solution_divided_table":solution_divided_table,
+            "interpolating_polynomial":interpolating_polynomial,
+            "xi": 0,
+            "yi": 0
+            }
 
     if (nx == ny):
         for i in range(nx):

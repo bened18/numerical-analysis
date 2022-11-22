@@ -130,8 +130,8 @@ def splain(x_str, y_str):
     ny=len(y)
     if(nx==ny):
 
-        if not checkUnique(x):
-            return None, None, 'X vector can\'t contain repeated values'
+        if not checkUnique(x_list):
+            return "", "",'X vector can\'t contain repeated values'
 
         dimension = 3*len(x) - 3
 
@@ -165,9 +165,9 @@ def splain(x_str, y_str):
         for i in range(len(x)-1):
             tracers[i].append(f'{x[i]} <= x <= {x[i+1]}')
 
-        return tracers, coefficients
+        return tracers, coefficients, ""
     else:
-        return " ", f"The size must be the same {nx} != {ny}"
+        return "", "", f"The size must be the same {nx} != {ny}"
 
 
 def interpolation(x, matrix):

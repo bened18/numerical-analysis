@@ -65,9 +65,13 @@
     </div>
     {% endif %}
 
-    <div>
-        <canvas id="quadraticSpline"></canvas>
+    {% if result_error %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <p>{{result_error}}</p>
+        </div>
     </div>
+    {% endif %}
 
 </div>
 {% endblock container %}

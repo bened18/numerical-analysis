@@ -5,6 +5,13 @@ from tabulate import tabulate
 
 import json
 
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
+
 
 def convert_string_to_list(string):
     res = f"[{string}]".strip(" ")
@@ -24,6 +31,13 @@ def vandermonde(xi_str, yi_str):
     ny = len(B)
 
     if(n==ny):
+        if not checkUnique(xi):
+            return{
+            "result":'X vector can\'t contain repeated values',
+            "result_table": '',
+            "result_coefficients": '',
+            "result_polynomial": ''
+            }
         D = np.zeros(shape=(n, n), dtype=float)
         for i in range(0, n, 1):
             for j in range(0, n, 1):
