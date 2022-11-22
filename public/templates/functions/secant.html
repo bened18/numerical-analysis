@@ -96,6 +96,7 @@
             <p>{{ result }}</p>
         </div>
     </div>
+    {% endif %}
 
     <h6 class="m-4">Chart options: </h6>
     <div class="input-group mb-3">
@@ -114,8 +115,13 @@
     </div>
     <div class="d-flex justify-content-center" id="myFunction"></div>
 
+
+    {% if result_table %}
     {{ result_table | safe }}
     {% endif %}
+
+
+
 </div>
 {% endblock container %}
 
