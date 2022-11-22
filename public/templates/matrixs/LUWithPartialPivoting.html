@@ -26,8 +26,10 @@
 
     <form method="GET">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="A" id="LUWithPartialPivoting_A" name="A">
-            <input type="text" class="form-control" placeholder="B" id="LUWithPartialPivoting_B" name="B">
+            <span class="input-group-text" id="spanfunction">Matrix A:</span>
+            <input type="text" class="form-control" placeholder="[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]" id="GaussianEliminationWithPartialPivoting_A" name="a">
+            <span class="input-group-text" id="spanfunction">Matrix b:</span>
+            <input type="text" class="form-control" placeholder="1,1,1,1" id="GaussianEliminationWithPartialPivoting_b" name="b">
         </div>
 
         <div class="d-grid gap-2 mt-3">
@@ -37,11 +39,7 @@
 
 
     {% if result %}
-    <div class="card mt-2">
-        <div class="card-body">
-            <p>{{ result }}</p>
-        </div>
-    </div>
+        <p>{{ result | safe}}</p>
     {% endif %}
 
 </div>

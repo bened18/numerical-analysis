@@ -43,8 +43,14 @@
         </div>
 
         <div class="input-group">
-            <span class="input-group-text" id="spanfunction">Matrix b:</span>
-            <input type="text" class="form-control" placeholder="1,1,1,1" id="Gauss_Seidel_B" name="B">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanfunction">Matrix b:</span>
+                <input type="text" class="form-control" placeholder="[1,1,1,1]" id="Gauss_Seidel_B" name="B">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="spanfunction">Matrix x0:</span>
+                <input type="text" class="form-control" placeholder="0,0,0,0" id="Gauss_Seidel_B" name="x0">
+            </div>
             <span class="input-group-text" id="spanfunction">Tolerance:</span>
             <input type="text" class="form-control" placeholder="0.0000007" id="Gauss_Seidel_tolerance" name="tolerance">
             <span class="input-group-text" id="spanfunction">w:</span>
@@ -60,11 +66,7 @@
 
 
     {% if result %}
-    <div class="card mt-2">
-        <div class="card-body">
-            <p>{{ result | safe }}</p>
-        </div>
-    </div>
+        {{ result | safe }}
     {% endif %}
 
 </div>
