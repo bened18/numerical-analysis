@@ -5,6 +5,14 @@ import numpy as np
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
+
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
+
 def traza3natural(xi_str, yi_str):
     # parse str to float
     xi = convert_string_to_list(xi_str)

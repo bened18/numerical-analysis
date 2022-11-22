@@ -6,6 +6,14 @@ import matplotlib.pyplot as plt
 
 from apps.interpolations.functions.convert_string_to_type import convert_string_to_list
 
+
+def checkUnique(x):
+    for i in range(len(x)):
+        for j in range(len(x)):
+            if x[i] == x[j] and i != j:
+                return False
+    return True
+
 def lagrange(xi_str, fi_str):
     xi = convert_string_to_list(xi_str)
     fi = convert_string_to_list(fi_str)
