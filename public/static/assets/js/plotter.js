@@ -5,8 +5,6 @@ function plot(f_id, taget_graph) {
     var yMin = document.querySelector("#yMin").value;
     var yMax = document.querySelector("#yMax").value;
     
-    console.log("Graficando");
-
     functionPlot({
         target: taget_graph,
         data: [{
