@@ -66,13 +66,13 @@
     <form method="GET">
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunctionf">Function f:</span>
-            <input name="f1" type="text" id="functionf" required="required" class="form-control"
+            <input name="f1" type="text" id="function" required="required" class="form-control"
                 placeholder="x^3 + x^2 - 1" aria-describedby="functionf">
         </div>
 
         <div class="input-group mb-3">
             <span class="input-group-text" id="spanfunctiong">Function g:</span>
-            <input name="g" type="text" id="functiong" required="required" class="form-control"
+            <input name="g" type="text" id="function2" required="required" class="form-control"
                 placeholder="1/sqrt(1+x)" aria-describedby="functiong">
         </div>
 
@@ -92,6 +92,59 @@
         </div>
     </form>
 
+    <h4 class="m-4">Chart options: </h4>
+    <div class="row">
+
+        <div class="col-6">
+            <h6 class="text-center">Function f</h6>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Min x:</span>
+                <input class="form-control" type="number" id="xMin" value="-50" step="0.5" oninput="plot();" />
+
+                <span class="input-group-text">Max x:</span>
+                <input class="form-control" type="number" id="xMax" value="50" step="0.5" oninput="plot();" />
+
+                <span class="input-group-text">Min y:</span>
+                <input class="form-control" type="number" id="yMin" value="-50" step="0.5" oninput="plot();" />
+
+                <span class="input-group-text">Max y:</span>
+                <input class="form-control" type="number" id="yMax" value="50" step="0.5" oninput="plot();" />
+
+                <input type="color" id="color" onchange="plot();" />
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" onclick="plot()" type="button">Plot function
+                    f</button>
+            </div>
+            <div class="d-flex justify-content-center" id="myFunction"></div>
+        </div>
+
+        <div class="col-6">
+            <h6 class="text-center">Function g</h6>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Min x:</span>
+                <input class="form-control" type="number" id="xMin2" value="-50" step="0.5" oninput="plotg();" />
+
+                <span class="input-group-text">Max x:</span>
+                <input class="form-control" type="number" id="xMax2" value="50" step="0.5" oninput="plotg();" />
+
+                <span class="input-group-text">Min y:</span>
+                <input class="form-control" type="number" id="yMin2" value="-50" step="0.5" oninput="plotg();" />
+
+                <span class="input-group-text">Max y:</span>
+                <input class="form-control" type="number" id="yMax2" value="50" step="0.5" oninput="plotg();" />
+
+                <input type="color" id="color2" onchange="plotg();" />
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" onclick="plotg()" type="button">Plot function
+                    g</button>
+            </div>
+            <div class="d-flex justify-content-center" id="myFunction2"></div>
+        </div>
+    </div>
+
+
     {{result_table | safe}}
 
 </div>
@@ -101,8 +154,8 @@
 <script>
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    document.getElementById("functionf").value = urlParams.get('f1')
-    document.getElementById("functiong").value = urlParams.get('g')
+    document.getElementById("function").value = urlParams.get('f1')
+    document.getElementById("function2").value = urlParams.get('g')
     document.getElementById("x0").value = urlParams.get('x0')
     document.getElementById("tol").value = urlParams.get('tol')
     document.getElementById("itermax").value = urlParams.get('itermax')
