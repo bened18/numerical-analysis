@@ -10,6 +10,7 @@ from apps.matrixs.functions.GaussSeidel import gaussSeidel
 from apps.matrixs.functions.GaussianEliminationWithPartialPivoting import eliminacionParcial
 from apps.matrixs.functions.GaussianEliminationWithTotalPivoting import eliminacionTotal
 from apps.matrixs.functions.GaussianSimpleElimination import eliminacionSimple
+from apps.matrixs.functions.Jacobi import jacobi
 from apps.matrixs.functions.Sor import sor
 
 
@@ -170,6 +171,28 @@ class GaussSeidelTemplateView(TemplateView):
     
 class JacobiTemplateView(TemplateView):
     template_name = "matrixs/Jacobi.html"
+    def get_context_data(self, **kwargs):
+        context = super(JacobiTemplateView,
+                        self).get_context_data(**kwargs)
+        
+        matrix_a = self.request.GET.get('A', '') # [4,-1,0,3],[1,15.5,3,8],[0,-1.3,-4,1.1],[14,5,-2,30]
+        matrix_b = self.request.GET.get('B', '') # [1,1,1,1]
+        matrix_x0 = self.request.GET.get('x0', '') # [0,0,0,0]
+        itermax = self.request.GET.get('itermax', '') # 100
+        tolerance = self.request.GET.get('tolerance', '') #0.00000007
+        
+        if matrix_a and matrix_b and matrix_x0 and itermax and tolerance:
+            
+            itermax = int(itermax)
+            tolerance = float(tolerance)
+            
+            matrix_a = convert_string_to_list_individual(matrix_a)
+            matrix_b = convert_string_to_list_individual(matrix_b)
+            matrix_x0 = convert_string_to_list_individual(matrix_x0) 
+        
+            context["result"] = jacobi(matrix_a, matrix_b, matrix_x0, tolerance, itermax)
+        
+        return context
     
 class LUwithGaussianSimpleEliminationTemplateView(TemplateView):
     template_name = "matrixs/LUwithGaussianSimpleElimination.html"
