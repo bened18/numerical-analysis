@@ -45,8 +45,7 @@ def sustRegr(U, z, n):
 
 
 def cholesky(A):
-    stages= []
-    result = []
+    stages = []
     n = len(A)
     L = [[0 for j in range(n)] for i in range(n)]
     U = [[0 for j in range(n)] for i in range(n)]
@@ -72,12 +71,13 @@ def cholesky(A):
                 suma3 += L[k][p]*U[p][j]
             U[k][j] = (A[k][j]-suma3)/(L[k][k])
             
-        #stages.append((L,U))
         stageL=tabulate(L,[f"x{i}" for i in range(len(L))], tablefmt="html")
         stageU=tabulate(U,[f"x{i}" for i in range(len(U))], tablefmt="html")
-        stages.append([stageL,stageU])
 
-    return L, U, result, stages
+        stages.append([stageL, stageU])
+        
+
+    return L, U, stages
 
 
 def convert_string_to_list(string):
@@ -97,16 +97,19 @@ def fill_matrix(A_str, b_str):
     LU_cholesky = cholesky(A)
     L = LU_cholesky[0]
     U = LU_cholesky[1]
-    stages=LU_cholesky[3]
+    stages = LU_cholesky[2]
+    
     n = len(A)
 
     # Apply sustitution
     z = sustProg(L, b, n)[0]
     x = sustRegr(U, z, n)[0]
+    
 
     # Show answer
-    result=x
-    return result, LU_cholesky[2], stages
+    result = x
+    
+    return result, stages
 
 ##stages todas las l y u por etapas 
 ## x respuesta 

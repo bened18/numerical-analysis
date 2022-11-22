@@ -27,7 +27,8 @@
     <form method="GET">
         <div class="input-group">
             <span class="input-group-text" id="spanfunctionA">Matrix A:</span>
-            <input type="text" class="form-control" placeholder="[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]" id="chA" name="a">
+            <input type="text" class="form-control" placeholder="[2,-1,0,3],[1,0.5,3,8],[0,13,-2,11],[14,5,-2,3]"
+                id="chA" name="a">
             <span class="input-group-text" id="spanfunctionB">Matrix b:</span>
             <input type="text" class="form-control" placeholder="[1],[1],[1],[1]" id="chB" name="b">
         </div>
@@ -37,15 +38,13 @@
         </div>
     </form>
 
-    {{result_chol | safe}}
 
     {% if result.any %}
     {{ result | safe }}
     {% endif %}
-    
-    {% for stage in stages %}
-    {{ stage | safe }}
-    {% endfor %}
+
+
+    {{result_chol | safe}}
 </div>
 {% endblock container %}
 
